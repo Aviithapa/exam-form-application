@@ -1,11 +1,6 @@
 <?php
 
-use App\Http\Controllers\Attendance\AttendanceController;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Leave\LeaveController;
-use App\Http\Controllers\Questions\QuestionsController;
-use App\Http\Controllers\StudentAttempt\StudentAttemptController as StudentAttemptStudentAttemptController;
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Setting\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +13,22 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', function () {
+    return view('website.index');
+});
+
+Route::get('/form', function () {
+    return view('website.form');
+});
+
+Route::get('/review-registration', function () {
+    return view('website.review-registration');
+});
+
+Route::get('/profile', function () {
+    return view('website.profile');
+});
+
+
+Route::post('/save_image/{id?}', [SettingController::class, 'save_image'])->middleware(['auth'])->name('save_image');
