@@ -13,18 +13,9 @@
 <!-- BEGIN BODY -->
 <body>
     <div class="wrapper">
-
-        <div class="container">
-            <div class="content">
-                <div class="container-fluid mt-3">
-                    @include('website.layout.header')
-                    @yield('content')
-                    @include('website.layout.footer')
-                </div>
-            </div>
-        </div>
+        @yield('content')      
     </div>
-@include('website.layout.script')
-@stack('scripts')
+        @include('website.layout.script')
+        @stack('scripts')
 </body>
 </html>
