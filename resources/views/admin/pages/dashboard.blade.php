@@ -2,14 +2,8 @@
 
 @section('content')
 
-   <div class="content-page">
 
-                <div class="content">
-
-                    <!-- Start Content-->
-                    <div class="container-fluid">
-
-                        <!-- start page title -->
+  <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
@@ -24,7 +18,6 @@
                             </div>
                         </div>
                         <!-- end page title -->
-
                         <div class="row">
                             <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-pink">
@@ -200,12 +193,5 @@
                         </div>
                         <!-- end row -->
 
-                    </div>
-                    <!-- container -->
-
-                </div>
-                <!-- content -->
-
-            </div>
 
 @endsection

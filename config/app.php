@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\CustomDateValidationServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -194,6 +195,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        App\Providers\CustomDateValidationServiceProvider::class,
 
         // Auth Jwt Service Providers...
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,

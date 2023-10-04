@@ -60,10 +60,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(Employee::class);
     }
 
-    public function imei()
-    {
-        return $this->belongsToMany(Imei::class);
-    }
     /**
      * Displays the single role of user from many-many relationship
      * @return mixed
@@ -74,6 +70,14 @@ class User extends Authenticatable implements JWTSubject
             ->join('roles', 'role_user.role_id', '=', 'roles.id')
             ->select('roles.*')
             ->where('users.id', $this->id)->first();
+    }
+
+    public function isAdmin()
+    {
+        return self::join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->select('roles.*')
+            ->where('users.id', $this->id)->first(); // Assuming 'admin' is the admin role
     }
 
     public function getJWTIdentifier()

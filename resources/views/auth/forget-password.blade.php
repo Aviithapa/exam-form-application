@@ -19,45 +19,27 @@
                                         </a>
                                     </div>
                                     <div class="p-4 my-auto">
-                                        <h4 class="fs-20">Sign In</h4>
-                                        <p class="text-muted mb-3">Enter your email address and password to access
-                                            account.
+                                        <h4 class="fs-20">Reset Password</h4>
+                                        <p class="text-muted mb-3">Enter your email get the otp.
                                         </p>
 
                                         <!-- form -->
-                                        <form action="{{ url('/login') }}" method="POST">
+                                        <form action="{{ url('/forgot-password') }}" method="POST">
                                              @csrf
                                             <div class="mb-3">
-                                                <label for="emailaddress" class="form-label">Email address</label>
+                                                <label for="emailaddress" class="form-label">Enter your email address</label>
                                                 <input class="form-control" type="email" id="emailaddress" required=""
                                                     placeholder="Enter your email" value="{{ old('email') }}" name="email">
                                             </div>
-                                            <div class="mb-3">
-                                                <a href="{{ url('/resetPassword') }}" class="text-muted float-end"><small>Forgot
-                                                        your
-                                                        password?</small></a>
-                                                <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" required="" id="password"
-                                                    placeholder="Enter your password" name="password" value="{{ old('password') }}">
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="checkbox-signin" name="remember" value="{{ old('remember') }}">
-                                                    <label class="form-check-label" for="checkbox-signin">Remember
-                                                        me</label>
-                                                
-                                                </div>
-                                            </div>
 
                                             @if($errors->any())
+                                     
                                              <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                    {{ $errors->first('email') }}
                                              </div>
                                              @endif
                                             <div class="mb-0 text-start">
-                                                <button class="btn btn-soft-primary w-100" type="submit"> <span class="fw-bold">Log
-                                                        In</span> </button>
+                                                <button class="btn btn-soft-primary w-100" type="submit"> <span class="fw-bold">Reset Email</span> </button>
                                             </div>
 
                                           

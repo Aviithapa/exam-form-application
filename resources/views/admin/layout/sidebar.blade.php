@@ -121,6 +121,13 @@
                             <span> Applicant List </span>
                         </a>
                     </li>
+                     <li class="side-nav-item">
+                        <a href="{{ url('dashboard/exam') }}" class="side-nav-link">
+                            <i class=""></i>
+                            {{-- <span class="badge bg-success float-end">9+</span> --}}
+                            <span> Exam List </span>
+                        </a>
+                    </li>
 
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarPages" aria-expanded="false" aria-controls="sidebarPages" class="side-nav-link">

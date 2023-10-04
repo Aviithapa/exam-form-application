@@ -14,7 +14,24 @@
 <body>
     <div class="wrapper">
        @include('admin.layout.sidebar')
-        @yield('content')      
+          <div class="content-page">
+
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                      
+                         @yield('content')   
+        
+        
+                    </div>
+                    <!-- container -->
+
+                </div>
+                <!-- content -->
+
+            </div>
     </div>
         @include('website.layout.script')
         @stack('scripts')
