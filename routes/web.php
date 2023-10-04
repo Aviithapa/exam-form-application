@@ -62,7 +62,7 @@ Route::get('/dashboard/exam/create', [ExamController::class, 'create'])->middlew
 Route::post('/dashboard/exam/store', [ExamController::class, 'store'])->middleware(['auth'])->name('dashboard.exam.store');
 Route::get('/dashboard/exam/edit/{id}', [ExamController::class, 'edit'])->middleware(['auth'])->name('dashboard.exam.edit');
 Route::put('/dashboard/exam/update/{id}', [ExamController::class, 'update'])->middleware(['auth'])->name('dashboard.exam.update');
-Route::delete('/dashboard/exam/destroy/{id}', [ExamController::class, 'update'])->middleware(['auth'])->name('dashboard.exam.destroy');
+Route::delete('/dashboard/exam/destroy/{id}', [ExamController::class, 'destroy'])->middleware(['auth'])->name('dashboard.exam.destroy');
 
 
 

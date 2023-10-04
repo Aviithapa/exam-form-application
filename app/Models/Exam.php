@@ -17,4 +17,9 @@ class Exam extends Model
         'form_double_dustur_date',
         'status',
     ];
+
+    public function applicant()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }

@@ -58,7 +58,15 @@
                                                             <td>{{ $exam->form_double_dustur_date }}</td>
                                                             <td><span class="badge bg-info-subtle text-info">{{ $exam->status }}</span></td>
                                                             <td>Techzaa Studio</td>
-                                                            <td><a href="{{ route('dashboard.exam.edit', ['id' => $exam->id]) }}"><span class="badge bg-info-subtle text-info">Edit</span></a></td>
+                                                            <td><a href="{{ route('dashboard.exam.edit', ['id' => $exam->id]) }}"><span class="badge bg-info-subtle text-info">Edit</span></a>
+                                                            <form id="delete-form-{{ $exam->id }}" action="{{ route('dashboard.exam.destroy', ['id' => $exam->id]) }}" method="POST" style="display: none;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $exam->id }}').submit();">
+                                                                <span class="badge bg-danger-subtle text-danger">Delete</span>
+                                                            </a>
+                                                            </td>
 
                                                         </tr>
                                                         @endforeach

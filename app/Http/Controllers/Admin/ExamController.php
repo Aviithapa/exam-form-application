@@ -62,7 +62,6 @@ class ExamController extends Controller
 
     public function update(Request $createExamRequest, $id)
     {
-
         $this->authorize('update', $this->examRepository->getModel());
         $data = $createExamRequest->all();
         try {
@@ -71,6 +70,30 @@ class ExamController extends Controller
                 session()->flash('danger', 'Oops! Something went wrong.');
                 return redirect()->back()->withInput();
             }
+            session()->flash('success', 'Exam updated successfully');
+            return redirect()->route('dashboard.exam.index');
+        } catch (Exception $e) {
+            session()->flash('danger', 'Oops! Something went wrong.');
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function destroy($id)
+    {
+        $this->authorize('update', $this->examRepository->getModel());
+        try {
+            $exam = $this->examRepository->findById($id);
+
+            if (!$exam) {
+                session()->flash('danger', 'Oops! Exam Not Found.');
+                return redirect()->back()->withInput();
+            }
+
+            // if ($exam->applicant->count() > 0) {
+            //     session()->flash('danger', 'Student have registrated for the exam .');
+            //     return redirect()->back()->withInput();
+            // }
+            $exam->delete();
             session()->flash('success', 'Exam updated successfully');
             return redirect()->route('dashboard.exam.index');
         } catch (Exception $e) {
