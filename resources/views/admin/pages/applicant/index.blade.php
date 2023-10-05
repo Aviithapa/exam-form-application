@@ -3,89 +3,62 @@
 @section('content')
 
 
-  <!-- start page title -->
+
+                        <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box">
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Nepal Bar Council</a></li>
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Applicant List</a></li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Welcome!</h4>
+                                    <h4 class="page-title">Applicant List</h4>
                                 </div>
                             </div>
                         </div>
                         <!-- end page title -->
-                        
-                        <div class="row">
-                            <div class="col-xxl-3 col-sm-6">
-                                <div class="card widget-flat text-bg-pink">
-                                    <div class="card-body">
-                                        <div class="float-end">
-                                            <i class=" widget-icon"></i>
+                    
+                                <!-- Todo-->
+                                <div class="card">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="row" style="padding: 20px 10px 0px 10px;"> 
+                                            
+                                            <div class="col-lg-3 col-md-3 col-sm-6"> 
+                                                <div class="mb-3">                                   
+                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Name" name="full_name_nepali">
+                                                </div>
+                                            </div> 
+                                            <div class="col-lg-3 col-md-3 col-sm-6"> 
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Citizenship Number" name="full_name_english">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-3 col-sm-6"> 
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="YYYY-MM-DD" name="dob_nep">
+                                                </div>
+                                            </div>
+                                              <div class="col-lg-2 col-md-2 col-sm-6"> 
+                                                <div class="mb-3">
+                                                       <select class="form-select mb-3" name="status">
+                                                            <option selected>Status</option>
+                                                            <option value="1">New Applied</option>
+                                                            <option value="2">Approved</option>
+                                                            <option value="3">Rejected</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-1 col-md-1 col-sm-6"> 
+                                                <button class="btn btn-primary" type="submit">Search</button>
+                                             </div>
                                         </div>
-                                        <h6 class="text-uppercase mt-0" title="Customers">Daily Visits</h6>
-                                        <h2 class="my-2">8,652</h2>
-                                        <p class="mb-0">
-                                            <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
-                                            <span class="text-nowrap">Since last month</span>
-                                        </p>
-                                    </div>
+                                      
+                                       
+                                    </form>
                                 </div>
-                            </div> <!-- end col-->
 
-                            <div class="col-xxl-3 col-sm-6">
-                                <div class="card widget-flat text-bg-purple">
-                                    <div class="card-body">
-                                        <div class="float-end">
-                                            <i class=" widget-icon"></i>
-                                        </div>
-                                        <h6 class="text-uppercase mt-0" title="Customers">Revenue</h6>
-                                        <h2 class="my-2">$9,254.62</h2>
-                                        <p class="mb-0">
-                                            <span class="badge bg-white bg-opacity-10 me-1">18.25%</span>
-                                            <span class="text-nowrap">Since last month</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> <!-- end col-->
-
-                            <div class="col-xxl-3 col-sm-6">
-                                <div class="card widget-flat text-bg-info">
-                                    <div class="card-body">
-                                        <div class="float-end">
-                                            <i class=" widget-icon"></i>
-                                        </div>
-                                        <h6 class="text-uppercase mt-0" title="Customers">Orders</h6>
-                                        <h2 class="my-2">753</h2>
-                                        <p class="mb-0">
-                                            <span class="badge bg-white bg-opacity-25 me-1">-5.75%</span>
-                                            <span class="text-nowrap">Since last month</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> <!-- end col-->
-
-                            <div class="col-xxl-3 col-sm-6">
-                                <div class="card widget-flat text-bg-primary">
-                                    <div class="card-body">
-                                        <div class="float-end">
-                                            <i class="ri-group-2-line widget-icon"></i>
-                                        </div>
-                                        <h6 class="text-uppercase mt-0" title="Customers">Users</h6>
-                                        <h2 class="my-2">63,154</h2>
-                                        <p class="mb-0">
-                                            <span class="badge bg-white bg-opacity-10 me-1">8.21%</span>
-                                            <span class="text-nowrap">Since last month</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> <!-- end col-->
-                        </div>
-
-                        
                         
 
                         <div class="row">
@@ -97,9 +70,8 @@
                                     <div class="card-body p-0">
                                         <div class="p-3">
                                             <div class="card-widgets">
-                                                <button class="btn btn-primary">Create New Exam</button>
                                             </div>
-                                            <h5 class="header-title mb-0">Licence Exam</h5>
+                                            <h5 class="header-title mb-0">Total Number of Applicant</h5>
                                         </div>
     
                                         <div id="yearly-sales-collapse" class="collapse show">
@@ -109,12 +81,12 @@
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
-                                                            <th>Exam Name</th>
-                                                            <th>Start Date</th>
-                                                            <th>Double Dustur Date</th>
-                                                            <th>Due Date</th>
+                                                            <th>Name</th>
+                                                            <th>Citizenship Number</th>
+                                                            <th>Applied Date</th>
                                                             <th>Status</th>
-                                                            <th>Assign</th>
+                                                            <th>Date of birth</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -123,15 +95,14 @@
                                                             <td>Velonic Admin v1</td>
                                                             <td>01/01/2015</td>
                                                             <td>26/04/2015</td>
-                                                            <td>26/04/2015</td>
                                                             <td><span class="badge bg-info-subtle text-info">Released</span></td>
                                                             <td>Techzaa Studio</td>
+                                                            <td><span class="badge bg-success-subtle text-info">View</span></td>
                                                         </tr>
                                                         <tr>
                                                             <td>2</td>
                                                             <td>Velonic Frontend v1</td>
                                                             <td>01/01/2015</td>
-                                                            <td>26/04/2015</td>
                                                             <td>26/04/2015</td>
                                                             <td><span class="badge bg-info-subtle text-info">Released</span></td>
                                                             <td>Techzaa Studio</td>
@@ -141,7 +112,6 @@
                                                             <td>Velonic Admin v1.1</td>
                                                             <td>01/05/2015</td>
                                                             <td>10/05/2015</td>
-                                                            <td>26/04/2015</td>
                                                             <td><span class="badge bg-pink-subtle text-pink">Pending</span></td>
                                                             <td>Techzaa Studio</td>
                                                         </tr>
@@ -150,7 +120,6 @@
                                                             <td>Velonic Frontend v1.1</td>
                                                             <td>01/01/2015</td>
                                                             <td>31/05/2015</td>
-                                                            <td>31/05/2015</td>
                                                             <td><span class="badge bg-purple-subtle text-purple">Work in Progress</span></td>
                                                             <td>Techzaa Studio</td>
                                                         </tr>
@@ -158,7 +127,6 @@
                                                             <td>5</td>
                                                             <td>Velonic Admin v1.3</td>
                                                             <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
                                                             <td>31/05/2015</td>
                                                             <td><span class="badge bg-warning-subtle text-warning">Coming soon</span></td>
                                                             <td>Techzaa Studio</td>
@@ -169,7 +137,6 @@
                                                             <td>Velonic Admin v1.3</td>
                                                             <td>01/01/2015</td>
                                                             <td>31/05/2015</td>
-                                                            <td>31/05/2015</td>
                                                             <td><span class="badge bg-primary-subtle text-primary">Coming soon</span></td>
                                                             <td>Techzaa Studio</td>
                                                         </tr>
@@ -178,7 +145,6 @@
                                                             <td>7</td>
                                                             <td>Velonic Admin v1.3</td>
                                                             <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
                                                             <td>31/05/2015</td>
                                                             <td><span class="badge bg-danger-subtle text-danger">Cool</span></td>
                                                             <td>Techzaa Studio</td>
@@ -194,5 +160,5 @@
                         </div>
                         <!-- end row -->
 
-
+                 
 @endsection

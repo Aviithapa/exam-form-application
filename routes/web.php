@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExamController;
+use App\Http\Controllers\Applicant\ApplicantController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
-use App\Http\Controllers\Setting\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,15 +24,16 @@ Route::get('/', function () {
 
 Route::get('/form', function () {
     return view('website.form');
+    // return view('admin.pages.applicant.form');
 });
 
 Route::get('/review-registration', function () {
     return view('website.review-registration');
 });
 
-Route::get('/profile', function () {
-    return view('website.profile');
-});
+// Route::get('/form', function () {
+//     return view('admin.pages.applicant.form');
+// });
 
 Route::get('/applicant-list', function () {
     return view('admin.pages.applicant-list');
@@ -56,6 +57,7 @@ Route::get('/resetPassword', [PasswordResetController::class, 'index'])->middlew
 //Route Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
+
 //Route Exam
 Route::get('/dashboard/exam', [ExamController::class, 'index'])->middleware(['auth'])->name('dashboard.exam.index');
 Route::get('/dashboard/exam/create', [ExamController::class, 'create'])->middleware(['auth'])->name('dashboard.exam.create');
@@ -65,7 +67,17 @@ Route::put('/dashboard/exam/update/{id}', [ExamController::class, 'update'])->mi
 Route::delete('/dashboard/exam/destroy/{id}', [ExamController::class, 'destroy'])->middleware(['auth'])->name('dashboard.exam.destroy');
 
 
+//Route Form Store
+Route::get('/student/personal/form', [ApplicantController::class, 'personalForm'])->name('student.personalForm');
+Route::get('/student/guardian/form', [ApplicantController::class, 'guardianForm'])->name('student.guardianForm');
+Route::get('/student/qualification/form', [ApplicantController::class, 'qualificationForm'])->name('student.qualificationForm');
+
+Route::post('/student/personal/store', [ApplicantController::class, 'personalInformation'])->name('student.personalInformation');
+Route::post('/student/guardian/store', [ApplicantController::class, 'guardianStore'])->name('student.guardian.store');
+Route::post('/student/qualification/store', [ApplicantController::class, 'qualificationStore'])->name('student.qualification.store');
 
 
+//Route Save Image
+Route::post('/save_image/{id?}', [ApplicantController::class, 'save_image'])->name('save_image');
 
 // Route::post('/save_image/{id?}', [SettingController::class, 'save_image'])->middleware(['auth'])->name('save_image');

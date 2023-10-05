@@ -9,7 +9,7 @@
 
         $('input[name$="'+id+'_image"]').fileupload({
 
-            url: '{{ url('/save_image') }}' + '/' + id,
+            url: '{{ url('save_image') }}' + '/' + id,
             done: function(e, data) {
                 $('#'+id+'_img').attr('src', data.result.full_url);
                 $('#'+id+'_path').val(data.result.image_name);
