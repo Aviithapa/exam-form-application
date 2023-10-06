@@ -32,4 +32,9 @@ class Applicant extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function familyInformation()
+    {
+        return $this->hasOne(FamilyInformation::class);
+    }
 }

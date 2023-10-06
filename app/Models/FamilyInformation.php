@@ -21,4 +21,9 @@ class FamilyInformation extends Model
         'spouse',
         'applicant_id'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

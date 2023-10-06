@@ -33,12 +33,16 @@
                                             <article class="timeline-item">
                                                 <div class="timeline-desk">
                                                     <div class="panel">
-                                                        <div class="timeline-box">
+                                                        <div class="timeline-box {{ isset($applicant) ? 'text-primary' :'' }} ">
                                                             <span class="arrow"></span>
-                                                            <span class="timeline-icon"><i class="ri-record-circle-line"></i></span>
+                                                            <span class="timeline-icon bg-primary"><i class="ri-record-circle-line"></i></span>
                                                             <h4 class="fs-16 fw-semibold ">First Step</h4>
                                                             <p class="timeline-date text-muted"><small></small></p>
-                                                            <p>Add your personal details </p>
+                                                            <p>Add your personal details 
+                                                                 @if(!isset($applicant))
+                                                                    <a href="#">Click Here to Add Family Information</a>
+                                                             @endif 
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -46,12 +50,16 @@
                                              <article class="timeline-item">
                                                 <div class="timeline-desk">
                                                     <div class="panel">
-                                                        <div class="timeline-box">
+                                                        <div class="timeline-box {{ isset($applicant->familyInformation) ? 'text-primary' :'' }}">
                                                             <span class="arrow"></span>
                                                             <span class="timeline-icon"><i class="ri-record-circle-line"></i></span>
                                                             <h4 class="fs-16 fw-semibold ">Second Step</h4>
                                                             <p class="timeline-date text-muted"><small></small></p>
-                                                            <p>Add your family details </p>
+                                                            <p>Add your family details 
+                                                             @if(isset($applicant) && !isset($applicant->familyInformation))
+                                                                    <a href="#">Click Here to Add Family Information</a>
+                                                             @endif    
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -59,12 +67,17 @@
                                              <article class="timeline-item">
                                                 <div class="timeline-desk">
                                                     <div class="panel">
-                                                        <div class="timeline-box">
+                                                        <div class="timeline-box  {{ isset($applicant->qualification) ? 'text-primary' :'' }}">
                                                             <span class="arrow"></span>
                                                             <span class="timeline-icon"><i class="ri-record-circle-line"></i></span>
                                                             <h4 class="fs-16 fw-semibold ">Third Step</h4>
                                                             <p class="timeline-date text-muted"><small></small></p>
-                                                            <p>Add your qualification </p>
+                                                            <p>Add your qualification 
+                                                               @if(isset($applicant) && isset($applicant->familyInformation))
+                                                                    <a href="#">Click Here to Add Family Information</a>
+                                                               @endif 
+
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,7 +90,11 @@
                                                             <span class="timeline-icon"><i class="ri-record-circle-line"></i></span>
                                                             <h4 class="fs-16 fw-semibold ">Fourth Step</h4>
                                                             <p class="timeline-date text-muted"><small></small></p>
-                                                            <p>Upload your payment voucher </p>
+                                                            <p>Upload your payment voucher
+                                                              @if(isset($applicant) && isset($applicant->familyInformation) && isset($applicant->qualification))
+                                                                    <a href="#">Click Here to Add Family Information</a>
+                                                               @endif     
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -43,7 +43,7 @@
                                 <img src="assets/images/users/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle">
                             </span>
                             <span class="d-lg-block d-none">
-                                <h5 class="my-0 fw-normal">Thomson <i
+                                <h5 class="my-0 fw-normal">{{ Auth::user()->name }} <i
                                         class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i></h5>
                             </span>
                         </a>
@@ -60,22 +60,22 @@
                             </a>
 
                             <!-- item-->
-                            <a href="pages-profile.html" class="dropdown-item">
+                            {{-- <a href="pages-profile.html" class="dropdown-item">
                                 <i class="ri-settings-4-line fs-18 align-middle me-1"></i>
                                 <span>Settings</span>
-                            </a>
+                            </a> --}}
 
                             <!-- item-->
-                            <a href="pages-faq.html" class="dropdown-item">
+                            <a href="#" class="dropdown-item">
                                 <i class="ri-customer-service-2-line fs-18 align-middle me-1"></i>
-                                <span>Support</span>
+                                <span>FAQ</span>
                             </a>
 
                             <!-- item-->
-                            <a href="auth-lock-screen.html" class="dropdown-item">
+                            {{-- <a href="#" class="dropdown-item">
                                 <i class="ri-lock-password-line fs-18 align-middle me-1"></i>
                                 <span>Lock Screen</span>
-                            </a>
+                            </a> --}}
 
                             <!-- item-->
                             <a href="{{ route('logout') }}" class="dropdown-item">

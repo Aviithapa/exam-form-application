@@ -50,7 +50,6 @@ class ApplicantController extends Controller
     public function personalInformation(CreatePersonalInformation $createPersonalInformation)
     {
         $data = $createPersonalInformation->all();
-        dd($data);
         try {
             $applicant = $this->applicantRepository->create($data);
             if ($applicant == false) {

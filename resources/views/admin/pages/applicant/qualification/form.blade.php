@@ -75,8 +75,8 @@
                                               <div class="col-lg-3 col-md-3 col-sm-6"> 
                                                 <div class="mb-3">
                                                     <label class="form-label" for="validationCustom01">Level</label>
-                                                    <select class="form-select mb-3" name="type" value="{{ isset($model) ? $model->type : old('type') }}">
-                                                            <option selected>Please Select</option>
+                                                    <select class="form-select mb-3" name="type" ">
+                                                            <option value="{{ isset($model) ? $model->type : old('type') }}" selected>{{ isset($model) ? $model->type : "Please Select" }}</option>
                                                             <option value="SLC">SLC</option>
                                                             <option value="HSEB/NEB">HSEB/NEB</option>
                                                             <option value="BACHELOR">BACHELOR</option>
@@ -100,8 +100,8 @@
                                                         <div class="col-lg-12">
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Transcript / Marksheet Photo *</label><br>
-                                                                @if(isset($data))
-                                                                    <img src="{{url(isset($data)?$data->getTranscriptImage():imageNotFound())}}" height="150" width="150"
+                                                                @if(isset($model))
+                                                                    <img src="{{isset($model)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
                                                                          id="transcript_img">
                             
                                                                 @else
@@ -123,7 +123,7 @@
                                                                 <input type="file" id="transcript_image" name="transcript_image"
                                                                        onclick="anyFileUploader('transcript')">
                                                                 <input type="hidden" id="transcript_path" name="transcript" class="form-control"
-                                                                       value="{{isset($data)?$data->transcript_image:''}}"/>
+                                                                       value="{{isset($model)?$model->documents[0]->path:''}}"/>
                                                                  @if($errors->first('transcript'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('transcript') }}
@@ -140,8 +140,8 @@
                                                         <div class="col-lg-12">
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Provisional Photo *</label><br>
-                                                                @if(isset($data))
-                                                                    <img src="{{url(isset($data)?$data->getTranscriptImage():imageNotFound())}}" height="150" width="150"
+                                                                @if(isset($model))
+                                                                    <img src="{{url(isset($model)?getImage($model->documents[1]->path):imageNotFound())}}" height="150" width="150"
                                                                          id="provisional_img">
                             
                                                                 @else
@@ -163,7 +163,7 @@
                                                                 <input type="file" id="provisional_image" name="provisional_image"
                                                                        onclick="anyFileUploader('provisional')">
                                                                 <input type="hidden" id="provisional_path" name="provisional" class="form-control"
-                                                                       value="{{isset($data)?$data->transcript_image:''}}"/>
+                                                                       value="{{isset($model)?$model->documents[1]->path:''}}"/>
                                                                  @if($errors->first('provisional'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('provisional') }}
@@ -180,8 +180,8 @@
                                                         <div class="col-lg-12">
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Character Photo *</label><br>
-                                                                @if(isset($data))
-                                                                    <img src="{{url(isset($data)?$data->getTranscriptImage():imageNotFound())}}" height="150" width="150"
+                                                                @if(isset($model))
+                                                                    <img src="{{url(isset($model)?getImage($model->documents[2]->path):imageNotFound())}}" height="150" width="150"
                                                                          id="character_img">
                             
                                                                 @else
@@ -203,7 +203,7 @@
                                                                 <input type="file" id="character_image" name="character_image"
                                                                        onclick="anyFileUploader('character')">
                                                                 <input type="hidden" id="character_path" name="character" class="form-control"
-                                                                       value="{{isset($data)?$data->transcript_image:''}}"/>
+                                                                       value="{{isset($model)?$model->documents[2]->path:''}}"/>
                                                                  @if($errors->first('character'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('character') }}

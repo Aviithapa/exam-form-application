@@ -91,7 +91,9 @@ Route::post('/student/qualification/store', [ApplicantController::class, 'qualif
 
 
 //Route Save Image
-Route::post('/save_image/{id?}', [ApplicantController::class, 'save_image'])->name('save_image');
+Route::match(['POST', 'PUT'], '/save_image/{id?}', [ApplicantController::class, 'save_image'])->name('save_image');
+
+
 
 // Route::post('/save_image/{id?}', [SettingController::class, 'save_image'])->middleware(['auth'])->name('save_image');
 

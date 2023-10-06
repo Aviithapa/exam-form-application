@@ -93,16 +93,33 @@ class QualificationController extends Controller
     {
         // $this->authorize('update', $this->qualificationRepository->getModel());
         $data = $createExamRequest->all();
+        DB::beginTransaction();
+
         try {
-            $banner = $this->qualificationRepository->update($data, $id);
-            if ($banner == false) {
-                session()->flash('danger', 'Oops! Something went wrong.');
+            $data = $createExamRequest->all();
+            $qualification = $this->qualificationRepository->findById($id);
+
+            if (!$qualification) {
+                session()->flash('danger', 'Qualification not found.');
+                DB::rollBack(); // Rollback the transaction
                 return redirect()->back()->withInput();
             }
+
+            $qualification->update($data);
+
+            // Update the associated documents
+            foreach ($data as $key => $value) {
+                if ($qualification->documents->where('document_name', $key)->first()) {
+                    $qualification->documents->where('document_name', $key)->first()->update(['path' => $value]);
+                }
+            }
+
             session()->flash('success', 'Exam updated successfully');
+            DB::commit(); // Commit the transaction
             return redirect()->route('qualification.index');
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
+            DB::rollBack(); // Rollback the transaction
             return redirect()->back()->withInput();
         }
     }
