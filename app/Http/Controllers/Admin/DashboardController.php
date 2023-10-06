@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\User\UserRepository;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -19,6 +19,19 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('admin.pages.dashboard');
+        $role = Auth::user()->mainRole() ? Auth::user()->mainRole()->name : 'default';
+        switch ($role) {
+            case 'administrator':
+
+                return view('admin.dashboard.admin');
+                break;
+            case 'applicant':
+                return view('admin.dashboard.applicant');
+                break;
+
+            default:
+                return $this->view('dashboard.default');
+                break;
+        }
     }
 }

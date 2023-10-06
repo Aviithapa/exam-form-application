@@ -13,6 +13,12 @@ class ApplicantDocuments extends Model
         'document_name',
         'path',
         'type',
-        'applicant_id'
+        'applicant_id',
+        'qualification_id'
     ];
+
+    public function qualification()
+    {
+        return $this->belongsTo(Qualification::class);
+    }
 }

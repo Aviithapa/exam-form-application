@@ -4,10 +4,6 @@
 
 
 
-@extends('website.layout.app')
-
-@section('content')
-
                     <div class="row mt-5">
                         <div class="col-lg-12">
                             <div class="card">
@@ -83,6 +79,5 @@
                     </div>
                     <!-- end row -->
 
-@endsection
 
 @endsection

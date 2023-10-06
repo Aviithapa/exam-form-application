@@ -24,6 +24,12 @@ class Applicant extends Model
         'municipality_id',
         'ward_no',
         'tole',
-        'contact_number'
+        'contact_number',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

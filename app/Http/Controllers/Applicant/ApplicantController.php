@@ -34,12 +34,23 @@ class ApplicantController extends Controller
 
     public function personalForm()
     {
-        return view('website.applicant.personal-detail-form');
+        return view('admin.pages.applicant.personal-detail-form');
+    }
+
+    public function guardianForm()
+    {
+        return view('admin.pages.applicant.guardian-form');
+    }
+
+    public function qualificationForm()
+    {
+        return view('admin.pages.applicant.qualification.index');
     }
 
     public function personalInformation(CreatePersonalInformation $createPersonalInformation)
     {
         $data = $createPersonalInformation->all();
+        dd($data);
         try {
             $applicant = $this->applicantRepository->create($data);
             if ($applicant == false) {

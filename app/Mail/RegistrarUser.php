@@ -17,12 +17,13 @@ class RegistrarUser extends Mailable
     /**
      * Create a new message instance.
      */
-    public $user;
+    public $user, $otp;
 
-    public function __construct(User $user)
+    public function __construct(User $user, $otp)
     {
         //
         $this->user = $user;
+        $this->otp = $otp;
     }
 
     /**
@@ -32,6 +33,6 @@ class RegistrarUser extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.registration')->with('user', $this->user); // Pass the data to the email template
+        return $this->markdown('emails.registration')->with('user', $this->user, 'otp', $this->otp); // Pass the data to the email template
     }
 }

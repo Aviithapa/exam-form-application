@@ -19,50 +19,46 @@
                                         </a>
                                     </div>
                                     <div class="p-4 my-auto">
-                                        <h4 class="fs-20">Sign In</h4>
-                                        <p class="text-muted mb-3">Enter your email address and password to access
-                                            account.
+                                        <h4 class="fs-20">Sign Up</h4>
+                                        <p class="text-muted mb-3">Create your account to apply for council registration exam
                                         </p>
 
                                         <!-- form -->
-                                        <form action="{{ url('/login') }}" method="POST">
+                                        <form action="{{ url('/create-account') }}" method="POST">
                                              @csrf
+                                              <div class="mb-3">
+                                                <label for="emailaddress" class="form-label">Name</label>
+                                                <input class="form-control" type="text" id="emailaddress" required=""
+                                                    placeholder="Enter your name" value="{{ old('name') }}" name="name">
+                                                     @if($errors->first('name'))
+                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                   {{ $errors->first('name') }}
+                                             </div>
+                                             @endif
+                                            </div>
                                             <div class="mb-3">
                                                 <label for="emailaddress" class="form-label">Email address</label>
                                                 <input class="form-control" type="email" id="emailaddress" required=""
                                                     placeholder="Enter your email" value="{{ old('email') }}" name="email">
                                             </div>
-                                            <div class="mb-3">
-                                                <a href="{{ url('/resetPassword') }}" class="text-muted float-end"><small>Forgot
-                                                        your
-                                                        password?</small></a>
-                                                <label for="password" class="form-label">Password</label>
-                                                <input class="form-control" type="password" required="" id="password"
-                                                    placeholder="Enter your password" name="password" value="{{ old('password') }}">
-                                            </div>
-                                            <div class="mb-3">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="checkbox-signin" name="remember" value="{{ old('remember') }}">
-                                                    <label class="form-check-label" for="checkbox-signin">Remember
-                                                        me</label>
-                                                
-                                                </div>
-                                            </div>
-
-                                            @if($errors->first('email'))
+                                             @if($errors->first('email'))
                                              <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                    {{ $errors->first('email') }}
                                              </div>
                                              @endif
-                                              @if($errors->first('active'))
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Password</label>
+                                                <input class="form-control" type="password" required="" id="password"
+                                                    placeholder="Enter your password" name="password" value="{{ old('password') }}">
+                                            </div>
+                                             @if($errors->first('password'))
                                              <div class="alert alert-danger bg-transparent text-danger" role="alert">
-                                               {!! $errors->first('active') !!}
+                                                   {{ $errors->first('password') }}
                                              </div>
                                              @endif
                                             <div class="mb-0 text-start">
-                                                <button class="btn btn-soft-primary w-100" type="submit"> <span class="fw-bold">Log
-                                                        In</span> </button>
+                                                <button class="btn btn-soft-primary w-100" type="submit"> <span class="fw-bold">Sing Up
+                                                        </span> </button>
                                             </div>
 
                                           
@@ -76,8 +72,8 @@
                 </div>
                  <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-dark-emphasis">Don't have an account? <a href="{{ url('/register') }}"
-                            class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Sign up</b></a>
+                    <p class="text-dark-emphasis">Already have an account? <a href="{{ url('/login') }}"
+                            class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Sign In</b></a>
                     </p>
                 </div> <!-- end col -->
               </div>

@@ -26,12 +26,21 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         if (Auth::check()) {
-            if (Auth::user()->mainRole()->name === 'admin') {
-                return redirect()->route('dashboard');
+            if (Auth::user()->active()) {
+                if (Auth::user()->mainRole()->name === 'admin') {
+                    return redirect()->intended('dashboard');
+                } elseif (Auth::user()->mainRole()->name === 'applicant') {
+                    return redirect()->intended('dashboard');
+                } else {
+                    Auth::logout();
+                    return redirect()->back()->withErrors([
+                        'active' => 'You must be an active user'
+                    ]);
+                }
             } else {
                 Auth::logout();
                 return redirect()->back()->withErrors([
-                    'active' => 'You must be an active user'
+                    'active' => 'You must be an active user to active account please  <a href="' . route('register.verify.otp', ['email' => $request->input('email')]) . '">click here</a>'
                 ]);
             }
         }
@@ -43,7 +52,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 
 

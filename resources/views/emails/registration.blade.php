@@ -56,25 +56,22 @@
     </style>
     ​
     <div class='wrapper'>
-        <div class="header"><img src="" width="200" height="100"
+        <div class="header"><img src="https://nepalbarcouncil.org.np/wp-content/uploads/2018/11/2.jpg" width="200" height="100"
                 alt="LOGO"> </div>
         <div class="section">
             <p>
                 Hi
                 <b>{{$user->name}}</b>,
                 <br />
-            <p>Your account in AEIRC has been created.</p>
-            <p>Please  use this password <span>{{ $user->remember_token }}</span>
-                {{-- <span><a style="cursor: pointer;" href="{{uiBaseUrl}}/auth/reset-verification/{{id}}">this link</a></span>  --}}
-                to login. 
-                {{-- se <span>{{otp}}</span> code. --}}
+            <p>Your account in Nepal Bar Council Exam Section has been created.</p>
+            <p>Please  use the otp to active your account password <span>{{ $otp }}</span>
             </p>
             <i>If you think that you shouldn't have received this email, you can safely ignore it.</i>
             </p>
             <p>Thank You ! <br /><b>AEIRC</b> </p>
         </div>
         <div class="footer">
-        <p>© AEIRC . All rights reserved. </p>
+        <p>©Nepal Bar Council . All rights reserved. </p>
         <p>If you have any questions please contact us 
             {{-- <a href="mailto:{{ company_email }}">{{ company_email }}</a>  --}}
         </p>

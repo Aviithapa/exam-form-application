@@ -13,7 +13,17 @@
 <!-- BEGIN BODY -->
 <body>
     <div class="wrapper">
-       @include('admin.layout.sidebar')
+        @switch(Auth::user()->mainRole()->name)
+    @case('admin')
+    @include('admin.layout.sidebar')
+    @break
+    @case("applicant")
+       @include('admin.sidebar.applicant')
+    @break
+    @default
+    @include('admin.sidebar.default')
+@endswitch
+       
           <div class="content-page">
 
                 <div class="content">

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 function generateRandomUsername($length = 8)
@@ -48,5 +49,19 @@ if (!function_exists('imageNotFound')) {
                 //return asset('images/default.png');
 
         }
+    }
+}
+
+
+
+
+if (!function_exists('getImage')) {
+    /**
+     * @param null $type
+     * @return string
+     */
+    function getImage($path)
+    {
+        return  Storage::url('documents/' . $path);
     }
 }
