@@ -11,7 +11,7 @@ class CreateFamilyInformationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,8 @@ class CreateFamilyInformationRequest extends FormRequest
             'father_name_english' => 'required|string|max:255|min:3',
             'mother_name_nepali' => 'required|string|max:255|min:3',
             'mother_name_english' => 'required|string|max:255|min:3',
-            'citizenship_number' => 'required_if:spouse,filled'
+            'spouse' => 'sometimes',
+            'citizenship_number' => 'required_if:spouse,string',
         ];
     }
 }

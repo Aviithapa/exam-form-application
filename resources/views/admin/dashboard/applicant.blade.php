@@ -91,10 +91,58 @@
                                                             <h4 class="fs-16 fw-semibold ">Fourth Step</h4>
                                                             <p class="timeline-date text-muted"><small></small></p>
                                                             <p>Upload your payment voucher
-                                                              @if(isset($applicant) && isset($applicant->familyInformation) && isset($applicant->qualification))
-                                                                    <a href="#">Click Here to Add Family Information</a>
-                                                               @endif     
                                                             </p>
+                                                            @if(isset($applicant) && isset($applicant->familyInformation))
+                                                             <form action="{{ route('applyExam') }}" method="POST">
+                                                                   @csrf
+                                                                  <div class="row" style="display: flex; justify-content:space-between;">
+                                                                     <div class="col-lg-3">
+                                                                            <div class="grid-body">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="col-md-12 col-lg-12">
+                                                                                            <label>Upload Voucher Image *</label><br>
+                                                                                            @if(isset($voucher))
+                                                                                                <img src="{{url(isset($voucher)?getImage($voucher->path):imageNotFound())}}" height="150" width="150"
+                                                                                                    id="voucher_img">
+                                                        
+                                                                                            @else
+                                                                                                <img src="{{isset($voucher)?$voucher->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
+                                                                                                    id="voucher_img">
+                                                                                            @endif
+                                                                                        </div>
+                                                        
+                                                                                        <div class="form-group col-md-12 col-lg-12">
+                                                                                            <small>Below 1 mb</small><br>
+                                                                                            <small id="voucher_help_text" class="help-block"></small>
+                                                                                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                                                                                aria-valuemax="100"
+                                                                                                aria-valuenow="0">
+                                                                                                <div id="voucher_progress" class="progress-bar progress-bar-success"
+                                                                                                    style="width: 0%">
+                                                                                                </div>
+                                                                                            </div><br>
+                                                                                            <input type="file" id="voucher_image" name="voucher_image"
+                                                                                                onclick="anyFileUploader('voucher')">
+                                                                                            <input type="hidden" id="voucher_path" name="voucher" class="form-control"
+                                                                                                value="{{isset($voucher)?$voucher->path:''}}"/>
+                                                                                            @if($errors->first('voucher'))
+                                                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                                                        {{ $errors->first('voucher') }}
+                                                                                            </div>
+                                                                                            @endif
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                  </div>
+                                                               
+                                                                       <button class="btn btn-primary mt-3" type="submit">Apply Exam</button>
+                                                             </form>
+                                                             
+                                                                   @endif     
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,3 +225,8 @@
 
 
 @endsection
+
+@push('scripts')
+@include('parties.common.file-upload')
+  
+@endpush

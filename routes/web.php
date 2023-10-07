@@ -83,17 +83,19 @@ Route::delete('/dashboard/exam/destroy/{id}', [ExamController::class, 'destroy']
 //Route Form Store
 Route::get('/student/personal/form', [ApplicantController::class, 'personalForm'])->middleware(['auth'])->name('student.personalForm');
 Route::get('/student/guardian/form', [ApplicantController::class, 'guardianForm'])->middleware(['auth'])->name('student.guardianForm');
-Route::get('/student/qualification/form', [ApplicantController::class, 'qualificationForm'])->middleware(['auth'])->name('student.qualificationForm');
 
 Route::post('/student/personal/store', [ApplicantController::class, 'personalInformation'])->name('student.personalInformation');
-Route::post('/student/guardian/store', [ApplicantController::class, 'guardianStore'])->name('student.guardian.store');
-Route::post('/student/qualification/store', [ApplicantController::class, 'qualificationStore'])->name('student.qualification.store');
+Route::post('/student/guardian/store', [ApplicantController::class, 'guardianInformation'])->name('student.guardian.store');
 
+
+Route::put('/student/personal/update/{id}', [ApplicantController::class, 'personalInformationUpdate'])->name('student.personalInformation.update');
+Route::put('/student/guardian/update/{id}', [ApplicantController::class, 'guardianInformationUpdate'])->name('student.guardian.update');
 
 //Route Save Image
 Route::match(['POST', 'PUT'], '/save_image/{id?}', [ApplicantController::class, 'save_image'])->name('save_image');
 
-
+//Voucher Upload 
+Route::match(['POST', 'PUT'], '/save_voucher/{id?}', [ApplicantController::class, 'applyExam'])->name('applyExam');
 
 // Route::post('/save_image/{id?}', [SettingController::class, 'save_image'])->middleware(['auth'])->name('save_image');
 

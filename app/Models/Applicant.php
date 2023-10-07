@@ -37,4 +37,29 @@ class Applicant extends Model
     {
         return $this->hasOne(FamilyInformation::class);
     }
+
+    public function documents()
+    {
+        return $this->hasMany(ApplicantDocuments::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class);
+    }
+
+    public function exams()
+    {
+        return $this->belongsToMany(Exam::class);
+    }
 }

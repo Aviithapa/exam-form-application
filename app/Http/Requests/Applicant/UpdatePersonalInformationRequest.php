@@ -4,7 +4,7 @@ namespace App\Http\Requests\Applicant;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePersonalInformation extends FormRequest
+class UpdatePersonalInformationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +27,8 @@ class CreatePersonalInformation extends FormRequest
             'full_name_english' => 'required|string|max:255|min:3',
             'dob_nepali' => 'required|date|date_format:Y-m-d',
             'dob_english' => 'required|date|date_format:Y-m-d',
-            'citizenship_number' => 'required|string|max:255|unique:applicant,citizenship_number',
-            'email' =>  'required|string|max:255|unique:applicant,email',
+            'citizenship_number' => 'required|string|max:255',
+            'email' =>  'required|string|max:255',
             'issued_district' => 'required|string',
             'phone_number' => 'required|string|min:7|max:11',
             'province_id' => 'required|exists:province,id',

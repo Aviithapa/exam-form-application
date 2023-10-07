@@ -40,8 +40,8 @@ class DashboardController extends Controller
             case 'applicant':
                 $applicant_id = Auth::user()->applicant->id;
                 $applicant = $this->applicantRepository->findById($applicant_id);
-                // dd($applicant->familyInformation);
-                return view('admin.dashboard.applicant', compact('applicant'));
+                $voucher = $this->applicantDocumentRepository->getAll()->where('applicant_id', $applicant_id)->where('document_name', 'voucher')->first();
+                return view('admin.dashboard.applicant', compact('applicant', 'voucher'));
                 break;
 
             default:

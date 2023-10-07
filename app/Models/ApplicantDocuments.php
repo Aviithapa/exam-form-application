@@ -21,4 +21,9 @@ class ApplicantDocuments extends Model
     {
         return $this->belongsTo(Qualification::class);
     }
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }
