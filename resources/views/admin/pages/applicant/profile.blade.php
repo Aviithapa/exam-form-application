@@ -209,79 +209,22 @@
                                             <!-- Activities -->
                                             <div id="user-activities" class="tab-pane">
                                                 <div class="timeline-2">
+                                                @foreach($applicant->logs as $log)
                                                     <div class="time-item">
                                                         <div class="item-info ms-3 mb-3">
-                                                            <div class="text-muted">5 minutes ago</div>
-                                                            <p><strong><a href="#" class="text-info">John
-                                                                        Doe</a></strong>Uploaded a photo</p>
-                                                            <img src="assets/images/small/small-3.jpg" alt=""
-                                                                height="40" width="60" class="rounded-1">
-                                                            <img src="assets/images/small/small-4.jpg" alt=""
-                                                                height="40" width="60" class="rounded-1">
+                                                            <div class="text-muted">{{ $log->created_at->timezone('Asia/Kathmandu')->format('Y-m-d H:i:s') }}</div>
+                                                            <p><strong><a href="#" class="text-info" style="text-transform: capitalize;">{{ $applicant->full_name_english }}</a> </strong>{{ $log->status }}</p>
+                                                            <p>{{ $log->remarks }} </p>
+                                                          
                                                         </div>
                                                     </div>
+                                                @endforeach
 
-                                                    <div class="time-item">
-                                                        <div class="item-info ms-3 mb-3">
-                                                            <div class="text-muted">30 minutes ago</div>
-                                                            <p><a href="" class="text-info">Lorem</a> commented your
-                                                                post.
-                                                            </p>
-                                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                    elit.
-                                                                    Aliquam laoreet tellus ut tincidunt euismod. "</em>
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                     
 
-                                                    <div class="time-item">
-                                                        <div class="item-info ms-3 mb-3">
-                                                            <div class="text-muted">59 minutes ago</div>
-                                                            <p><a href="" class="text-info">Jessi</a> attended a meeting
-                                                                with<a href="#" class="text-success">John Doe</a>.</p>
-                                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                    elit.
-                                                                    Aliquam laoreet tellus ut tincidunt euismod. "</em>
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                  
 
-                                                    <div class="time-item">
-                                                        <div class="item-info ms-3 mb-3">
-                                                            <div class="text-muted">5 minutes ago</div>
-                                                            <p><strong><a href="#" class="text-info">John
-                                                                        Doe</a></strong> Uploaded 2 new photos</p>
-                                                            <img src="assets/images/small/small-2.jpg" alt=""
-                                                                height="40" width="60" class="rounded-1">
-                                                            <img src="assets/images/small/small-1.jpg" alt=""
-                                                                height="40" width="60" class="rounded-1">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="time-item">
-                                                        <div class="item-info ms-3 mb-3">
-                                                            <div class="text-muted">30 minutes ago</div>
-                                                            <p><a href="" class="text-info">Lorem</a> commented your
-                                                                post.
-                                                            </p>
-                                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                    elit.
-                                                                    Aliquam laoreet tellus ut tincidunt euismod. "</em>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="time-item">
-                                                        <div class="item-info ms-3 mb-3">
-                                                            <div class="text-muted">59 minutes ago</div>
-                                                            <p><a href="" class="text-info">Jessi</a> attended a meeting
-                                                                with<a href="#" class="text-success">John Doe</a>.</p>
-                                                            <p><em>"Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                                    elit.
-                                                                    Aliquam laoreet tellus ut tincidunt euismod. "</em>
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                 
                                                 </div>
                                             </div>
 

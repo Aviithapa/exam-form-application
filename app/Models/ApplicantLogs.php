@@ -16,4 +16,9 @@ class ApplicantLogs extends Model
         'remarks',
         'applicant_id'
     ];
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }

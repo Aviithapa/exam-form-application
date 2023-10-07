@@ -48,6 +48,11 @@ class Applicant extends Model
         return $this->hasMany(ApplicantDocuments::class);
     }
 
+    public function logs()
+    {
+        return $this->hasMany(ApplicantLogs::class);
+    }
+
     public function province()
     {
         return $this->belongsTo(Province::class);
