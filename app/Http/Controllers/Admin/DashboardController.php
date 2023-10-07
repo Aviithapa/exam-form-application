@@ -49,4 +49,10 @@ class DashboardController extends Controller
                 break;
         }
     }
+
+    public function profile()
+    {
+        $applicant = Auth::user()->applicant;
+        return view('admin.pages.applicant.profile', compact('applicant'));
+    }
 }

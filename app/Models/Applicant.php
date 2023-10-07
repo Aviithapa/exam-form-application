@@ -38,6 +38,11 @@ class Applicant extends Model
         return $this->hasOne(FamilyInformation::class);
     }
 
+    public function qualifications()
+    {
+        return $this->hasMany(Qualification::class);
+    }
+
     public function documents()
     {
         return $this->hasMany(ApplicantDocuments::class);

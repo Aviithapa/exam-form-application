@@ -69,7 +69,7 @@ Route::get('/resetPassword', [PasswordResetController::class, 'index'])->middlew
 
 //Route Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
-
+Route::get('/profile', [DashboardController::class, 'profile'])->middleware(['auth'])->name('profile');
 
 //Route Exam
 Route::get('/dashboard/exam', [ExamController::class, 'index'])->middleware(['auth'])->name('dashboard.exam.index');

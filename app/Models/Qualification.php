@@ -22,4 +22,9 @@ class Qualification extends Model
     {
         return $this->hasMany(ApplicantDocuments::class);
     }
+
+    public function applicant()
+    {
+        return $this->belongsTo(Applicant::class);
+    }
 }
