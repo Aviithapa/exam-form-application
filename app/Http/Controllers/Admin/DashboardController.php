@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Exam;
 use App\Repositories\Applicant\ApplicantRepository;
 use App\Repositories\ApplicantDocuments\ApplicantDocumentRepository;
 use App\Repositories\FamilyInformation\FamilyInformationRepository;
@@ -35,7 +36,10 @@ class DashboardController extends Controller
         $role = Auth::user()->mainRole() ? Auth::user()->mainRole()->name : 'default';
         switch ($role) {
             case 'admin':
-                return view('admin.dashboard.admin');
+                $applicant = $this->applicantRepository->getAll();
+                $exams = Exam::orderBy('created_at', 'desc')
+                    ->paginate(10);
+                return view('admin.dashboard.admin', compact('exams', 'applicant'));
                 break;
             case 'applicant':
                 $applicant_id = Auth::user()->applicant->id;

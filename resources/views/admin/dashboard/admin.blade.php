@@ -20,23 +20,39 @@
                         <!-- end page title -->
                         
                         <div class="row">
-                            <div class="col-xxl-3 col-sm-6">
-                                <div class="card widget-flat text-bg-pink">
+                             <div class="col-xxl-3 col-sm-6">
+                                <div class="card widget-flat text-bg-primary">
                                     <div class="card-body">
                                         <div class="float-end">
-                                            <i class=" widget-icon"></i>
+                                            <i class="widget-icon"></i>
                                         </div>
-                                        <h6 class="text-uppercase mt-0" title="Customers">Daily Visits</h6>
-                                        <h2 class="my-2">8,652</h2>
+                                        <h6 class="text-uppercase mt-0" title="Customers">Total Applicant</h6>
+                                        <h2 class="my-2">{{ count($applicant) }}</h2>
                                         <p class="mb-0">
-                                            <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
-                                            <span class="text-nowrap">Since last month</span>
+                                            {{-- <span class="badge bg-white bg-opacity-10 me-1">8.21%</span>
+                                            <span class="text-nowrap">Since last month</span> --}}
                                         </p>
                                     </div>
                                 </div>
                             </div> <!-- end col-->
 
                             <div class="col-xxl-3 col-sm-6">
+                                <div class="card widget-flat text-bg-pink">
+                                    <div class="card-body">
+                                        <div class="float-end">
+                                            <i class=" widget-icon"></i>
+                                        </div>
+                                        <h6 class="text-uppercase mt-0" title="Customers">Rejected Applicant</h6>
+                                        <h2 class="my-2">{{ count($applicant) }}</h2>
+                                        <p class="mb-0">
+                                            {{-- <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
+                                            <span class="text-nowrap">Since last month</span> --}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+                            {{-- <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-purple">
                                     <div class="card-body">
                                         <div class="float-end">
@@ -50,9 +66,9 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div> <!-- end col-->
+                            </div> <!-- end col--> --}}
 
-                            <div class="col-xxl-3 col-sm-6">
+                            {{-- <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-info">
                                     <div class="card-body">
                                         <div class="float-end">
@@ -66,9 +82,9 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div> <!-- end col-->
+                            </div> <!-- end col--> --}}
 
-                            <div class="col-xxl-3 col-sm-6">
+                            {{-- <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-primary">
                                     <div class="card-body">
                                         <div class="float-end">
@@ -82,7 +98,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div> <!-- end col-->
+                            </div> <!-- end col--> --}}
                         </div>
 
                         
@@ -114,78 +130,37 @@
                                                             <th>Double Dustur Date</th>
                                                             <th>Due Date</th>
                                                             <th>Status</th>
-                                                            <th>Assign</th>
+                                                            <th>Total Applicant</th>
+                                                            <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach($exams as $key => $exam)
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>Velonic Admin v1</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>26/04/2015</td>
-                                                            <td>26/04/2015</td>
-                                                            <td><span class="badge bg-info-subtle text-info">Released</span></td>
-                                                            <td>Techzaa Studio</td>
+                                                            <td>{{ ++$key }}</td>
+                                                            <td>{{ $exam->name }}</td>
+                                                            <td>{{ $exam->form_open_date }}</td>
+                                                            <td>{{ $exam->form_deu_date }}</td>
+                                                            <td>{{ $exam->form_double_dustur_date }}</td>
+                                                            <td><span class="badge bg-info-subtle text-info">{{ $exam->status }}</span></td>
+                                                            <td>{{ $exam->applicant()->count() }}</td>
+                                                            <td><a href="{{ route('dashboard.exam.edit', ['id' => $exam->id]) }}"><span class="badge bg-info-subtle text-info">Edit</span></a>
+                                                            <form id="delete-form-{{ $exam->id }}" action="{{ route('dashboard.exam.destroy', ['id' => $exam->id]) }}" method="POST" style="display: none;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $exam->id }}').submit();">
+                                                                <span class="badge bg-danger-subtle text-danger">Delete</span>
+                                                            </a>
+                                                            </td>
+
                                                         </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>Velonic Frontend v1</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>26/04/2015</td>
-                                                            <td>26/04/2015</td>
-                                                            <td><span class="badge bg-info-subtle text-info">Released</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td>Velonic Admin v1.1</td>
-                                                            <td>01/05/2015</td>
-                                                            <td>10/05/2015</td>
-                                                            <td>26/04/2015</td>
-                                                            <td><span class="badge bg-pink-subtle text-pink">Pending</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>4</td>
-                                                            <td>Velonic Frontend v1.1</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td><span class="badge bg-purple-subtle text-purple">Work in Progress</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>5</td>
-                                                            <td>Velonic Admin v1.3</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td><span class="badge bg-warning-subtle text-warning">Coming soon</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-    
-                                                        <tr>
-                                                            <td>6</td>
-                                                            <td>Velonic Admin v1.3</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td><span class="badge bg-primary-subtle text-primary">Coming soon</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-    
-                                                        <tr>
-                                                            <td>7</td>
-                                                            <td>Velonic Admin v1.3</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td><span class="badge bg-danger-subtle text-danger">Cool</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
+                                                        @endforeach
     
                                                     </tbody>
+                                                  
                                                 </table>
+                                                  <a href="{{ route('dashboard.exam.index') }}" class="text-right" style="padding: 10px; float:right;">Show all </a>
                                             </div>        
                                         </div>
                                     </div>                           
