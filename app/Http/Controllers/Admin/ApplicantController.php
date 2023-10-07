@@ -20,8 +20,8 @@ class ApplicantController extends Controller
     public function index()
     {
         $this->authorize('read', $this->applicantRepository->getModel());
-        $exams =  $this->applicantRepository->getAll();
-        return view('admin.pages.applicant.index', compact('exams'));
+        $applicants =  $this->applicantRepository->getAll();
+        return view('admin.pages.applicant-list', compact('applicants'));
     }
 
     public function show($id)

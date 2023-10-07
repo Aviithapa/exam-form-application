@@ -14,15 +14,15 @@
 <body>
     <div class="wrapper">
         @switch(Auth::user()->mainRole()->name)
-    @case('admin')
-    @include('admin.layout.sidebar')
-    @break
-    @case("applicant")
-       @include('admin.sidebar.applicant')
-    @break
-    @default
-    @include('admin.sidebar.default')
-@endswitch
+            @case('admin')
+                @include('admin.sidebar.sidebar')
+            @break
+            @case("applicant")
+                @include('admin.sidebar.applicant')
+            @break
+            @default
+                @include('admin.sidebar.default')
+        @endswitch
        
           <div class="content-page">
 

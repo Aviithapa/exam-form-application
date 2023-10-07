@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ApplicantController as AdminApplicantController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Applicant\ApplicantController;
@@ -34,13 +35,6 @@ Route::get('/review-registration', function () {
     return view('website.review-registration');
 });
 
-// Route::get('/form', function () {
-//     return view('admin.pages.applicant.form');
-// });
-
-Route::get('/applicant-list', function () {
-    return view('admin.pages.applicant-list');
-});
 
 
 
@@ -107,3 +101,7 @@ Route::post('/qualification/store', [QualificationController::class, 'store'])->
 Route::get('/qualification/edit/{id}', [QualificationController::class, 'edit'])->middleware(['auth'])->name('qualification.edit');
 Route::put('/qualification/update/{id}', [QualificationController::class, 'update'])->middleware(['auth'])->name('qualification.update');
 Route::delete('/qualification/destroy/{id}', [QualificationController::class, 'destroy'])->middleware(['auth'])->name('qualification.destroy');
+
+
+//Admin Applicant List Route
+Route::get('/applicant/list', [AdminApplicantController::class, 'index'])->middleware(['auth'])->name('applicant.index');

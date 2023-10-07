@@ -2,12 +2,7 @@
 
 @section('content')
 
-   <div class="content-page">
-
-                <div class="content">
-
-                    <!-- Start Content-->
-                    <div class="container-fluid">
+   
 
                         <!-- start page title -->
                         <div class="row">
@@ -95,65 +90,20 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                       @foreach($applicants as $applicant)
                                                         <tr>
                                                             <td>1</td>
-                                                            <td>Velonic Admin v1</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>26/04/2015</td>
+                                                            <td>{{ $applicant->full_name_english }}</td>
+                                                            <td>{{ $applicant->dob_nepali }}</td>
+                                                            <td>{{ $applicant->created_at }}</td>
                                                             <td><span class="badge bg-info-subtle text-info">Released</span></td>
                                                             <td>Techzaa Studio</td>
                                                             <td><span class="badge bg-success-subtle text-info">View</span></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>2</td>
-                                                            <td>Velonic Frontend v1</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>26/04/2015</td>
-                                                            <td><span class="badge bg-info-subtle text-info">Released</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>3</td>
-                                                            <td>Velonic Admin v1.1</td>
-                                                            <td>01/05/2015</td>
-                                                            <td>10/05/2015</td>
-                                                            <td><span class="badge bg-pink-subtle text-pink">Pending</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>4</td>
-                                                            <td>Velonic Frontend v1.1</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td><span class="badge bg-purple-subtle text-purple">Work in Progress</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>5</td>
-                                                            <td>Velonic Admin v1.3</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td><span class="badge bg-warning-subtle text-warning">Coming soon</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-    
-                                                        <tr>
-                                                            <td>6</td>
-                                                            <td>Velonic Admin v1.3</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td><span class="badge bg-primary-subtle text-primary">Coming soon</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
-    
-                                                        <tr>
-                                                            <td>7</td>
-                                                            <td>Velonic Admin v1.3</td>
-                                                            <td>01/01/2015</td>
-                                                            <td>31/05/2015</td>
-                                                            <td><span class="badge bg-danger-subtle text-danger">Cool</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                        </tr>
+
+                                                        @endforeach
+                                                     
+                                                      
     
                                                     </tbody>
                                                 </table>
@@ -165,12 +115,6 @@
                         </div>
                         <!-- end row -->
 
-                    </div>
-                    <!-- container -->
-
-                </div>
-                <!-- content -->
-
-            </div>
+                   
 
 @endsection

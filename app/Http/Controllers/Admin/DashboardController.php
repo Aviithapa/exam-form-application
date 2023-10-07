@@ -34,7 +34,7 @@ class DashboardController extends Controller
     {
         $role = Auth::user()->mainRole() ? Auth::user()->mainRole()->name : 'default';
         switch ($role) {
-            case 'administrator':
+            case 'admin':
                 return view('admin.dashboard.admin');
                 break;
             case 'applicant':
