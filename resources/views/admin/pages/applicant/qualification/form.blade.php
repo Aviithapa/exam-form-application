@@ -80,7 +80,7 @@
                                                             <option value="SLC">SLC</option>
                                                             <option value="HSEB/NEB">HSEB/NEB</option>
                                                             <option value="BACHELOR">BACHELOR</option>
-                                                            <option value="MASTER">MASTER</option>
+                                                            <option value="LAW-BACHELOR">LAW BACHELOR</option>
                                                             <option value="OTHER">OTHER</option>
                                                         </select>
                                                      @if($errors->first('type'))

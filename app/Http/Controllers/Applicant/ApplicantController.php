@@ -44,7 +44,9 @@ class ApplicantController extends Controller
     public function personalForm()
     {
         $applicant = Auth::user()->applicant;
-        $data = $applicant->documents->where('type', 'PERSONAL');
+        $data = null;
+        if ($applicant)
+            $data = $applicant->documents->where('type', 'PERSONAL');
         $districts = District::all();
         $provinces = Province::all();
         $municipalities = Municipality::all();
@@ -53,7 +55,10 @@ class ApplicantController extends Controller
 
     public function guardianForm()
     {
-        $data = Auth::user()->applicant->familyInformation;
+        $applicant = Auth::user()->applicant;
+        $data = null;
+        if ($applicant && $applicant->familyInformation)
+            $data = Auth::user()->applicant->familyInformation;
         return view('admin.pages.applicant.guardian-form', compact('data'));
     }
 
@@ -65,6 +70,7 @@ class ApplicantController extends Controller
     public function personalInformation(CreatePersonalInformation $createPersonalInformation)
     {
         $data = $createPersonalInformation->all();
+        $data['user_id'] = Auth::user()->id;
         DB::beginTransaction();
         try {
             $applicant = $this->applicantRepository->create($data);
@@ -80,6 +86,8 @@ class ApplicantController extends Controller
                     'citizenship_back' => 'PERSONAL',
                     'profile' => 'PERSONAL',
                     'signature' => 'PERSONAL',
+                    'left_fingure' => 'PERSONAL',
+                    'right_fingure' => 'PERSONAL',
                 ];
 
                 // Check if the key exists in the $documentTypes array
@@ -95,11 +103,11 @@ class ApplicantController extends Controller
             }
             $log['status'] = 'Stored';
             $log['state'] = 'FILLED';
-            $log['remarks'] = 'Personal Information added by the student';
+            $log['remarks'] = 'Personal Information has been added by the student';
             $log['applicant_id'] = $applicant->id;
             $this->logReport($log);
             DB::commit();
-            session()->flash('success', 'Exam created successfully');
+            session()->flash('success', 'Personal Information has been created successfully');
             return redirect()->route('student.guardianForm');
         } catch (Exception $e) {
             DB::rollBack();

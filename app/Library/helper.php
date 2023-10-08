@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Exam;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -63,5 +65,34 @@ if (!function_exists('getImage')) {
     function getImage($path)
     {
         return  Storage::url('documents/' . $path);
+    }
+}
+
+
+if (!function_exists('hasPersonalInformation')) {
+    /**
+     * @param null $type
+     * @return string
+     */
+    function hasPersonalInformation()
+    {
+        $applicant = Auth::user()->applicant;
+        if (!$applicant)
+            return false;
+        return true;
+    }
+}
+
+if (!function_exists('hasFamilyInformation')) {
+    /**
+     * @param null $type
+     * @return string
+     */
+    function hasFamilyInformation()
+    {
+        $applicant = Auth::user()->applicant;
+        if ($applicant && $applicant->familyInformation)
+            return true;
+        return false;
     }
 }

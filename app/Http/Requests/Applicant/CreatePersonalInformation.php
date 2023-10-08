@@ -33,12 +33,16 @@ class CreatePersonalInformation extends FormRequest
             'phone_number' => 'required|string|min:7|max:11',
             'province_id' => 'required|exists:province,id',
             'district_id' => 'required|exists:district,id',
-            // 'municipality_id' => 'required|exists:municipality,id',
+            'municipality_id' => 'required|exists:municipality,id',
             'ward_no' => 'required|string',
             'profile' => 'required|string',
             'citizenship_front' => 'required|string',
             'citizenship_back' => 'required|string',
             'signature' => 'required|string',
+            'right_fingure' => 'required|string',
+            'left_fingure' => 'required|string',
+            'gender' => 'required|string',
+
 
         ];
     }

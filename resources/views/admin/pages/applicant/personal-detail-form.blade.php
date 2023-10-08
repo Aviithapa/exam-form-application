@@ -121,7 +121,23 @@
                                                      @endif
                                                 </div>
                                             </div>
-                                             <div class="col-lg-6 col-md-6 col-sm-12">
+                                              <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">GENDER</label>
+                                                   <select class="form-select mb-3" name="gender">
+                                                            <option value="{{ isset($model) ? $model->gender : old('gender') }}" selected>{{ isset($model) ? $model->gender : "Please Select" }}</option>
+                                                            <option value="MALE">MALE</option>
+                                                            <option value="GOVERNMENT">FEMALE</option>
+                                                            <option value="OTHER">OTHER</option>
+                                                        </select>
+                                                     @if( $errors->first('gender'))
+                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                {{ $errors->first('gender') }}
+                                                            </div>
+                                                     @endif
+                                                </div>
+                                            </div>
+                                             <div class="col-lg-4 col-md-4 col-sm-12">
                                                 <div class="mb-3">
                                                     <label class="form-label" for="validationCustom01">Citizenship Number </label>
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="" name="citizenship_number" required value="{{ isset($applicant) ? $applicant->citizenship_number : old('citizenship_number') }}">
@@ -132,7 +148,7 @@
                                                      @endif
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="col-lg-4 col-md-4 col-sm-12">
                                                 <div class="mb-3">
                                                     <label class="form-label" for="validationCustom01">Issued District </label>
                                                     <input type="text" class="form-control" id="validationCustom01"  name="issued_district" required value="{{ isset($applicant) ? $applicant->issued_district : old('issued_district') }}">
@@ -172,6 +188,67 @@
                                                      @if( $errors->first('email'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                 {{ $errors->first('email') }}
+                                                            </div>
+                                                     @endif
+                                                </div>
+                                            </div>
+                                             <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">Religion</label>
+                                                    <input type="text" class="form-control" id="validationCustom01"  name="religion" required value="{{ isset($applicant) ? $applicant->religion :old('religion') }}">
+                                                     @if( $errors->first('religion'))
+                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                {{ $errors->first('religion') }}
+                                                            </div>
+                                                     @endif
+                                                </div>
+                                            </div>
+                                             <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">Mother Tongue</label>
+                                                    <input type="text" class="form-control" id="validationCustom01"  name="mother_tongue" required value="{{ isset($applicant) ? $applicant->mother_tongue :old('mother_tongue') }}">
+                                                     @if( $errors->first('mother_tongue'))
+                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                {{ $errors->first('mother_tongue') }}
+                                                            </div>
+                                                     @endif
+                                                </div>
+                                            </div>
+                                             <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">Caste</label>
+                                                    <input type="text" class="form-control" id="validationCustom01"  name="caste" value="{{ isset($applicant) ? $applicant->caste :old('caste') }}">
+                                                     @if( $errors->first('caste'))
+                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                {{ $errors->first('caste') }}
+                                                            </div>
+                                                     @endif
+                                                </div>
+                                            </div>
+                                             
+                                             <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">Working</label>
+                                                   <select class="form-select mb-3" name="working">
+                                                            <option value="{{ isset($model) ? $model->working : old('working') }}" selected>{{ isset($model) ? $model->working : "Please Select" }}</option>
+                                                            <option value="NOT-WORKING">NOT-WORKING</option>
+                                                            <option value="GOVERNMENT">GOVERNMENT</option>
+                                                            <option value="NON-GOVERNMENT">NON-GOVERNMENT</option>
+                                                        </select>
+                                                     @if( $errors->first('working'))
+                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                {{ $errors->first('working') }}
+                                                            </div>
+                                                     @endif
+                                                </div>
+                                            </div>
+                                             <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">Office Name</label>
+                                                    <input type="text" class="form-control" id="validationCustom01"  name="office_name" value="{{ isset($applicant) ? $applicant->office_name :old('office_name') }}">
+                                                     @if( $errors->first('office_name'))
+                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                {{ $errors->first('office_name') }}
                                                             </div>
                                                      @endif
                                                 </div>
@@ -368,6 +445,86 @@
                                                                  @if($errors->first('signature'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('signature') }}
+                                                                  </div>
+                                                                 @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                               <div class="col-lg-3">
+                                                <div class="grid-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="col-md-12 col-lg-12">
+                                                                <label>Left Fingure ल्याप्छे Photo *</label><br>
+                                                                @if(isset($data))
+                                                                    <img src="{{url(isset($data[3]->path)?getImage($data[3]->path):imageNotFound())}}" height="150" width="150"
+                                                                         id="left_fingure_img">
+                            
+                                                                @else
+                                                                    <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
+                                                                         id="left_fingure_img">
+                                                                @endif
+                                                            </div>
+                            
+                                                            <div class="form-group col-md-12 col-lg-12">
+                                                                <small>Below 1 mb</small><br>
+                                                                <small id="left_fingure_help_text" class="help-block"></small>
+                                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                                                     aria-valuemax="100"
+                                                                     aria-valuenow="0">
+                                                                    <div id="left_fingure_progress" class="progress-bar progress-bar-success"
+                                                                         style="width: 0%">
+                                                                    </div>
+                                                                </div><br>
+                                                                <input type="file" id="left_fingure_image" name="left_fingure_image"
+                                                                       onclick="anyFileUploader('left_fingure')">
+                                                                <input type="hidden" id="left_fingure_path" name="left_fingure" class="form-control"
+                                                                       value="{{isset($data[3]->path)?$data[3]->path:''}}"/>
+                                                                 @if($errors->first('left_fingure'))
+                                                                  <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                             {{ $errors->first('left_fingure') }}
+                                                                  </div>
+                                                                 @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                               <div class="col-lg-3">
+                                                <div class="grid-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="col-md-12 col-lg-12">
+                                                                <label>Right Fingure ल्याप्छे Photo *</label><br>
+                                                                @if(isset($data))
+                                                                    <img src="{{url(isset($data[4]->path)?getImage($data[4]->path):imageNotFound())}}" height="150" width="150"
+                                                                         id="right_fingure_img">
+                            
+                                                                @else
+                                                                    <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
+                                                                         id="right_fingure_img">
+                                                                @endif
+                                                            </div>
+                            
+                                                            <div class="form-group col-md-12 col-lg-12">
+                                                                <small>Below 1 mb</small><br>
+                                                                <small id="right_fingure_help_text" class="help-block"></small>
+                                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                                                     aria-valuemax="100"
+                                                                     aria-valuenow="0">
+                                                                    <div id="right_fingure_progress" class="progress-bar progress-bar-success"
+                                                                         style="width: 0%">
+                                                                    </div>
+                                                                </div><br>
+                                                                <input type="file" id="right_fingure_image" name="right_fingure_image"
+                                                                       onclick="anyFileUploader('right_fingure')">
+                                                                <input type="hidden" id="right_fingure_path" name="right_fingure" class="form-control"
+                                                                       value="{{isset($data[3]->path)?$data[4]->path:''}}"/>
+                                                                 @if($errors->first('right_fingure'))
+                                                                  <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                             {{ $errors->first('right_fingure') }}
                                                                   </div>
                                                                  @endif
                                                             </div>

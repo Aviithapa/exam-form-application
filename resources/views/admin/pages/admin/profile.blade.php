@@ -15,7 +15,7 @@
                             <div class="profile-user-box">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <div class="profile-user-img"><img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'profile')->pluck('path')->first()) : imageNotFound() }}" onclick="onClick(this)"  alt=""
+                                        <div class="profile-user-img"><img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'profile')->pluck('path')->first()) : imageNotFound() }}" alt=""
                                                 class="avatar-lg rounded-circle"></div>
                                         <div class="">
                                             <h4 class="mt-4 fs-17 ellipsis">{{ $applicant->full_name_english }}</h4>
@@ -23,7 +23,7 @@
                                             <p class="text-muted mb-0 text-capitilize"><small>{{ $applicant->tole }} {{ $applicant->ward_no }}  {{ $applicant->municipality->name }}, {{ $applicant->district->name }}  {{ $applicant->province->name }}   </small></p>
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    {{-- <div class="col-sm-6">
                                         <div class="d-flex justify-content-end align-items-center gap-2">
                                             <a href= {{ route('student.personalForm') }} class="btn btn-soft-danger">
                                                 <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
@@ -31,7 +31,7 @@
                                             </a>
                                           
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <!--/ meta -->
@@ -57,10 +57,10 @@
                                                     data-bs-target="#user-activities" type="button" role="tab"
                                                     aria-controls="home" aria-selected="true"
                                                     href="#user-activities">Activities</a></li>
-                                            {{-- <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+                                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
                                                     data-bs-target="#edit-profile" type="button" role="tab"
                                                     aria-controls="home" aria-selected="true"
-                                                    href="#edit-profile">Settings</a></li> --}}
+                                                    href="#edit-profile">Settings</a></li>
                                             
                                         </ul>
 
@@ -188,7 +188,7 @@
                                                              <div class="album">
                                                                   @foreach ($qualication->documents as $document)
                                                                     <a href="#">
-                                                                        <img alt="" src="{{ getImage($document->path) }}" onclick="onClick(this)"  width="100" class="ml-2">
+                                                                        <img alt="" src="{{ getImage($document->path) }}" width="100" class="ml-2">
                                                                     </a>
                                                                @endforeach
                                                             </div>
@@ -231,46 +231,22 @@
                                             <!-- settings -->
                                             <div id="edit-profile" class="tab-pane">
                                                 <div class="user-profile-content">
-                                                    <form>
+                                                    <form method="POST" action="{{ route('applicant.status', ['id' => $applicant->id]) }}">
+                                                        @method('PUT')
+                                                        @csrf
                                                         <div class="row row-cols-sm-2 row-cols-1">
-                                                            <div class="mb-2">
-                                                                <label class="form-label" for="FullName">Full
-                                                                    Name</label>
-                                                                <input type="text" value="John Doe" id="FullName"
-                                                                    class="form-control">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label" for="Email">Email</label>
-                                                                <input type="email" value="first.last@example.com"
-                                                                    id="Email" class="form-control">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label" for="web-url">Website</label>
-                                                                <input type="text" value="Enter website url"
-                                                                    id="web-url" class="form-control">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label"
-                                                                    for="Username">Username</label>
-                                                                <input type="text" value="john" id="Username"
-                                                                    class="form-control">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label"
-                                                                    for="Password">Password</label>
-                                                                <input type="password" placeholder="6 - 15 Characters"
-                                                                    id="Password" class="form-control">
-                                                            </div>
-                                                            <div class="mb-3">
-                                                                <label class="form-label"
-                                                                    for="RePassword">Re-Password</label>
-                                                                <input type="password" placeholder="6 - 15 Characters"
-                                                                    id="RePassword" class="form-control">
-                                                            </div>
                                                             <div class="col-sm-12 mb-3">
-                                                                <label class="form-label" for="AboutMe">About Me</label>
+                                                                <label class="form-label" for="AboutMe">Remarks</label>
                                                                 <textarea style="height: 125px;" id="AboutMe"
-                                                                    class="form-control">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</textarea>
+                                                                    class="form-control"></textarea>
+                                                            </div>
+                                                            <div class="col-sm-12 mb-2">
+                                                                <label class="form-label" for="validationCustom01">Status</label>
+                                                                <select class="form-select mb-3" name="status" required>
+                                                                        <option selected>Please Select</option>
+                                                                        <option value="APPROVED">APPROVE</option>
+                                                                        <option value="REJECTED">REJECTED</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <button class="btn btn-primary" type="submit"><i
@@ -278,28 +254,6 @@
                                                     </form>
                                                 </div>
                                             </div>
-
-                                             <style>
-            .modal-body {
-                max-height: 80vh;
-                overflow-y: auto;
-                max-width: 100vh;
-            }
-        </style>
-        <div class="modal" id="modal01">
-            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" onclick="$('#modal01').css('display','none')" class="close"  aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img id="img01" style="max-width:100%">
-                    </div>
-                </div>
-            </div>
-        </div>
 
                                           
                                         </div>
@@ -311,33 +265,3 @@
                     <!-- end page title -->
 
 @endsection
-
-@push('scripts')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
-    <script>
-
-        $(document).ready(function () {
-
-            $('body').on('click', '#editCompany', function (event) {
-
-                event.preventDefault();
-                var id = $(this).data('id');
-                $("#idkl").val( id );
-            });
-            $('body').on('click', '#editCompanyModel', function (event) {
-
-                event.preventDefault();
-                var id = $(this).data('id');
-                $("#idkl123").val( id );
-            });
-
-        });
-        function onClick(element) {
-            document.getElementById("img01").src = element.src;
-            document.getElementById("modal01").style.display = "block";
-        }
-
-    </script>
-@endpush

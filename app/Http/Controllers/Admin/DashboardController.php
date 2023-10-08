@@ -42,10 +42,19 @@ class DashboardController extends Controller
                 return view('admin.dashboard.admin', compact('exams', 'applicant'));
                 break;
             case 'applicant':
-                $applicant_id = Auth::user()->applicant->id;
-                $applicant = $this->applicantRepository->findById($applicant_id);
-                $voucher = $this->applicantDocumentRepository->getAll()->where('applicant_id', $applicant_id)->where('document_name', 'voucher')->first();
-                return view('admin.dashboard.applicant', compact('applicant', 'voucher'));
+                if (Auth::user()->applicant) {
+                    $applicant = Auth::user()->applicant;
+                    $voucher = $this->applicantDocumentRepository->getAll()->where('applicant_id', $applicant->id)->where('document_name', 'voucher')->first();
+                    return view('admin.dashboard.applicant', compact('applicant', 'voucher'));
+                } else {
+                    // Handle the case where there is no associated applicant
+                    // For example, you can set a default value or display an error message
+                    $applicant = null; // or any other appropriate action
+                    $voucher = null; // or any other appropriate action
+                    return view('admin.dashboard.applicant', compact('applicant', 'voucher'));
+                }
+
+
                 break;
 
             default:

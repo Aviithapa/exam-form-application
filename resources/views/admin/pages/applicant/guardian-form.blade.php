@@ -107,7 +107,7 @@
                                             </div> 
                                              <div class="col-lg-6 col-md-6 col-sm-12"> 
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="validationCustom01">Citizenship Number</label>
+                                                    <label class="form-label" for="validationCustom01">Citizenship</label>
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="" name="citizenship_number" value="{{ isset($data) ? $data->citizenship_number :  old('citizenship_number') }}">
                                                       @if($errors->first('citizenship_number'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">

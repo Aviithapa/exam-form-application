@@ -4,9 +4,9 @@ namespace App\Enums;
 
 class StatusEnum
 {
-    const REJECTED = 'rejected';
-    const PROGRESS = 'progress';
-    const APPROVED = 'approved';
+    const REJECTED = 'REJECTED';
+    const PROGRESS = 'PROGRESS';
+    const APPROVED = 'APPROVED';
 
 
     public static function values()

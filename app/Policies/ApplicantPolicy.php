@@ -24,6 +24,14 @@ class ApplicantPolicy
     {
         return $user->isAdmin()->name === "admin" || $user->id === $applicant->user_id;
     }
+    public function show(User $user, Applicant $applicant)
+    {
+        return $user->isAdmin()->name === "admin" || $user->id === $applicant->user_id;
+    }
+    public function status(User $user, Applicant $applicant)
+    {
+        return $user->isAdmin()->name === "admin" || $user->id === $applicant->user_id;
+    }
 
     public function update(User $user, Applicant $applicant)
     {

@@ -114,13 +114,40 @@
                             <span> Dashboard </span>
                         </a>
                     </li>
+                  
                     <li class="side-nav-item">
-                        <a href="{{ route('applicant.index') }}" class="side-nav-link">
+                        <a
+                            data-bs-toggle="collapse"
+                            href="#sidebarPages"
+                            aria-expanded="false"
+                            aria-controls="sidebarPages"
+                            class="side-nav-link"
+                        >
                             <i class=""></i>
-                            {{-- <span class="badge bg-success float-end">9+</span> --}}
-                            <span> Applicant List </span>
+                            <span> Applicant </span>
+                            <span class="menu-arrow"></span>
                         </a>
-                    </li>
+                            <div class="collapse" id="sidebarPages">
+                                <ul class="side-nav-second-level">
+                                <li>
+                                <a href="{{ route('applicant.index') }}">
+                                            <span> New Applicant List </span>
+                                </a>
+                                </li>
+                                <li>
+                                <a href="{{ route('applicant.approve') }}">
+                                            <span> Approved Applicant List </span>
+                                </a>
+                                </li>
+                                    <li>
+                                <a href="{{ route('applicant.rejected') }}">
+                                    <span> Rejected Applicant List </span>
+                                </a>
+                                </li>
+                                
+                                </ul>
+                            </div>
+                     </li>
                      <li class="side-nav-item">
                         <a href="{{ url('dashboard/exam') }}" class="side-nav-link">
                             <i class=""></i>
@@ -129,7 +156,7 @@
                         </a>
                     </li>
 
-
+               
 
                 </ul>
                 <!--- End Sidemenu -->

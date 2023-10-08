@@ -121,20 +121,27 @@
                             <span> Personal Information </span>
                         </a>
                     </li>
-                     <li class="side-nav-item">
+
+                    @if (hasPersonalInformation())
+                    <li class="side-nav-item">
                         <a href="{{ route('student.guardianForm') }}" class="side-nav-link">
                             <i class=""></i>
                             {{-- <span class="badge bg-success float-end">9+</span> --}}
                             <span> Family Information </span>
                         </a>
                     </li>
-                     <li class="side-nav-item">
+                    @endif
+                    
+                    @if (hasFamilyInformation())
+                        <li class="side-nav-item">
                         <a href="{{ route('qualification.index') }}" class="side-nav-link">
                             <i class=""></i>
                             {{-- <span class="badge bg-success float-end">9+</span> --}}
                             <span> Qualification Information </span>
                         </a>
-                    </li>
+                    </li> 
+                    @endif
+                    
 
 
                 

@@ -12,7 +12,7 @@ class ChangeStatusApplicantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,7 @@ class ChangeStatusApplicantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => 'required|in:' . implode(',', StatusEnum::values()),
-            'reason' => 'required_if:status,' . StatusEnum::REJECTED . '|string',
+            'status' => 'required',
         ];
     }
 }

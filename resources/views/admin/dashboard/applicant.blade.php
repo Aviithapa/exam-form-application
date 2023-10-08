@@ -40,7 +40,7 @@
                                                             <p class="timeline-date text-muted"><small></small></p>
                                                             <p>Add your personal details 
                                                                  @if(!isset($applicant))
-                                                                    <a href="#">Click Here to Add Family Information</a>
+                                                                    <a href="{{ route('student.personalForm') }}">Click Here to Add Personal Information</a>
                                                              @endif 
                                                             </p>
                                                         </div>
@@ -74,7 +74,7 @@
                                                             <p class="timeline-date text-muted"><small></small></p>
                                                             <p>Add your qualification 
                                                                @if(isset($applicant) && isset($applicant->familyInformation))
-                                                                    <a href="#">Click Here to Add Family Information</a>
+                                                                    <a href="#">Click Here to Add Qualification Information</a>
                                                                @endif 
 
                                                             </p>

@@ -77,7 +77,9 @@
                                         <div id="yearly-sales-collapse" class="collapse show">
     
                                             <div class="table-responsive">
-                                                <table class="table table-nowrap table-hover mb-0">
+                                                <table  
+                                                 id="alternative-page-datatable"
+                                                class="table table-nowrap table-hover mb-0">
                                                     <thead>
                                                         <tr>
                                                             <th>#</th>
@@ -90,23 +92,23 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                       @foreach($applicants as $applicant)
+                                                       @foreach($applicants as $key =>  $applicant)
                                                         <tr>
-                                                            <td>1</td>
+                                                            <td>{{ ++$key }}</td>
                                                             <td>{{ $applicant->full_name_english }}</td>
                                                             <td>{{ $applicant->dob_nepali }}</td>
                                                             <td>{{ $applicant->created_at }}</td>
-                                                            <td><span class="badge bg-info-subtle text-info">Released</span></td>
+                                                            <td><span class="badge bg-info-subtle text-info">{{ $applicant->applicant_exam_status }}</span></td>
                                                             <td>Techzaa Studio</td>
-                                                            <td><span class="badge bg-success-subtle text-info">View</span></td>
+                                                            <td><a href="{{ route('applicant.show', ['id' => $applicant->id]) }}"><span class="badge bg-success-subtle text-info">View</span></a></td>
                                                         </tr>
 
                                                         @endforeach
                                                      
-                                                      
-    
+                                                        
                                                     </tbody>
                                                 </table>
+                                                
                                             </div>        
                                         </div>
                                     </div>                           

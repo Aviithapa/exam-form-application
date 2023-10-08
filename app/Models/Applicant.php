@@ -25,7 +25,13 @@ class Applicant extends Model
         'ward_no',
         'tole',
         'contact_number',
-        'user_id'
+        'user_id',
+        'gender',
+        'religion',
+        'mother_tongue',
+        'caste',
+        'working',
+        'office_name'
     ];
 
     public function user()

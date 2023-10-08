@@ -44,12 +44,12 @@ class RegistrationController extends Controller
             $data['reference'] = $data['password'];
             $data['password'] = bcrypt($data['password']);
             $data['phone_number'] = $data['token'];
-            // $user = $this->userRepository->create($data);
-            // if ($user == false) {
-            //     session()->flash('danger', 'Oops! Something went wrong.');
-            //     return redirect()->back()->withInput();
-            // }
-            // $user->roles()->attach($role);
+            $user = $this->userRepository->create($data);
+            if ($user == false) {
+                session()->flash('danger', 'Oops! Something went wrong.');
+                return redirect()->back()->withInput();
+            }
+            $user->roles()->attach($role);
             // Mail::to($user->email)->send(new RegistrarUser($user, $data['token']));
             return redirect()->route('register.verify.otp', ['email' => $data['email']]);
         } catch (Exception $e) {
