@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Applicant;
 use App\Http\Controllers\Controller;
 use App\Models\ApplicantDocuments;
 use App\Repositories\ApplicantDocuments\ApplicantDocumentRepository;
+use App\Repositories\ApplicantLog\ApplicantLogRepository;
 use App\Repositories\Qualification\QualificationRepository;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,12 +16,17 @@ use Illuminate\Support\Facades\Log;
 class QualificationController extends Controller
 {
     //
-    protected $qualificationRepository, $log, $applicantDocumentRepository;
+    protected $qualificationRepository, $log, $applicantDocumentRepository, $applicantLogRepository;
 
-    public function __construct(QualificationRepository $qualificationRepository, ApplicantDocumentRepository $applicantDocumentRepository, Log $log)
-    {
+    public function __construct(
+        QualificationRepository $qualificationRepository,
+        ApplicantDocumentRepository $applicantDocumentRepository,
+        ApplicantLogRepository $applicantLogRepository,
+        Log $log
+    ) {
         $this->qualificationRepository = $qualificationRepository;
         $this->applicantDocumentRepository = $applicantDocumentRepository;
+        $this->applicantLogRepository = $applicantLogRepository;
         $this->log = $log;
     }
 
@@ -43,6 +49,7 @@ class QualificationController extends Controller
 
         // $this->authorize('create', $this->qualificationRepository->getModel());
         $data = $createExamRequest->all();
+
         $applicant = Auth::user()->applicant;
         $data['applicant_id'] = $applicant->id;
         DB::beginTransaction();
@@ -72,6 +79,13 @@ class QualificationController extends Controller
                     $document->save();
                 }
             }
+
+            $log['status'] = $data['type'];
+            $log['state'] = $data['type'] . ' ADDED';
+            $log['remarks'] = $data['type'] . 'QUALIFICATION DETAILS ADDED';
+            $log['applicant_id'] = $applicant->id;
+            $log['created_by'] = Auth::user()->id;
+            $this->logReport($log);
             DB::commit();
             session()->flash('success', 'Exam created successfully');
             return redirect()->route('qualification.index');
@@ -114,6 +128,13 @@ class QualificationController extends Controller
                 }
             }
 
+            $log['status'] = $data['type'];
+            $log['state'] = $data['type'] . ' ADDED';
+            $log['remarks'] = $data['type'] . 'QUALIFICATION DETAILS ADDED';
+            $log['applicant_id'] = $qualification->applicant_id;
+            $log['created_by'] = Auth::user()->id;
+            $this->logReport($log);
+
             session()->flash('success', 'Exam updated successfully');
             DB::commit(); // Commit the transaction
             return redirect()->route('qualification.index');
@@ -145,6 +166,17 @@ class QualificationController extends Controller
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
             return redirect()->back()->withInput();
+        }
+    }
+
+    public function logReport($data)
+    {
+        try {
+            $this->applicantLogRepository->create($data);
+        } catch (Exception $e) {
+            // Log or handle the exception as needed
+            // You can log the error message or perform other actions here
+            // Example: Log::error('Error in logReport: ' . $e->getMessage());
         }
     }
 }

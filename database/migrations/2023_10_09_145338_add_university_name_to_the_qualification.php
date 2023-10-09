@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('applicant_exam', function (Blueprint $table) {
+        Schema::table('qualification', function (Blueprint $table) {
             //
-            $table->enum('status', ['NEW', 'PROGRESS', 'REJECTED', 'READY-FOR-ADMIT-CARD', 'GENERATED', 'APPROVED'])->default('NEW');
+            $table->string('university_name')->nullable();
         });
     }
 
@@ -22,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('applicant_exam', function (Blueprint $table) {
+        Schema::table('qualification', function (Blueprint $table) {
             //
-            $table->dropColumn('status');
+            $table->dropColumn('university_name');
         });
     }
 };

@@ -25,6 +25,19 @@
                                                  <h4 class="header-title"> Qualification Information</h4>
                                             </div>
 
+                                              <div class="col-lg-3 col-md-3 col-sm-12"> 
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">University Name</label>
+                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="" name="university_name" value="{{ isset($model) ? $model->university_name : old('university_name') }}">
+                                                    @if($errors->first('university_name'))
+                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                {{ $errors->first('university_name') }}
+                                                            </div>
+                                                     @endif
+                                                </div>
+                                            </div>
+
+
                                             <div class="col-lg-3 col-md-3 col-sm-12"> 
                                                 <div class="mb-3">
                                                     <label class="form-label" for="validationCustom01">Institute Name</label>

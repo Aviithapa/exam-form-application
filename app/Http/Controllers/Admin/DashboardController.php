@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplicantExam;
 use App\Models\Exam;
 use App\Repositories\Applicant\ApplicantRepository;
 use App\Repositories\ApplicantDocuments\ApplicantDocumentRepository;
 use App\Repositories\FamilyInformation\FamilyInformationRepository;
 use App\Repositories\Qualification\QualificationRepository;
 use App\Repositories\User\UserRepository;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -44,8 +46,11 @@ class DashboardController extends Controller
             case 'applicant':
                 if (Auth::user()->applicant) {
                     $applicant = Auth::user()->applicant;
+                    $voucherData = null;
+                    if ($applicant)
+                        $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('status', '!=', 'FAILED')->first();
                     $voucher = $this->applicantDocumentRepository->getAll()->where('applicant_id', $applicant->id)->where('document_name', 'voucher')->first();
-                    return view('admin.dashboard.applicant', compact('applicant', 'voucher'));
+                    return view('admin.dashboard.applicant', compact('applicant', 'voucher', 'voucherData'));
                 } else {
                     // Handle the case where there is no associated applicant
                     // For example, you can set a default value or display an error message

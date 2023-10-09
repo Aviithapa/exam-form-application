@@ -78,4 +78,9 @@ class Applicant extends Model
     {
         return $this->belongsToMany(Exam::class);
     }
+
+    public function applicant_exam()
+    {
+        return $this->belongsToMany(ApplicantExam::class);
+    }
 }

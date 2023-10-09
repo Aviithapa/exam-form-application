@@ -42,20 +42,20 @@
                                                 <table class="table table-nowrap table-hover mb-0">
                                                     <thead>
                                                         <tr>
-                                                          
+                                                            <th>University</th>
                                                             <th>Name</th>
                                                             <th>Level</th>
                                                             <th>Passed Year</th>
                                                             <th>Division</th>
                                                             <th>Percentage</th>
-                                                            <th>Date of birth</th>
+                                                            <th>Documents</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                          @foreach($qualifications as $qualication)
                                                         <tr>
-                                             
+                                                            <td>{{ $qualication->university_name }}</td>
                                                             <td>{{ $qualication->name }}</td>
                                                             <td>{{ $qualication->type }}</td>
                                                             <td>{{ $qualication->passed_year }}</td>

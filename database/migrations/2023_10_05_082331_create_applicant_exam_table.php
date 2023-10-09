@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('exam_id');
             $table->unsignedBigInteger('applicant_id');
-            $table->timestamps();
-
-            // Define foreign keys
             $table->foreign('exam_id')->references('id')->on('exam')->onDelete('cascade');
             $table->foreign('applicant_id')->references('id')->on('applicant')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

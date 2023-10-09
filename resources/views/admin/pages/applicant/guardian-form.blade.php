@@ -29,7 +29,7 @@
                                             </div>
                                               <div class="col-lg-6 col-md-6 col-sm-12"> 
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="validationCustom01">Grandfather Name Nepali</label>
+                                                    <label class="form-label" for="validationCustom01">हजुरबुवाको नाम नेपाली</label>
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="" name="grandfather_name_nepali" required value="{{ isset($data) ? $data->grandfather_name_nepali : old('grandfather_name_nepali') }}">
                                                     @if($errors->first('full_name_nepali'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
@@ -51,7 +51,7 @@
                                             </div>
                                              <div class="col-lg-6 col-md-6 col-sm-12"> 
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="validationCustom01">Father Name Nepali</label>
+                                                    <label class="form-label" for="validationCustom01">बुवाको नाम नेपाली</label>
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="" name="father_name_nepali" required value="{{  isset($data) ? $data->father_name_nepali : old('father_name_nepali') }}">
                                                      @if($errors->first('father_name_nepali'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
@@ -73,7 +73,7 @@
                                             </div>  
                                              <div class="col-lg-6 col-md-6 col-sm-12"> 
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="validationCustom01">Mother Name Nepali</label>
+                                                    <label class="form-label" for="validationCustom01">आमाको नाम नेपाली</label>
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="" name="mother_name_nepali" required value="{{  isset($data) ? $data->mother_name_nepali : old('mother_name_nepali') }}">
                                                      @if($errors->first('mother_name_nepali'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">

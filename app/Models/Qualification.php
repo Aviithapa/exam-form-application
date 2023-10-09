@@ -15,7 +15,8 @@ class Qualification extends Model
         'division',
         'percentage',
         'type',
-        'applicant_id'
+        'applicant_id',
+        'university_name'
     ];
 
     public function documents()

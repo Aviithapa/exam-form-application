@@ -20,7 +20,7 @@
                         </div>
                         <!-- end page title -->
                     
-                                <!-- Todo-->
+                           <!-- Todo-->
                                 <div class="card">
                                     <form class="needs-validation" novalidate>
                                         <div class="row" style="padding: 20px 10px 0px 10px;"> 
@@ -57,7 +57,7 @@
                                       
                                        
                                     </form>
-                                </div>
+                                </div>     
 
                         
 
@@ -72,6 +72,15 @@
                                             <div class="card-widgets">
                                             </div>
                                             <h5 class="header-title mb-0">Total Number of Applicant</h5>
+                                            @if(isset($isAdmit))
+                                            <div class="d-flex justify-content-end align-items-center gap-2">
+                                                <a href="{{ route('applicant.generateAdmitCard') }}" class="btn btn-soft-info">
+                                                    <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
+                                                        Generate Admit Card
+                                                </a>
+                                            </div>
+                                            @endif
+                                        
                                         </div>
     
                                         <div id="yearly-sales-collapse" class="collapse show">
@@ -87,7 +96,7 @@
                                                             <th>Citizenship Number</th>
                                                             <th>Applied Date</th>
                                                             <th>Status</th>
-                                                            <th>Date of birth</th>
+                                                            <th>{{isset($isAdmit) ?  'Symbol Number' : 'Date of birth' }}</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
@@ -99,8 +108,13 @@
                                                             <td>{{ $applicant->dob_nepali }}</td>
                                                             <td>{{ $applicant->created_at }}</td>
                                                             <td><span class="badge bg-info-subtle text-info">{{ $applicant->applicant_exam_status }}</span></td>
-                                                            <td>Techzaa Studio</td>
-                                                            <td><a href="{{ route('applicant.show', ['id' => $applicant->id]) }}"><span class="badge bg-success-subtle text-info">View</span></a></td>
+                                                            <td>{{ isset($isAdmit) ? $applicant->symbol_number : $applicant->dob_nepali }}</td>
+                                                            <td>
+                                                                <a href="{{ route('applicant.show', ['id' => $applicant->id]) }}"><span class="badge bg-success-subtle text-info">View</span></a>
+                                                                 @if($applicant->symbol_number)
+                                                                   <a href="{{ route('applicant.admit', ['id' => $applicant->id]) }}"><span class="badge bg-info-subtle text-info">Print Admit Card</span></a>
+                                                                 @endif
+                                                            </td>
                                                         </tr>
 
                                                         @endforeach

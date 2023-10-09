@@ -53,7 +53,7 @@
                                 <h6 class="text-overflow m-0">Welcome !</h6>
                             </div>
 
-                            <!-- item-->
+                            {{-- <!-- item-->
                             <a href="pages-profile.html" class="dropdown-item">
                                 <i class="ri-account-circle-line fs-18 align-middle me-1"></i>
                                 <span>My Account</span>
@@ -75,7 +75,7 @@
                             <a href="auth-lock-screen.html" class="dropdown-item">
                                 <i class="ri-lock-password-line fs-18 align-middle me-1"></i>
                                 <span>Lock Screen</span>
-                            </a>
+                            </a> --}}
 
                             <!-- item-->
                             <a href="{{ route('logout') }}" class="dropdown-item">
@@ -130,29 +130,24 @@
                             <div class="collapse" id="sidebarPages">
                                 <ul class="side-nav-second-level">
                                 <li>
-                                <a href="{{ route('applicant.index') }}">
-                                            <span> New Applicant List </span>
-                                </a>
+                                    <a href="{{ route('applicant.index') }}">
+                                        <span> New Applicant List </span>
+                                    </a>
                                 </li>
                                 <li>
-                                <a href="{{ route('applicant.approve') }}">
-                                            <span> Approved Applicant List </span>
-                                </a>
-                                </li>
-                                    <li>
-                                <a href="{{ route('applicant.rejected') }}">
-                                    <span> Rejected Applicant List </span>
-                                </a>
+                                     <a href="{{ route('applicant.rejected') }}">
+                                         <span> Rejected Applicant List </span>
+                                    </a>
                                 </li>
                                 
                                 </ul>
                             </div>
                      </li>
-                     <li class="side-nav-item">
-                        <a href="{{ url('dashboard/exam') }}" class="side-nav-link">
+                    <li class="side-nav-item">
+                        <a href="{{ route('applicant.admit.list') }}" class="side-nav-link">
                             <i class=""></i>
                             {{-- <span class="badge bg-success float-end">9+</span> --}}
-                            <span> Exam List </span>
+                            <span> Admit Card </span>
                         </a>
                     </li>
 

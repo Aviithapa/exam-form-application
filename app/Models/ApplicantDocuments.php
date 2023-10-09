@@ -14,7 +14,8 @@ class ApplicantDocuments extends Model
         'path',
         'type',
         'applicant_id',
-        'qualification_id'
+        'qualification_id',
+
     ];
 
     public function qualification()

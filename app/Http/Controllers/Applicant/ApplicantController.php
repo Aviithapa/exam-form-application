@@ -140,6 +140,12 @@ class ApplicantController extends Controller
                 }
             }
 
+            $log['status'] = 'PERSONAL DETAILS UPDATED';
+            $log['state'] = 'UPDATED';
+            $log['remarks'] = 'PERSONAL DETAILS UPDATED';
+            $log['applicant_id'] = $id;
+            $log['created_by'] = Auth::user()->id;
+            $this->logReport($log);
             session()->flash('success', 'Applicant Personal Data updated successfully');
             DB::commit();
             return redirect()->route('student.guardianForm');
@@ -212,11 +218,14 @@ class ApplicantController extends Controller
         $exam = Exam::all()->where('status', 'Open')->first();
         DB::beginTransaction();
         try {
+
             // Check if the applicant is already attached to the exam.
             if ($applicant->exams->contains($exam)) {
                 // If attached, update the document path for the existing attachment.
                 $existingAttachment = $applicant->documents->where('exam_id', $exam->id)->first();
                 $existingAttachment->update(['path' => $data['voucher']]);
+
+                $applicant->exams()->updateExistingPivot($exam->id, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'voucher_number' => $data['voucher_number']]);
             } else {
                 // If not attached, create a new attachment.
                 $document = new ApplicantDocuments();
@@ -226,11 +235,19 @@ class ApplicantController extends Controller
                 $document->exam_id = $exam->id;
                 $document->type = DocumentTypeEnum::VOUCHER;
                 $document->save();
-                $applicant->exams()->attach($exam);
+                $applicant->exams()->attach($exam, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'voucher_number' => $data['voucher_number']]);
             }
+
+            $log['status'] = 'VOUCHER DETAILS';
+            $log['state'] = 'VOUCHER DETAILS';
+            $log['remarks'] = 'VOUCHER DETAILS ADDED';
+            $log['applicant_id'] = $applicant->id;
+            $log['created_by'] = Auth::user()->id;
+            $this->logReport($log);
             DB::commit();
             return redirect()->back();
         } catch (Exception $e) {
+            dd($e);
             session()->flash('danger', 'Oops! Something went wrong.');
             DB::rollBack();
             return redirect()->back()->withInput();

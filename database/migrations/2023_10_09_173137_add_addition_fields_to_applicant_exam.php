@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::table('applicant_exam', function (Blueprint $table) {
             //
-            $table->enum('status', ['NEW', 'PROGRESS', 'REJECTED', 'READY-FOR-ADMIT-CARD', 'GENERATED', 'APPROVED'])->default('NEW');
+            $table->string('name')->nullable();
+            $table->string('voucher_number')->nullable();
+            $table->string('contact_number')->nullable();
+            $table->string('symbol_number')->nullable();
         });
     }
 
@@ -24,7 +27,6 @@ return new class extends Migration
     {
         Schema::table('applicant_exam', function (Blueprint $table) {
             //
-            $table->dropColumn('status');
         });
     }
 };
