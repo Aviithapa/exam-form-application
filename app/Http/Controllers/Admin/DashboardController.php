@@ -43,6 +43,12 @@ class DashboardController extends Controller
                     ->paginate(10);
                 return view('admin.dashboard.admin', compact('exams', 'applicant'));
                 break;
+            case 'secretary':
+                $applicant = $this->applicantRepository->getAll();
+                $exams = Exam::orderBy('created_at', 'desc')
+                    ->paginate(10);
+                return view('admin.dashboard.admin', compact('exams', 'applicant'));
+                break;
             case 'applicant':
                 if (Auth::user()->applicant) {
                     $applicant = Auth::user()->applicant;

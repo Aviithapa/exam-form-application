@@ -20,6 +20,9 @@
             @case("applicant")
                 @include('admin.sidebar.applicant')
             @break
+            @case("secretary")
+                @include('admin.sidebar.sachiv')
+            @break
             @default
                 @include('admin.sidebar.default')
         @endswitch
