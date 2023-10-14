@@ -39,9 +39,11 @@ class DashboardController extends Controller
         switch ($role) {
             case 'admin':
                 $applicant = $this->applicantRepository->getAll();
-                $exams = Exam::orderBy('created_at', 'desc')
-                    ->paginate(10);
-                return view('admin.dashboard.admin', compact('exams', 'applicant'));
+                $exams = Exam::all()->whereIn('status', ['Open', 'applicant_applied'])->first();
+                $applicant_exam = null;
+                if ($exams)
+                    $applicant_exam = ApplicantExam::all()->where('exam_id', $exams->id);
+                return view('admin.dashboard.admin', compact('exams', 'applicant', 'applicant_exam'));
                 break;
             case 'secretary':
                 $applicant = $this->applicantRepository->getAll();

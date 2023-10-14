@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Filters\ApplicantFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Applicant\ChangeStatusApplicantRequest;
 use App\Models\Applicant;
@@ -11,6 +12,7 @@ use App\Repositories\Applicant\ApplicantRepository;
 use App\Repositories\ApplicantLog\ApplicantLogRepository;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -18,48 +20,87 @@ use Illuminate\Support\Facades\Log;
 class ApplicantController extends Controller
 {
     //
-    protected $applicantRepository, $log,  $applicantLogRepository;
-    public function __construct(ApplicantRepository $applicantRepository,  ApplicantLogRepository $applicantLogRepository, Log $log)
-    {
+    protected $applicantRepository, $log,  $applicantLogRepository, $filter;
+    public function __construct(
+        ApplicantRepository $applicantRepository,
+        ApplicantLogRepository $applicantLogRepository,
+        Log $log,
+        ApplicantFilter $filter
+    ) {
         $this->applicantRepository = $applicantRepository;
         $this->applicantLogRepository = $applicantLogRepository;
+        $this->filter = $filter;
         $this->log = $log;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $this->authorize('read', $this->applicantRepository->getModel());
         $applicants
             = Applicant::join('applicant_exam', 'applicant.id', '=', 'applicant_exam.applicant_id')
-            ->whereIn('applicant_exam.status', ['new'])
+            ->distinct()
+            ->select(['applicant.*', 'applicant_exam.status as applicant_exam_status', 'applicant_exam.created_at as applicant_exam_created_at']);
+
+        $data = $request->all();
+        $data['status'] = isset($data['status']) ? $data['status'] : 'NEW';
+        $this->filter->applyFilters($applicants, $data);
+
+        $applicants = $applicants->paginate(5);
+
+
+        return view('admin.pages.applicant-list', compact('applicants', 'request'));
+    }
+
+    public function approve(Request $request)
+    {
+        $this->authorize('read', $this->applicantRepository->getModel());
+        $applicants
+            = Applicant::join('applicant_exam', 'applicant.id', '=', 'applicant_exam.applicant_id')
             ->distinct() // To ensure unique applicants
-            ->get(['applicant.*', 'applicant_exam.status as applicant_exam_status', 'applicant_exam.created_at as applicant_exam_created_at']);
+            ->select(['applicant.*', 'applicant_exam.status as applicant_exam_status', 'applicant_exam.created_at as applicant_exam_created_at']);
+
+        $data = $request->all();
+        $data['status'] = isset($data['status']) ? $data['status'] : 'APPROVE';
+        $this->filter->applyFilters($applicants, $data);
+
+        $applicants = $applicants->paginate(5);
+
+        return view('admin.pages.applicant-list', compact('applicants', 'request'));
+    }
+
+    public function rejected(Request $request)
+    {
+        $this->authorize('read', $this->applicantRepository->getModel());
+        $applicants
+            = Applicant::join('applicant_exam', 'applicant.id', '=', 'applicant_exam.applicant_id')
+            ->distinct()
+            ->select(['applicant.*', 'applicant_exam.status as applicant_exam_status', 'applicant_exam.created_at as applicant_exam_created_at']);
+
+        $data = $request->all();
+        $data['status'] = isset($data['status']) ? $data['status'] : 'REJECTED';
+        $this->filter->applyFilters($applicants, $data);
+
+        $applicants = $applicants->paginate(5);
 
         return view('admin.pages.applicant-list', compact('applicants'));
     }
 
-    public function approve()
+    public function admitList(Request $request)
     {
-        $this->authorize('read', $this->applicantRepository->getModel());
+        $this->authorize('show', $this->applicantRepository->getModel());
         $applicants
             = Applicant::join('applicant_exam', 'applicant.id', '=', 'applicant_exam.applicant_id')
-            ->whereIn('applicant_exam.status', ['approved'])
             ->distinct() // To ensure unique applicants
-            ->get(['applicant.*', 'applicant_exam.status as applicant_exam_status', 'applicant_exam.created_at as applicant_exam_created_at']);
+            ->select(['applicant.*', 'applicant_exam.status as applicant_exam_status', 'applicant_exam.created_at as applicant_exam_created_at', 'applicant_exam.symbol_number as symbol_number']);
 
-        return view('admin.pages.applicant-list', compact('applicants'));
-    }
+        $data = $request->all();
+        $data['status'] = isset($data['status']) ? $data['status'] : 'READY-FOR-ADMIT-CARD';
+        $this->filter->applyFilters($applicants, $data);
 
-    public function rejected()
-    {
-        $this->authorize('read', $this->applicantRepository->getModel());
-        $applicants
-            = Applicant::join('applicant_exam', 'applicant.id', '=', 'applicant_exam.applicant_id')
-            ->whereIn('applicant_exam.status', ['rejected'])
-            ->distinct() // To ensure unique applicants
-            ->get(['applicant.*', 'applicant_exam.status as applicant_exam_status', 'applicant_exam.created_at as applicant_exam_created_at']);
+        $applicants = $applicants->paginate(5);
 
-        return view('admin.pages.applicant-list', compact('applicants'));
+        $isAdmit = true;
+        return view('admin.pages.applicant-list', compact('applicants', 'isAdmit'));
     }
 
 
@@ -104,20 +145,6 @@ class ApplicantController extends Controller
         $applicant = $this->applicantRepository->findById($id);
         return view('admin.pages.admin.admit-card', compact('applicant'));
     }
-
-    public function admitList()
-    {
-        $this->authorize('show', $this->applicantRepository->getModel());
-        $applicants
-            = Applicant::join('applicant_exam', 'applicant.id', '=', 'applicant_exam.applicant_id')
-            ->whereIn('applicant_exam.status', ['READY-FOR-ADMIT-CARD', 'GENERATED'])
-            ->distinct() // To ensure unique applicants
-            ->get(['applicant.*', 'applicant_exam.status as applicant_exam_status', 'applicant_exam.created_at as applicant_exam_created_at', 'applicant_exam.symbol_number as symbol_number']);
-
-        $isAdmit = true;
-        return view('admin.pages.applicant-list', compact('applicants', 'isAdmit'));
-    }
-
 
 
     public function generateAdmitCard()

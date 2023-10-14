@@ -365,12 +365,7 @@
                                                             @method('PUT')
                                                             @csrf
                                                             <div class="row row-cols-sm-2 row-cols-1">
-                                                                <div class="col-sm-12 mb-3">
-                                                                    <label class="form-label" for="AboutMe">Remarks</label>
-                                                                    <textarea style="height: 125px;" id="AboutMe"
-                                                                        class="form-control" name="remarks"></textarea>
-                                                                </div>
-                                                                <div class="col-sm-12 mb-2">
+                                                                 <div class="col-sm-12 mb-2">
                                                                     <label class="form-label" for="validationCustom01">Status</label>
                                                                     <select class="form-select mb-3" name="status" required>
                                                                             <option selected>Please Select</option>
@@ -378,6 +373,12 @@
                                                                             <option value="REJECTED">REJECTED</option>
                                                                     </select>
                                                                 </div>
+                                                                <div class="col-sm-12 mb-3">
+                                                                    <label class="form-label" for="AboutMe">Remarks</label>
+                                                                    <textarea style="height: 125px;" id="AboutMe"
+                                                                        class="form-control" name="remarks"></textarea>
+                                                                </div>
+                                                               
                                                             </div>
                                                             <button class="btn btn-primary" type="submit"><i
                                                                     class="ri-save-line me-1 fs-16 lh-1"></i> Save</button>

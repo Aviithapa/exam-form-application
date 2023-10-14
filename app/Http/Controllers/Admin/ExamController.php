@@ -89,11 +89,11 @@ class ExamController extends Controller
                 return redirect()->back()->withInput();
             }
 
-            // if ($exam->applicant->count() > 0) {
-            //     session()->flash('danger', 'Student have registrated for the exam .');
-            //     return redirect()->back()->withInput();
-            // }
-            $exam->delete();
+            if ($exam->applicant->count() > 0) {
+                session()->flash('danger', 'Student have registration for the exam .');
+                return redirect()->back()->withInput();
+            }
+            $this->examRepository->delete($exam->id);
             session()->flash('success', 'Exam updated successfully');
             return redirect()->route('dashboard.exam.index');
         } catch (Exception $e) {

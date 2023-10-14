@@ -22,31 +22,32 @@
                     
                            <!-- Todo-->
                                 <div class="card">
-                                    <form class="needs-validation" novalidate>
+                                    <form action="{{ route('applicant.index') }}"  method="GET" novalidate>
                                         <div class="row" style="padding: 20px 10px 0px 10px;"> 
                                             
                                             <div class="col-lg-3 col-md-3 col-sm-6"> 
                                                 <div class="mb-3">                                   
-                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Name" name="full_name_nepali">
+                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Name" name="full_name_english" value="{{ isset($request) ? $request->get('full_name_english') : '' }}">
                                                 </div>
                                             </div> 
                                             <div class="col-lg-3 col-md-3 col-sm-6"> 
                                                 <div class="mb-3">
-                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Citizenship Number" name="full_name_english">
+                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Citizenship Number" name="citizenship_number" value="{{ isset($request) ? $request->get('citizenship_number') : '' }}">
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 col-md-3 col-sm-6"> 
                                                 <div class="mb-3">
-                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="YYYY-MM-DD" name="dob_nep">
+                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="YYYY-MM-DD" name="dob_nepali" value="{{ isset($request) ? $request->get('dob_nepali') : '' }}">
                                                 </div>
                                             </div>
                                               <div class="col-lg-2 col-md-2 col-sm-6"> 
                                                 <div class="mb-3">
                                                        <select class="form-select mb-3" name="status">
-                                                            <option selected>Status</option>
-                                                            <option value="1">New Applied</option>
-                                                            <option value="2">Approved</option>
-                                                            <option value="3">Rejected</option>
+                                                            <option value="{{ isset($request) ? $request->get('status') : '' }}" selected>{{ isset($request) ? $request->get('status') : '' }}</option>
+                                                            <option value="NEW">New Applied</option>
+                                                            <option value="PROGRESS">Progress</option>
+                                                            <option value="REJECTED">Rejected</option>
+                                                            <option value="APPROVED">Approved</option>
                                                         </select>
                                                 </div>
                                             </div>
@@ -71,7 +72,7 @@
                                         <div class="p-3">
                                             <div class="card-widgets">
                                             </div>
-                                            <h5 class="header-title mb-0">Total Number of Applicant</h5>
+                                            <h5 class="header-title mb-0">Total Number of Applicant : {{ $applicants->total() }}</h5>
                                             @if(isset($isAdmit))
                                             <div class="d-flex justify-content-end align-items-center gap-2">
                                                 <a href="{{ route('applicant.generateAdmitCard') }}" class="btn btn-soft-info">
@@ -84,7 +85,6 @@
                                         </div>
     
                                         <div id="yearly-sales-collapse" class="collapse show">
-    
                                             <div class="table-responsive">
                                                 <table  
                                                  id="alternative-page-datatable"
@@ -102,8 +102,11 @@
                                                     </thead>
                                                     <tbody>
                                                        @foreach($applicants as $key =>  $applicant)
-                                                        <tr>
-                                                            <td>{{ ++$key }}</td>
+                                                            @php
+                                                                $pageRelativeIndex = ($applicants->currentPage() - 1) * $applicants->perPage() + ($key + 1);
+                                                              @endphp
+                                                            <tr>
+                                                            <td>{{ $pageRelativeIndex }}</td>
                                                             <td>{{ $applicant->full_name_english }}</td>
                                                             <td>{{ $applicant->dob_nepali }}</td>
                                                             <td>{{ $applicant->created_at }}</td>
@@ -121,8 +124,11 @@
                                                      
                                                         
                                                     </tbody>
+                                                    
                                                 </table>
-                                                
+                                                <div style="padding: 10px; float:right;">
+                                                {{  $applicants->appends(request()->query())->links('admin.layout.pagination') }}
+                                                </div>
                                             </div>        
                                         </div>
                                     </div>                           

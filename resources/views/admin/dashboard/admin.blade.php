@@ -36,6 +36,73 @@
                                 </div>
                             </div> <!-- end col-->
 
+                             <div class="col-xxl-3 col-sm-6">
+                                <div class="card widget-flat text-bg-info">
+                                    <div class="card-body">
+                                        <div class="float-end">
+                                            <i class=" widget-icon"></i>
+                                        </div>
+                                        <h6 class="text-uppercase mt-0" title="Customers">New Applicant</h6>
+                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'NEW')) : 0 }}</h2>
+                                        <p class="mb-0">
+                                            {{-- <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
+                                            <span class="text-nowrap">Since last month</span> --}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+                            <div class="col-xxl-3 col-sm-6">
+                                <div class="card widget-flat text-bg-secondary">
+                                    <div class="card-body">
+                                        <div class="float-end">
+                                            <i class=" widget-icon"></i>
+                                        </div>
+                                        <h6 class="text-uppercase mt-0" title="Customers">Progress Applicant</h6>
+                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'PROGRESS')) : 0 }}</h2>
+                                        <p class="mb-0">
+                                            {{-- <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
+                                            <span class="text-nowrap">Since last month</span> --}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+                             <div class="col-xxl-3 col-sm-6">
+                                <div class="card widget-flat text-bg-success">
+                                    <div class="card-body">
+                                        <div class="float-end">
+                                            <i class=" widget-icon"></i>
+                                        </div>
+                                        <h6 class="text-uppercase mt-0" title="Customers">Approved Applicant</h6>
+                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'APPROVED')) : 0 }}</h2>
+                                        <p class="mb-0">
+                                            {{-- <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
+                                            <span class="text-nowrap">Since last month</span> --}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+                             <div class="col-xxl-3 col-sm-6">
+                                <div class="card widget-flat text-bg-purple">
+                                    <div class="card-body">
+                                        <div class="float-end">
+                                            <i class=" widget-icon"></i>
+                                        </div>
+                                        <h6 class="text-uppercase mt-0" title="Customers">Admit Card Generated Applicant</h6>
+                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'GENEREATED')) : 0 }}</h2>
+                                        <p class="mb-0">
+                                            {{-- <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
+                                            <span class="text-nowrap">Since last month</span> --}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col-->
+
+
+
+
                             <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-pink">
                                     <div class="card-body">
@@ -43,7 +110,7 @@
                                             <i class=" widget-icon"></i>
                                         </div>
                                         <h6 class="text-uppercase mt-0" title="Customers">Rejected Applicant</h6>
-                                        <h2 class="my-2">{{ count($applicant) }}</h2>
+                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'REJECTED')) : 0 }}</h2>
                                         <p class="mb-0">
                                             {{-- <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
                                             <span class="text-nowrap">Since last month</span> --}}
@@ -102,72 +169,5 @@
                         </div>
 
                         
-                        
-
-                        <div class="row">
-                       
-
-                            <div class="col-xl-12">
-                                <!-- Todo-->
-                                <div class="card">
-                                    <div class="card-body p-0">
-                                        <div class="p-3">
-                                            <div class="card-widgets">
-                                                <button class="btn btn-primary">Create New Exam</button>
-                                            </div>
-                                            <h5 class="header-title mb-0">Licence Exam</h5>
-                                        </div>
-    
-                                        <div id="yearly-sales-collapse" class="collapse show">
-    
-                                            <div class="table-responsive">
-                                                <table class="table table-nowrap table-hover mb-0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Exam Name</th>
-                                                            <th>Start Date</th>
-                                                            <th>Double Dustur Date</th>
-                                                            <th>Due Date</th>
-                                                            <th>Status</th>
-                                                            <th>Total Applicant</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($exams as $key => $exam)
-                                                        <tr>
-                                                            <td>{{ ++$key }}</td>
-                                                            <td>{{ $exam->name }}</td>
-                                                            <td>{{ $exam->form_open_date }}</td>
-                                                            <td>{{ $exam->form_deu_date }}</td>
-                                                            <td>{{ $exam->form_double_dustur_date }}</td>
-                                                            <td><span class="badge bg-info-subtle text-info">{{ $exam->status }}</span></td>
-                                                            <td>{{ $exam->applicant()->count() }}</td>
-                                                            <td><a href="{{ route('dashboard.exam.edit', ['id' => $exam->id]) }}"><span class="badge bg-info-subtle text-info">Edit</span></a>
-                                                            <form id="delete-form-{{ $exam->id }}" action="{{ route('dashboard.exam.destroy', ['id' => $exam->id]) }}" method="POST" style="display: none;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                            </form>
-                                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $exam->id }}').submit();">
-                                                                <span class="badge bg-danger-subtle text-danger">Delete</span>
-                                                            </a>
-                                                            </td>
-
-                                                        </tr>
-                                                        @endforeach
-    
-                                                    </tbody>
-                                                  
-                                                </table>
-                                                  <a href="{{ route('dashboard.exam.index') }}" class="text-right" style="padding: 10px; float:right;">Show all </a>
-                                            </div>        
-                                        </div>
-                                    </div>                           
-                                </div> <!-- end card-->
-                            </div> <!-- end col-->
-                        </div>
-                        <!-- end row -->
-
 
 @endsection
