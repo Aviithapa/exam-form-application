@@ -44,7 +44,6 @@ class ApplicantController extends Controller
         $data = $request->all();
         $data['status'] = isset($data['status']) ? $data['status'] : 'NEW';
         $this->filter->applyFilters($applicants, $data);
-
         $applicants = $applicants->paginate(5);
 
 
@@ -130,6 +129,7 @@ class ApplicantController extends Controller
             $log['created_by'] = Auth::user()->id;
             $this->logReport($log);
             DB::commit();
+            session()->flash('success', 'Applicant have been approved.');
             return redirect()->route('applicant.index');
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
@@ -165,6 +165,7 @@ class ApplicantController extends Controller
             $log['applicant_id'] = $applicant_id;
             $log['created_by'] = Auth::user()->id;
         }
+        session()->flash('success', 'Admit Card has been generated.');
         return redirect()->route('applicant.admit.list');
     }
 

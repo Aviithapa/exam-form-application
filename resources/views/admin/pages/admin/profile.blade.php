@@ -38,6 +38,7 @@
                         </div>
                     </div>
                     <!-- end row -->
+                    
 
                     <div class="row">
                         <div class="col-sm-12">
@@ -262,10 +263,10 @@
                                                 <div class="timeline-2">
                                                 @foreach($applicant->logs as $log)
                                                     <div class="time-item">
-                                                        <div class="item-info ms-3 mb-3">
-                                                            <div class="text-muted">{{ $log->created_at->timezone('Asia/Kathmandu')->format('Y-m-d H:i:s') }}</div>
+                                                        <div class="item-info ms-3 mb-3"  style="color: {{ ($log->status == 'REJECTED') ? 'red' : ''}}">
+                                                            <div class="text-muted"  style="color: {{ ($log->status == 'REJECTED') ? 'red !important' : ''}}">{{ $log->created_at->timezone('Asia/Kathmandu')->format('Y-m-d H:i:s') }}</div>
                                                             <p><strong><a href="#" class="text-info" style="text-transform: capitalize;">{{ $applicant->full_name_english }}</a> </strong>{{ $log->status }}</p>
-                                                            <p>{{ $log->remarks }} </p>
+                                                            <p >{{ $log->remarks }} </p>
                                                           
                                                         </div>
                                                     </div>
@@ -344,7 +345,7 @@
                                             <div id="user-activities" class="tab-pane">
                                                 <div class="timeline-2">
                                                 @foreach($applicant->logs as $log)
-                                                    <div class="time-item">
+                                                    <div class="time-item" >
                                                         <div class="item-info ms-3 mb-3">
                                                             <div class="text-muted">{{ $log->created_at->timezone('Asia/Kathmandu')->format('Y-m-d H:i:s') }}</div>
                                                             <p><strong><a href="#" class="text-info" style="text-transform: capitalize;">{{ $applicant->full_name_english }}</a> </strong>{{ $log->status }}</p>
@@ -360,7 +361,7 @@
                                             <div id="edit-profile" class="tab-pane">
                                                 <div class="user-profile-content">
 
-                                                     @if($voucherData && $voucherData->status === 'NEW')
+                                                     @if($voucherData && $voucherData->status === 'NEW' || $voucherData->status === 'REJECTED')
                                                         <form method="POST" action="{{ route('applicant.status', ['id' => $applicant->id]) }}">
                                                             @method('PUT')
                                                             @csrf

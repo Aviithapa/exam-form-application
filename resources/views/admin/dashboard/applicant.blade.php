@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+  
   <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
@@ -17,6 +17,42 @@
                                 </div>
                             </div>
                         </div>
+                       
+
+                      @if(isset($voucherData) && $voucherData->status === 'REJECTED')
+                         
+                        <div class="col-xl-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header bg-danger text-white">
+                                    <div class="card-widgets">
+                                        <a href="javascript:;" data-bs-toggle="reload"><i
+                                                class="ri-refresh-line"></i></a>
+                                        <a data-bs-toggle="collapse" href="#card-collapse6" role="button"
+                                            aria-expanded="false" aria-controls="card-collapse6"><i
+                                                class="ri-subtract-line"></i></a>
+                                        <a href="#" data-bs-toggle="remove"><i class="ri-close-line"></i></a>
+                                    </div>
+                                    <h5 class="card-title mb-0">Alert !! Alert !! Rejected</h5>
+                                </div>
+                                <div id="card-collapse6" class="collapse show">
+                                    <div class="card-body">
+                                       Your application has been declined. To access the review logs, kindly click the "Check Logs" button below. Should you need to update any necessary documentation, please make the required changes and proceed by selecting the "Send for Re-review" button to continue your application process.
+                                    </div>
+
+                                     <div class="d-flex flex-wrap gap-2" style="padding-bottom: 10px; padding-left: 15px;">
+                                            
+                                           <button onclick="window.location.href = '{{ route('student.logs') }}'" type="button" class="btn btn-success">Check Logs</button>
+                                   
+                                            <button onclick="window.location.href = '{{ route('student.re-review') }}'" type="button" class="btn btn-warning">Send for Re-review</button>
+                                           
+                                        </div>
+                                </div>
+                                
+                            </div>
+                            <!-- end card-->
+                        </div>
+                        
+                      @endif
                        
                           <div class="row">
                             <div class="col-12">
@@ -270,5 +306,13 @@
 
 @push('scripts')
 @include('parties.common.file-upload')
-  
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+   <script>
+    $(document).ready(function() {
+        @if(isset($voucherData) && $voucherData->status === 'REJECTED')
+            $('#danger-alert-modal').addClass('modal');
+        @endif
+    });
+</script>
 @endpush

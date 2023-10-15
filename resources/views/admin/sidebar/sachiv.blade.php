@@ -116,38 +116,10 @@
                     </li>
                   
                     <li class="side-nav-item">
-                        <a
-                            data-bs-toggle="collapse"
-                            href="#sidebarPages"
-                            aria-expanded="false"
-                            aria-controls="sidebarPages"
-                            class="side-nav-link"
-                        >
-                            <i class=""></i>
-                            <span> Applicant </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                            <div class="collapse" id="sidebarPages">
-                                <ul class="side-nav-second-level">
-                                <li>
-                                    <a href="{{ route('applicant.index') }}">
-                                        <span> New Applicant List </span>
-                                    </a>
-                                </li>
-                                <li>
-                                     <a href="{{ route('applicant.rejected') }}">
-                                         <span> Rejected Applicant List </span>
-                                    </a>
-                                </li>
-                                
-                                </ul>
-                            </div>
-                     </li>
-                    <li class="side-nav-item">
-                        <a href="{{ route('applicant.admit.list') }}" class="side-nav-link">
+                        <a href="{{ route('applicant.index') }}" class="side-nav-link">
                             <i class=""></i>
                             {{-- <span class="badge bg-success float-end">9+</span> --}}
-                            <span> Admit Card </span>
+                            <span> Applicant List </span>
                         </a>
                     </li>
 

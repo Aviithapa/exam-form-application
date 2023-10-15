@@ -26,15 +26,6 @@ Route::get('/', function () {
     return view('website.index');
 });
 
-Route::get('/form', function () {
-    return view('website.form');
-    // return view('admin.pages.applicant.form');
-});
-
-Route::get('/review-registration', function () {
-    return view('website.review-registration');
-});
-
 
 
 
@@ -112,3 +103,8 @@ Route::get('/applicant/rejected?status=REJECTED', [AdminApplicantController::cla
 Route::get('/applicant/admit-card/{id}', [AdminApplicantController::class, 'admit'])->middleware(['auth'])->name('applicant.admit');
 Route::get('/applicant/generateAdmitCard', [AdminApplicantController::class, 'generateAdmitCard'])->middleware(['auth'])->name('applicant.generateAdmitCard');
 Route::get('/applicant/admit-card-list', [AdminApplicantController::class, 'admitList'])->middleware(['auth'])->name('applicant.admit.list');
+
+
+
+Route::get('/student/logs', [ApplicantController::class, 'profileLogs'])->middleware(['auth'])->name('student.logs');
+Route::get('/student/re-review', [ApplicantController::class, 'reReview'])->middleware(['auth'])->name('student.re-review');

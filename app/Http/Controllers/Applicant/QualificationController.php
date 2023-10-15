@@ -87,7 +87,7 @@ class QualificationController extends Controller
             $log['created_by'] = Auth::user()->id;
             $this->logReport($log);
             DB::commit();
-            session()->flash('success', 'Exam created successfully');
+            session()->flash('success', 'Qualification has been created successfully');
             return redirect()->route('qualification.index');
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
@@ -135,7 +135,7 @@ class QualificationController extends Controller
             $log['created_by'] = Auth::user()->id;
             $this->logReport($log);
 
-            session()->flash('success', 'Exam updated successfully');
+            session()->flash('success', 'Qualification has been  updated successfully');
             DB::commit(); // Commit the transaction
             return redirect()->route('qualification.index');
         } catch (Exception $e) {
@@ -161,7 +161,7 @@ class QualificationController extends Controller
             //     return redirect()->back()->withInput();
             // }
             $exam->delete();
-            session()->flash('success', 'Exam updated successfully');
+            session()->flash('success', 'Qualification removed successfully.');
             return redirect()->route('qualification.index');
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');

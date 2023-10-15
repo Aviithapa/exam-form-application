@@ -17,7 +17,7 @@ class ApplicantPolicy
 
     public function read(User $user, Applicant $applicant)
     {
-        return $user->isAdmin()->name === "admin" || $user->id === $applicant->user_id;
+        return $user->isAdmin()->name === "admin" || $user->isAdmin()->name === "secretary"  || $user->id === $applicant->user_id;
     }
 
     public function create(User $user, Applicant $applicant)
@@ -26,11 +26,11 @@ class ApplicantPolicy
     }
     public function show(User $user, Applicant $applicant)
     {
-        return $user->isAdmin()->name === "admin" || $user->id === $applicant->user_id;
+        return $user->isAdmin()->name === "admin" || $user->isAdmin()->name === "secretary" || $user->id === $applicant->user_id;
     }
     public function status(User $user, Applicant $applicant)
     {
-        return $user->isAdmin()->name === "admin" || $user->id === $applicant->user_id;
+        return $user->isAdmin()->name === "admin" || $user->isAdmin()->name === "secretary" || $user->id === $applicant->user_id;
     }
 
     public function update(User $user, Applicant $applicant)

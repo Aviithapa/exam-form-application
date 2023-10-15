@@ -64,9 +64,9 @@ class DashboardController extends Controller
                     // For example, you can set a default value or display an error message
                     $applicant = null; // or any other appropriate action
                     $voucher = null; // or any other appropriate action
-                    return view('admin.dashboard.applicant', compact('applicant', 'voucher'));
+                    $exam = Exam::all()->whereIn('status', ['Open'])->first();
+                    return view('admin.dashboard.applicant', compact('applicant', 'voucher', 'exam'));
                 }
-
 
                 break;
 

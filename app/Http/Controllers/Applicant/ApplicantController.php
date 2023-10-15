@@ -9,6 +9,8 @@ use App\Http\Requests\Applicant\CreatePersonalInformation;
 use App\Http\Requests\Applicant\CreateVoucherRequest;
 use App\Http\Requests\Applicant\UpdatePersonalInformationRequest;
 use App\Models\ApplicantDocuments;
+use App\Models\ApplicantExam;
+use App\Models\ApplicantLogs;
 use App\Models\District;
 use App\Models\Exam;
 use App\Models\Municipality;
@@ -252,6 +254,45 @@ class ApplicantController extends Controller
             DB::rollBack();
             return redirect()->back()->withInput();
         }
+    }
+
+
+    public function reReview()
+    {
+        $applicant = Auth::user()->applicant;
+        if (!$applicant)
+            return redirect()->back();
+        $voucherData = ApplicantExam::where('applicant_id', $applicant->id)
+            ->where('status', 'REJECTED')
+            ->orderBy('created_at', 'desc')
+            ->first();
+        if ($voucherData) {
+            // Assuming 'new_status' is the attribute you want to update
+            $voucherData->update([
+                'status' => 'NEW'
+            ]);
+            $log['status'] = 'Application Resend for Review';
+            $log['state'] = 'REVIEW';
+            $log['remarks'] = 'Application Resend for Review';
+            $log['applicant_id'] = $applicant->id;
+            $log['created_by'] = Auth::user()->id;
+            $this->logReport($log);
+            session()->flash('success', 'Profile sent for re Reviewing');
+            return redirect()->back()->withInput();
+        }
+
+        session()->flash('danger', 'Oops! Something went wrong.');
+        return redirect()->back()->withInput();
+    }
+
+
+    public function profileLogs()
+    {
+        $applicant = Auth::user()->applicant;
+        $logs = ApplicantLogs::where('applicant_id', $applicant->id)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+        return view('admin.pages.applicant.logs', compact('logs'));
     }
 
 
