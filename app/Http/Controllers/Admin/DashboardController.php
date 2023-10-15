@@ -47,9 +47,11 @@ class DashboardController extends Controller
                 break;
             case 'secretary':
                 $applicant = $this->applicantRepository->getAll();
-                $exams = Exam::orderBy('created_at', 'desc')
-                    ->paginate(10);
-                return view('admin.dashboard.admin', compact('exams', 'applicant'));
+                $exams = Exam::all()->whereIn('status', ['Open'])->first();
+                $applicant_exam = null;
+                if ($exams)
+                    $applicant_exam = ApplicantExam::all()->where('exam_id', $exams->id);
+                return view('admin.dashboard.admin', compact('exams', 'applicant', 'applicant_exam'));
                 break;
             case 'applicant':
                 if (Auth::user()->applicant) {

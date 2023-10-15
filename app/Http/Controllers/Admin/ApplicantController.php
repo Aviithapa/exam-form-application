@@ -143,7 +143,9 @@ class ApplicantController extends Controller
     {
         $this->authorize('show', $this->applicantRepository->getModel());
         $applicant = $this->applicantRepository->findById($id);
-        return view('admin.pages.admin.admit-card', compact('applicant'));
+        $exam = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('status', 'GENERATED')->first();
+        $exam_name = Exam::all()->where('id', $exam->exam_id)->first();
+        return view('admin.pages.admin.admit-card', compact('applicant', 'exam', 'exam_name'));
     }
 
 

@@ -6,7 +6,7 @@
                             <div class="card p-0">
                                 <div class="card-body p-0">
                                     <div class="col-sm-6">
-                                        <div class="d-flex justify-content-start align-items-center gap-2">
+                                        <div class="d-flex justify-content-start align-items-center gap-2"  style="padding: 20px">
                                             <a href="#" onclick="printDiv()" class="btn btn-soft-danger">
                                                 <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
                                                 Print Admit Card
@@ -32,7 +32,7 @@
                                                             font-size:36px; 
                                                             font-weight: bold; 
                                                             word-spacing: 2px; font-family:Aerial; margin-top: -5px;" class="box-title text-black">Nepal Health Professional Council</h1> --}}
-                                                            <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">....  कानून व्यवसायी</h3>
+                                                            <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">{{ $exam_name->name }}  कानून व्यवसायी</h3>
                                                             
                                                             {{-- <h4  style = "font-family:Aerial; margin-top: -5px; " class="box-title text-black">बांसबारी, काठमाडौं</h4>  --}}
                                                                 <h4  style = "font-size: 30px; text-decoration: underline; font-family:Aerial" class="box-title text-black">प्रवेश पत्र</h4>
@@ -50,7 +50,7 @@
                                                                         {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate('Name : '.$applicant->full_name_english. ' Dob' . $applicant->dob_english )!!}
 
                                                                         <p>रोल नम्बर<span style="padding-left:1em;">:
-                                                                                    
+                                                                                    {{ $exam->symbol_number  }}
                                                                         </span></p>
                                                                             <p>पर्रीक्षार्थीको नाम <strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong></p>
                                                                                  लिङ्ग <span style="padding-left:1em;">: {{ $applicant->gender }} <p></p>
@@ -160,8 +160,7 @@
             var a = window.open('', 'PRINT ADMIT CARD', 'height=800, width=800');
 
             a.document.write(divContents.outerHTML);
-
-
+            
 
         }
     </script>

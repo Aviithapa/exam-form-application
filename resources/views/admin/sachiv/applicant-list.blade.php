@@ -22,8 +22,7 @@
                     
                            <!-- Todo-->
                                 <div class="card">
-                               
-                                    <form action="{{ isset($isAdmit)  ?  route('applicant.admit.list') : route('applicant.index') }}"  method="GET" novalidate>
+                                    <form action="{{ route('sachiv.applicant.index') }}"  method="GET" novalidate>
                                         <div class="row" style="padding: 20px 10px 0px 10px;"> 
                                             
                                             <div class="col-lg-3 col-md-3 col-sm-6"> 
@@ -45,12 +44,9 @@
                                                 <div class="mb-3">
                                                        <select class="form-select mb-3" name="status">
                                                             <option value="{{ isset($request) ? $request->get('status') : '' }}" selected>{{ isset($request) ? $request->get('status') : '' }}</option>
-                                                            <option value="NEW">New Applied</option>
                                                             <option value="PROGRESS">Progress</option>
                                                             <option value="REJECTED">Rejected</option>
-                                                            <option value="APPROVED">Approved</option>
-                                                            <option value="READY-FOR-ADMIT-CARD"> Ready for admit card </option>
-                                                            <option value="GENERATED"> Admit Card Generated </option>
+                                                            <option value="READY-FOR-ADMIT-CARD">Approved</option>
                                                         </select>
                                                 </div>
                                             </div>
@@ -116,10 +112,8 @@
                                                             <td><span class="badge bg-info-subtle text-info">{{ $applicant->applicant_exam_status }}</span></td>
                                                             <td>{{ isset($isAdmit) ? $applicant->symbol_number : $applicant->dob_nepali }}</td>
                                                             <td>
-                                                                <a href="{{ route('applicant.show', ['id' => $applicant->id]) }}"><span class="badge bg-success-subtle text-info">View</span></a>
-                                                                 @if($applicant->symbol_number)
-                                                                   <a href="{{ route('applicant.admit', ['id' => $applicant->id]) }}"><span class="badge bg-info-subtle text-info">Print Admit Card</span></a>
-                                                                 @endif
+                                                                <a href="{{ route('sachiv.applicant.show', ['id' => $applicant->id]) }}"><span class="badge bg-success-subtle text-info">View</span></a>
+                                                
                                                             </td>
                                                         </tr>
 

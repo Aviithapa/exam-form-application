@@ -116,7 +116,7 @@
                     </li>
                   
                     <li class="side-nav-item">
-                        <a href="{{ route('applicant.index') }}" class="side-nav-link">
+                        <a href="{{ route('sachiv.applicant.index') }}" class="side-nav-link">
                             <i class=""></i>
                             {{-- <span class="badge bg-success float-end">9+</span> --}}
                             <span> Applicant List </span>

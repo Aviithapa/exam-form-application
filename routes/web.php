@@ -8,6 +8,7 @@ use App\Http\Controllers\Applicant\QualificationController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\Sachiv\SachivController;
 use App\Models\Qualification;
 use Illuminate\Support\Facades\Route;
 
@@ -28,13 +29,13 @@ Route::get('/', function () {
 
 
 
-
 //Route to login
 Route::post('/login', [AuthController::class, 'login'])->middleware(['guest'])->name('login');
 Route::get('/login', function () {
     return view('auth.login');
 })->middleware(['guest']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth'])->name('logout');
+
 
 //Route to signup 
 Route::get('/register', [RegistrationController::class, 'index'])->middleware(['guest'])->name('register.index');
@@ -56,6 +57,7 @@ Route::get('/resetPassword', [PasswordResetController::class, 'index'])->middlew
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/profile', [DashboardController::class, 'profile'])->middleware(['auth'])->name('profile');
 
+
 //Route Exam
 Route::get('/dashboard/exam', [ExamController::class, 'index'])->middleware(['auth'])->name('dashboard.exam.index');
 Route::get('/dashboard/exam/create', [ExamController::class, 'create'])->middleware(['auth'])->name('dashboard.exam.create');
@@ -65,7 +67,7 @@ Route::put('/dashboard/exam/update/{id}', [ExamController::class, 'update'])->mi
 Route::delete('/dashboard/exam/destroy/{id}', [ExamController::class, 'destroy'])->middleware(['auth'])->name('dashboard.exam.destroy');
 
 
-//Route Form Store
+//Route use student 
 Route::get('/student/personal/form', [ApplicantController::class, 'personalForm'])->middleware(['auth'])->name('student.personalForm');
 Route::get('/student/guardian/form', [ApplicantController::class, 'guardianForm'])->middleware(['auth'])->name('student.guardianForm');
 
@@ -76,13 +78,18 @@ Route::post('/student/guardian/store', [ApplicantController::class, 'guardianInf
 Route::put('/student/personal/update/{id}', [ApplicantController::class, 'personalInformationUpdate'])->name('student.personalInformation.update');
 Route::put('/student/guardian/update/{id}', [ApplicantController::class, 'guardianInformationUpdate'])->name('student.guardian.update');
 
+Route::get('/student/logs', [ApplicantController::class, 'profileLogs'])->middleware(['auth'])->name('student.logs');
+Route::get('/student/re-review', [ApplicantController::class, 'reReview'])->middleware(['auth'])->name('student.re-review');
+
+
+
 //Route Save Image
 Route::match(['POST', 'PUT'], '/save_image/{id?}', [ApplicantController::class, 'save_image'])->name('save_image');
 
-//Voucher Upload 
+
+//Route Voucher Upload 
 Route::match(['POST', 'PUT'], '/save_voucher/{id?}', [ApplicantController::class, 'applyExam'])->name('applyExam');
 
-// Route::post('/save_image/{id?}', [SettingController::class, 'save_image'])->middleware(['auth'])->name('save_image');
 
 
 //Route Qualification
@@ -98,13 +105,14 @@ Route::delete('/qualification/destroy/{id}', [QualificationController::class, 'd
 Route::get('/applicant/list', [AdminApplicantController::class, 'index'])->middleware(['auth'])->name('applicant.index');
 Route::get('/applicant/show/{id}', [AdminApplicantController::class, 'show'])->middleware(['auth'])->name('applicant.show');
 Route::put('/applicant/change/status/{id}', [AdminApplicantController::class, 'status'])->middleware(['auth'])->name('applicant.status');
-Route::get('/applicant/approved?status=APPROVED', [AdminApplicantController::class, 'approve'])->middleware(['auth'])->name('applicant.approve');
-Route::get('/applicant/rejected?status=REJECTED', [AdminApplicantController::class, 'rejected'])->middleware(['auth'])->name('applicant.rejected');
+Route::get('/applicant/approved', [AdminApplicantController::class, 'approve'])->middleware(['auth'])->name('applicant.approve');
+Route::get('/applicant/rejected', [AdminApplicantController::class, 'rejected'])->middleware(['auth'])->name('applicant.rejected');
 Route::get('/applicant/admit-card/{id}', [AdminApplicantController::class, 'admit'])->middleware(['auth'])->name('applicant.admit');
 Route::get('/applicant/generateAdmitCard', [AdminApplicantController::class, 'generateAdmitCard'])->middleware(['auth'])->name('applicant.generateAdmitCard');
 Route::get('/applicant/admit-card-list', [AdminApplicantController::class, 'admitList'])->middleware(['auth'])->name('applicant.admit.list');
 
 
-
-Route::get('/student/logs', [ApplicantController::class, 'profileLogs'])->middleware(['auth'])->name('student.logs');
-Route::get('/student/re-review', [ApplicantController::class, 'reReview'])->middleware(['auth'])->name('student.re-review');
+//Sachiv Applicant List 
+Route::get('/sachiv/applicant/list', [SachivController::class, 'index'])->middleware(['auth'])->name('sachiv.applicant.index');
+Route::get('/sachiv/applicant/show/{id}', [SachivController::class, 'show'])->middleware(['auth'])->name('sachiv.applicant.show');
+Route::put('/sachiv/applicant/change/status/{id}', [SachivController::class, 'status'])->middleware(['auth'])->name('sachiv.applicant.status');
