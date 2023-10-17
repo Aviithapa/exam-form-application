@@ -50,7 +50,7 @@ class RegistrationController extends Controller
                 return redirect()->back()->withInput();
             }
             $user->roles()->attach($role);
-            // Mail::to($user->email)->send(new RegistrarUser($user, $data['token']));
+            Mail::to($user->email)->send(new RegistrarUser($user, $data['token']));
             return redirect()->route('register.verify.otp', ['email' => $data['email']]);
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
