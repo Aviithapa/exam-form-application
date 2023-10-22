@@ -32,6 +32,12 @@ class RegistrationController extends Controller
 
     public function verifyOtpIndex($email)
     {
+        $user = $this->userRepository->findByFirst('email', $email, '=');
+        if (!$user)
+            return redirect()->back()->withErrors([
+                'active' => 'No user found'
+            ]);
+        Mail::to($user->email)->send(new RegistrarUser($user, $user['token']));
         return view('auth.register-otp-verify', compact('email'));
     }
     public function store(UserCreateRequest $request)
