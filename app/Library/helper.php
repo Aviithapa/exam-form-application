@@ -2,7 +2,7 @@
 
 use App\Models\ApplicantExam;
 use App\Models\Exam;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;

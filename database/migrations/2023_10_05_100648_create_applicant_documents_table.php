@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('applicant_id');
             $table->string('document_name');
             $table->string('path');
-            $table->enum('type', ['PERSONAL', 'SLC', 'HSEB/NEB', 'BACHELOR', 'MASTER'])->default('PERSONAL');
+            $table->enum('type', ['PERSONAL', 'SLC', 'HSEB/NEB', 'BACHELOR', 'MASTER', 'VOUCHER'])->default('PERSONAL');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('applicant_id')->references('id')->on('applicant')->onDelete('cascade');
