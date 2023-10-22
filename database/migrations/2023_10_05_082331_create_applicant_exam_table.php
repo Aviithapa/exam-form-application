@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreign('exam_id')->references('id')->on('exam')->onDelete('cascade');
             $table->foreign('applicant_id')->references('id')->on('applicant')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

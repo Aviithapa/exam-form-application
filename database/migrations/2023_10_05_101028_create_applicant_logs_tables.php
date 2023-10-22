@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('applicant_logs_tables', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('applicant_id');
-            $table->unsignedBigInteger('created_by');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->string('status');
             $table->string('state');
             $table->string('remarks')->nullable();
