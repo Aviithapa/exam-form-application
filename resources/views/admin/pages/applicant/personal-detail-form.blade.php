@@ -62,7 +62,7 @@
                                                                     </div>
                                                                 </div><br>
                                                                 <input type="file" id="profile_image" name="profile_image"
-                                                                       onclick="anyFileUploader('profile')">
+                                                                       onclick="anyFileUploader('profile')" >
                                                                 <input type="hidden" id="profile_path" name="profile" class="form-control"
                                                                        value="{{isset($data[3]->path)?$data[3]->path:''}}"/>
                                                                  @if($errors->first('profile'))
@@ -533,7 +533,14 @@
                                                 </div>
                                             </div>
                                          </div>
-                                        <button class="btn btn-primary mt-3" type="submit">Next</button>
+                                       @if(isset($applicant) && editStatus($applicant->id))
+                                            <div class="alert alert-pink alert-dismissible fade show mt-2" role="alert">
+                                
+                                                You have successfully applied for the exam 
+                                            </div>
+                                        @else
+                                          <button class="btn btn-primary mt-3" type="submit">Next</button>
+                                        @endif
                                     </form>
 
                                 </div> <!-- end card-body-->

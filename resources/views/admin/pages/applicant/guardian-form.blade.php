@@ -117,7 +117,13 @@
                                                 </div>
                                             </div>                            
                                         </div>
-                                        <button class="btn btn-primary mt-3" type="submit">Next</button>
+                                          @if(isset($data) && editStatus($data->applicant_id))
+                                            <div class="alert alert-pink alert-dismissible fade show mt-2" role="alert">
+                                                You have successfully applied for the exam 
+                                            </div>
+                                        @else
+                                          <button class="btn btn-primary mt-3" type="submit">Next</button>
+                                        @endif
                                     </form>
 
                                 </div> <!-- end card-body-->

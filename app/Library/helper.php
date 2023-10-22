@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\ApplicantExam;
 use App\Models\Exam;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -93,6 +95,34 @@ if (!function_exists('hasFamilyInformation')) {
         $applicant = Auth::user()->applicant;
         if ($applicant && $applicant->familyInformation)
             return true;
+        return false;
+    }
+}
+
+
+if (!function_exists('carbon')) {
+    /**
+     * @param null $type
+     * @return string
+     */
+    function carbon(Carbon $date, $format = 'Y-m-d')
+    {
+        return $date->setTimezone('Asia/Kathmandu')->format($format);
+    }
+}
+
+if (!function_exists('editStatus')) {
+    /**
+     * @param null $type
+     * @return string
+     */
+    function editStatus($applicantId = null)
+    {
+        if ($applicantId) {
+            $applicantExamData = ApplicantExam::all()->where('applicant_id', $applicantId)->first();
+            if ($applicantExamData && $applicantExamData->status != 'REJECTED')
+                return true;
+        }
         return false;
     }
 }

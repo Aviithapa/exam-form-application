@@ -50,7 +50,7 @@
                                                                     </div>
                                                                 </div><br>
                                                                 <input type="file" id="profile_image" name="profile_image"
-                                                                       onclick="anyFileUploader('profile')">
+                                                                       onclick="anyFileUploader('profile')" >
                                                                 <input type="hidden" id="profile_path" name="profile" class="form-control"
                                                                        value="{{isset($data)?$data->transcript_image:''}}"/>
                                                                  @if($errors->first('profile'))

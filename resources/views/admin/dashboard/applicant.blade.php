@@ -178,7 +178,7 @@
                                                                     <div class="col-lg-3 col-md-3 col-sm-12"> 
                                                                          <div class="mb-3">
                                                                             <label class="form-label" for="validationCustom01">Exam Center</label>
-                                                                            <select class="form-control select2" name="province_id" data-toggle="select2">
+                                                                            <select class="form-control select2" name="province_id" data-toggle="select2" disabled={{ editStatus($applicant->id) }}>
                                                                                 <option value="{{ isset($applicant) ? $applicant->province_id : old('province_id') }}" selected>{{ isset($applicant) ? $applicant->province->name : "Please Select" }}</option>
                                                                                 @foreach($provinces as $province)
                                                                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
@@ -219,7 +219,7 @@
                                                                                                 </div>
                                                                                             </div><br>
                                                                                             <input type="file" id="voucher_image" name="voucher_image"
-                                                                                                onclick="anyFileUploader('voucher')">
+                                                                                                onclick="anyFileUploader('voucher')" >
                                                                                             <input type="hidden" id="voucher_path" name="voucher" class="form-control"
                                                                                                 value="{{isset($voucher)?$voucher->path:''}}"/>
                                                                                             @if($errors->first('voucher'))
@@ -233,8 +233,13 @@
                                                                             </div>
                                                                         </div>
                                                                   </div>
-                                                               
-                                                                       <button class="btn btn-primary mt-3" type="submit">Apply Exam</button>
+                                                                @if(isset($applicant) && editStatus($applicant->id))
+                                                                    <div class="alert alert-info alert-dismissible fade show mt-2" role="alert">
+                                                                        You have successfully applied for the exam 
+                                                                    </div>
+                                                                @else
+                                                                <button class="btn btn-primary mt-3" type="submit">Apply Exam</button>
+                                                                @endif
                                                              </form>
                                                              
                                                                    @endif     

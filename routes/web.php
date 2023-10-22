@@ -104,6 +104,7 @@ Route::delete('/qualification/destroy/{id}', [QualificationController::class, 'd
 //Admin Applicant List Route
 Route::get('/applicant/list', [AdminApplicantController::class, 'index'])->middleware(['auth'])->name('applicant.index');
 Route::get('/applicant/show/{id}', [AdminApplicantController::class, 'show'])->middleware(['auth'])->name('applicant.show');
+Route::get('/applicant/format/{id}', [AdminApplicantController::class, 'format'])->middleware(['auth'])->name('applicant.format');
 Route::put('/applicant/change/status/{id}', [AdminApplicantController::class, 'status'])->middleware(['auth'])->name('applicant.status');
 Route::get('/applicant/approved', [AdminApplicantController::class, 'approve'])->middleware(['auth'])->name('applicant.approve');
 Route::get('/applicant/rejected', [AdminApplicantController::class, 'rejected'])->middleware(['auth'])->name('applicant.rejected');

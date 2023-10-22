@@ -113,6 +113,16 @@ class ApplicantController extends Controller
         return view('admin.pages.admin.profile', compact('applicant', 'voucherData'));
     }
 
+    public function format($id)
+    {
+        $this->authorize('show', $this->applicantRepository->getModel());
+        $applicant = $this->applicantRepository->findById($id);
+        $voucherData = null;
+        if ($applicant)
+            $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->first();
+        return view('admin.pages.admin.applicant-format', compact('applicant', 'voucherData'));
+    }
+
     public function status(ChangeStatusApplicantRequest $request, $id)
     {
         $this->authorize('status', $this->applicantRepository->getModel());

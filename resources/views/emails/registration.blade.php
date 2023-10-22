@@ -29,8 +29,9 @@
             width:600px;
             margin: 0 auto;
             padding: 50px;
+            margin-bottom: 50px;
+            
         }
-
         .header {
             text-align: center;
         }
@@ -68,7 +69,7 @@
             </p>
             <i>If you think that you shouldn't have received this email, you can safely ignore it.</i>
             </p>
-            <p>Thank You ! <br /><b>AEIRC</b> </p>
+            <p>Thank You ! <br /><b>Nepal Bar Council</b> </p>
         </div>
         <div class="footer">
         <p>©Nepal Bar Council . All rights reserved. </p>

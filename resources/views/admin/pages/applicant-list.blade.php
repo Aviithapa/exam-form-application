@@ -117,6 +117,7 @@
                                                             <td>{{ isset($isAdmit) ? $applicant->symbol_number : $applicant->dob_nepali }}</td>
                                                             <td>
                                                                 <a href="{{ route('applicant.show', ['id' => $applicant->id]) }}"><span class="badge bg-success-subtle text-info">View</span></a>
+                                                                <a href="{{ route('applicant.format', ['id' => $applicant->id]) }}"><span class="badge bg-success-subtle text-info">Format View</span></a>
                                                                  @if($applicant->symbol_number)
                                                                    <a href="{{ route('applicant.admit', ['id' => $applicant->id]) }}"><span class="badge bg-info-subtle text-info">Print Admit Card</span></a>
                                                                  @endif
