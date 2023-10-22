@@ -5,15 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Api\ApiResponser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginRequest;
-use App\Models\Imei;
 use App\Models\User;
-use App\Services\Imei\ImeiCreator;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\Facades\JWTAuth;
-
 
 class AuthController extends Controller
 {
