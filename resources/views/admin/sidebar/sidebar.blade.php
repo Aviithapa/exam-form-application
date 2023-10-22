@@ -159,6 +159,14 @@
                         </a>
                     </li>
 
+                     <li class="side-nav-item">
+                        <a href="{{ route('dashboard.user.index') }}" class="side-nav-link">
+                            <i class=""></i>
+                            {{-- <span class="badge bg-success float-end">9+</span> --}}
+                            <span>User List</span>
+                        </a>
+                    </li>
+
                
 
                 </ul>

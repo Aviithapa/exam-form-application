@@ -44,7 +44,7 @@ class ApplicantController extends Controller
         $data = $request->all();
         $data['status'] = isset($data['status']) ? $data['status'] : 'NEW';
         $this->filter->applyFilters($applicants, $data);
-        $applicants = $applicants->paginate(5);
+        $applicants = $applicants->paginate(50);
 
 
         return view('admin.pages.applicant-list', compact('applicants', 'request'));
@@ -62,7 +62,7 @@ class ApplicantController extends Controller
         $data['status'] = isset($data['status']) ? $data['status'] : 'APPROVE';
         $this->filter->applyFilters($applicants, $data);
 
-        $applicants = $applicants->paginate(5);
+        $applicants = $applicants->paginate(50);
 
         return view('admin.pages.applicant-list', compact('applicants', 'request'));
     }
@@ -79,7 +79,7 @@ class ApplicantController extends Controller
         $data['status'] = isset($data['status']) ? $data['status'] : 'REJECTED';
         $this->filter->applyFilters($applicants, $data);
 
-        $applicants = $applicants->paginate(5);
+        $applicants = $applicants->paginate(50);
 
         return view('admin.pages.applicant-list', compact('applicants'));
     }
@@ -96,7 +96,7 @@ class ApplicantController extends Controller
         $data['status'] = isset($data['status']) ? $data['status'] : 'READY-FOR-ADMIT-CARD';
         $this->filter->applyFilters($applicants, $data);
 
-        $applicants = $applicants->paginate(5);
+        $applicants = $applicants->paginate(50);
 
         $isAdmit = true;
         return view('admin.pages.applicant-list', compact('applicants', 'isAdmit'));

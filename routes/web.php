@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Sachiv\SachivController;
+use App\Http\Controllers\User\UserController;
 use App\Models\Qualification;
 use Illuminate\Support\Facades\Route;
 
@@ -117,3 +118,13 @@ Route::get('/applicant/admit-card-list', [AdminApplicantController::class, 'admi
 Route::get('/sachiv/applicant/list', [SachivController::class, 'index'])->middleware(['auth'])->name('sachiv.applicant.index');
 Route::get('/sachiv/applicant/show/{id}', [SachivController::class, 'show'])->middleware(['auth'])->name('sachiv.applicant.show');
 Route::put('/sachiv/applicant/change/status/{id}', [SachivController::class, 'status'])->middleware(['auth'])->name('sachiv.applicant.status');
+
+
+
+//Route Users
+Route::get('/dashboard/user', [UserController::class, 'index'])->middleware(['auth'])->name('dashboard.user.index');
+Route::get('/dashboard/user/create', [UserController::class, 'create'])->middleware(['auth'])->name('dashboard.user.create');
+Route::post('/dashboard/user/store', [UserController::class, 'store'])->middleware(['auth'])->name('dashboard.user.store');
+Route::get('/dashboard/user/edit/{id}', [UserController::class, 'edit'])->middleware(['auth'])->name('dashboard.user.edit');
+Route::put('/dashboard/user/update/{id}', [UserController::class, 'update'])->middleware(['auth'])->name('dashboard.user.update');
+Route::delete('/dashboard/user/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth'])->name('dashboard.user.destroy');

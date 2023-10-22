@@ -2,119 +2,91 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Filters\UserFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\ApiResponser;
+use App\Http\Requests\User\AdminUserCreateRequest;
 use App\Http\Requests\User\UserCreateRequest;
 use App\Http\Requests\User\UserUpdateRequest;
 use App\Http\Resources\User\UserResource;
+use App\Mail\AdminCreateUser;
+use App\Mail\RegistrarUser;
 use App\Models\Role;
+use App\Models\User;
 use App\Repositories\User\UserRepository;
 use App\Services\Employee\EmployeeCreator;
 use App\Services\User\UserGetter;
 use App\Services\User\UserCreator;
 use App\Services\User\UserUpdater;
+use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
     use ApiResponser;
 
-    protected $userRepository;
+    protected $userRepository, $userFilter;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, UserFilter $userFilter)
     {
         $this->userRepository = $userRepository;
+        $this->userFilter = $userFilter;
     }
 
-    public function index(UserGetter $userGetter)
+    public function index(Request $request)
     {
-        return UserResource::collection($userGetter->getPaginatedList());
-    }
-
-    public function store(UserCreateRequest $request, UserCreator $userCreator, EmployeeCreator $employeeCreator): JsonResponse
-    {
+        $this->authorize('read', $this->userRepository->getModel());
+        $user = User::distinct();
         $data = $request->all();
-        dd($data);
-        $existingUser = $this->userRepository->findByFirst('email', $data['email'], '=');
-        if ($existingUser) {
-            return response()->json(['error' => 'Duplicate Entry'], 500);
-        }
-        if (!isset($data['password'])) {
-            $data['password'] = str_pad(rand(1, 99999999), 8, '0', STR_PAD_LEFT);
-        }
-        $data['password'] = bcrypt($data['password']);
-        $data['remember_token'] = $data['password'];
-        $data['userId'] = str_pad(rand(1, 99999999), 8, '0', STR_PAD_LEFT);
-
-        dd($data);
-        $employee = $employeeCreator->store($data);
-        if ($employee === false) {
-            return response()->json(['error' => 'Internal Error'], 500);
-        }
-
-        $data['employee_id'] = $employee['id'];
-
-        return $this->successResponse(
-            UserResource::make($userCreator->store($data)),
-            __('User created successfully'),
-            Response::HTTP_CREATED
-        );
+        $this->userFilter->applyFilters($user, $data);
+        $users = $user->paginate(50);
+        $roles = Role::all();
+        return view('admin.pages.user.index', compact('users', 'request', 'roles'));
     }
 
-    public function create(UserCreateRequest $request, UserCreator $userCreator, EmployeeCreator $employeeCreator): JsonResponse
+    public function create()
     {
+        $roles = Role::all();
+        return view('admin.pages.user.create', compact('roles'));
+    }
+
+
+    public function store(AdminUserCreateRequest $request)
+    {
+        $this->authorize('store', $this->userRepository->getModel());
         $data = $request->all();
-        $existingUser = $this->userRepository->findByFirst('email', $data['email'], '=');
-        if ($existingUser) {
-            return response()->json(['error' => 'Duplicate Entry'], 500);
-        }
-        if (!isset($data['password'])) {
-            $data['password'] = str_pad(rand(1, 99999999), 8, '0', STR_PAD_LEFT);
-        }
-        $data['remember_token'] = $data['password'];
-        $data['password'] = bcrypt($data['password']);
-        $data['userId'] = generateRandomUsername(10);
-
-        DB::beginTransaction();
-
         try {
-            $employee = $employeeCreator->store($data);
-            if ($employee === false) {
-                DB::rollBack();
-                return response()->json(['error' => 'Internal Error'], 500);
+            $data['token'] = str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
+            $role = Role::where('name', $data['role'])->first();
+            $data['password'] = $this->generateRandomAlphabeticString(8);
+            $data['reference'] = $data['password'];
+            $data['password'] = bcrypt($data['password']);
+            $data['phone_number'] = $data['token'];
+            $user = $this->userRepository->create($data);
+            if ($user == false) {
+                session()->flash('danger', 'Oops! Something went wrong.');
+                return redirect()->back()->withInput();
             }
-
-            $data['employee_id'] = $employee->id;
-
-            $user = $userCreator->store($data);
-
-            DB::commit();
-
-            return $this->successResponse(
-                UserResource::make($user),
-                __('User created successfully'),
-                Response::HTTP_CREATED
-            );
-        } catch (\Exception $e) {
-            DB::rollBack();
-            throw $e;
+            $user->roles()->attach($role);
+            Mail::to($user->email)->send(new AdminCreateUser($user));
+            session()->flash('success', 'Account has been created successfully.');
+            return redirect()->route('dashboard.user.index');
+        } catch (Exception $e) {
+            session()->flash('danger', 'Oops! Something went wrong.');
+            return redirect()->back()->withInput();
         }
     }
 
-    public function assignRole($role, $id)
+    public function edit($id)
     {
-        $role = Role::where('name', $role)->first();
+        $this->authorize('edit', $this->userRepository->getModel());
         $user = $this->userRepository->findById($id);
-        if ($user->roles->isEmpty()) {
-            // If the user has no roles, attach the desired role
-            $user->roles()->attach($role);
-        } else {
-            // If the user already has a role, update it to the desired role
-            $user->roles()->sync([$role->id]);
-        }
-        return $user;
+        $roles = Role::all();
+        return view('admin.pages.user.edit', compact('user', 'roles'));
     }
 
     public function show(UserGetter $userGetter, $id)
@@ -127,32 +99,35 @@ class UserController extends Controller
         return $userUpdater->delete($id);
     }
 
-    public function update(UserUpdateRequest $userUpdateRequest,  UserUpdater $userUpdater, $id)
+    public function update(UserUpdateRequest $userUpdateRequest, $id)
     {
+        $this->authorize('update', $this->userRepository->getModel());
         $data = $userUpdateRequest->all();
-        $data['password'] = bcrypt($data['password']);
-        return $this->successResponse(
-            UserResource::make($userUpdater->update($data, $id)),
-            __('User updated successfully'),
-            Response::HTTP_CREATED
-        );
+        try {
+            $role = Role::where('name', $data['role'])->first();
+            $user = $this->userRepository->update($data, $id);
+            if ($user == false) {
+                session()->flash('danger', 'Oops! Something went wrong.');
+                return redirect()->back()->withInput();
+            }
+            $user->roles()->sync([$role->id]);
+            session()->flash('success', 'Account has been updated successfully.');
+            return redirect()->route('dashboard.user.index');
+        } catch (Exception $e) {
+            session()->flash('danger', 'Oops! Something went wrong.');
+            return redirect()->back()->withInput();
+        }
     }
 
-
-
-    public function UserRegistration(UserCreateRequest $request, UserCreator $userCreator): JsonResponse
+    private function generateRandomAlphabeticString($length)
     {
-        $data = $request->all();
-        dd($data);
-        if (!isset($data['password'])) {
-            $data['password'] = str_pad(rand(1, 99999999), 8, '0', STR_PAD_LEFT);
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randomString = '';
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
         }
-        $data['password'] = bcrypt($data['password']);
-        $data['remember_token'] = $data['password'];
-        return $this->successResponse(
-            UserResource::make($userCreator->store($data)),
-            __('User created successfully'),
-            Response::HTTP_CREATED
-        );
+
+        return $randomString;
     }
 }
