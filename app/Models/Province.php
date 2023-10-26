@@ -20,4 +20,9 @@ class Province extends Model
     {
         return $this->belongsTo(Applicant::class);
     }
+
+    public function districts()
+    {
+        return $this->hasMany(District::class);
+    }
 }

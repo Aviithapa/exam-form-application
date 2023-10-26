@@ -34,7 +34,7 @@ class CreatePersonalInformation extends FormRequest
             'province_id' => 'required|exists:province,id',
             'district_id' => 'required|exists:district,id',
             'municipality_id' => 'required|exists:municipality,id',
-            'ward_no' => 'required|integer',
+            'ward_no' => 'required|string',
             'profile' => 'required|string',
             'citizenship_front' => 'required|string',
             'citizenship_back' => 'required|string',
