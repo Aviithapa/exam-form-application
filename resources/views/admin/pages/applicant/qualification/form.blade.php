@@ -90,7 +90,6 @@
                                                     <label class="form-label" for="validationCustom01">Level</label>
                                                     <select class="form-select mb-3" name="type" ">
                                                             <option value="{{ isset($model) ? $model->type : old('type') }}" selected>{{ isset($model) ? $model->type : "Please Select" }}</option>
-                                                            
                                                             <option value="LAW-BACHELOR">LAW BACHELOR</option>
                                                             
                                                         </select>
@@ -110,7 +109,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="col-md-12 col-lg-12">
-                                                                <label>Transcript / Marksheet Photo *</label><br>
+                                                                <label>Transcript *</label><br>
                                                                 @if(isset($model))
                                                                     <img src="{{isset($model)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
                                                                          id="transcript_img">
@@ -138,46 +137,6 @@
                                                                  @if($errors->first('transcript'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('transcript') }}
-                                                                  </div>
-                                                                 @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                             <div class="col-lg-3">
-                                                <div class="grid-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="col-md-12 col-lg-12">
-                                                                <label>Provisional Photo *</label><br>
-                                                                @if(isset($model))
-                                                                    <img src="{{url(isset($model)?getImage($model->documents[1]->path):imageNotFound())}}" height="150" width="150"
-                                                                         id="provisional_img">
-                            
-                                                                @else
-                                                                    <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
-                                                                         id="provisional_img">
-                                                                @endif
-                                                            </div>
-                            
-                                                            <div class="form-group col-md-12 col-lg-12">
-                                                                <small>Below 1 mb</small><br>
-                                                                <small id="provisional_help_text" class="help-block"></small>
-                                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
-                                                                     aria-valuemax="100"
-                                                                     aria-valuenow="0">
-                                                                    <div id="provisional_progress" class="progress-bar progress-bar-success"
-                                                                         style="width: 0%">
-                                                                    </div>
-                                                                </div><br>
-                                                                <input type="file" id="provisional_image" name="provisional_image"
-                                                                       onclick="anyFileUploader('provisional')">
-                                                                <input type="hidden" id="provisional_path" name="provisional" class="form-control"
-                                                                       value="{{isset($model)?$model->documents[1]->path:''}}"/>
-                                                                 @if($errors->first('provisional'))
-                                                                  <div class="alert alert-danger bg-transparent text-danger" role="alert">
-                                                                             {{ $errors->first('provisional') }}
                                                                   </div>
                                                                  @endif
                                                             </div>
@@ -225,6 +184,47 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                             <div class="col-lg-3">
+                                                <div class="grid-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="col-md-12 col-lg-12">
+                                                                <label>Provisional Photo *</label><br>
+                                                                @if(isset($model))
+                                                                    <img src="{{url(isset($model)?getImage($model->documents[1]->path):imageNotFound())}}" height="150" width="150"
+                                                                         id="provisional_img">
+                            
+                                                                @else
+                                                                    <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
+                                                                         id="provisional_img">
+                                                                @endif
+                                                            </div>
+                            
+                                                            <div class="form-group col-md-12 col-lg-12">
+                                                                <small>Below 1 mb</small><br>
+                                                                <small id="provisional_help_text" class="help-block"></small>
+                                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                                                     aria-valuemax="100"
+                                                                     aria-valuenow="0">
+                                                                    <div id="provisional_progress" class="progress-bar progress-bar-success"
+                                                                         style="width: 0%">
+                                                                    </div>
+                                                                </div><br>
+                                                                <input type="file" id="provisional_image" name="provisional_image"
+                                                                       onclick="anyFileUploader('provisional')">
+                                                                <input type="hidden" id="provisional_path" name="provisional" class="form-control"
+                                                                       value="{{isset($model)?$model->documents[1]->path:''}}"/>
+                                                                 @if($errors->first('provisional'))
+                                                                  <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                             {{ $errors->first('provisional') }}
+                                                                  </div>
+                                                                 @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                          </div>
                                         <button class="btn btn-primary mt-3" type="submit">Save</button>
                                     </form>
