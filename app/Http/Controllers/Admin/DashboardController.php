@@ -11,7 +11,6 @@ use App\Repositories\ApplicantDocuments\ApplicantDocumentRepository;
 use App\Repositories\FamilyInformation\FamilyInformationRepository;
 use App\Repositories\Qualification\QualificationRepository;
 use App\Repositories\User\UserRepository;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -61,14 +60,14 @@ class DashboardController extends Controller
                     if ($applicant)
                         $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('status', '!=', 'FAILED')->first();
                     $voucher = $this->applicantDocumentRepository->getAll()->where('applicant_id', $applicant->id)->where('document_name', 'voucher')->first();
-                    $provinces = Province::all();
+                    $provinces = Province::all()->where('status', 'active');
                     return view('admin.dashboard.applicant', compact('applicant', 'voucher', 'voucherData', 'provinces'));
                 } else {
                     // Handle the case where there is no associated applicant
                     // For example, you can set a default value or display an error message
                     $applicant = null; // or any other appropriate action
                     $voucher = null; // or any other appropriate action
-                    $provinces = Province::all();
+                    $provinces = Province::all()->where('status', 'active');
                     $exam = Exam::all()->whereIn('status', ['Open'])->first();
                     return view('admin.dashboard.applicant', compact('applicant', 'voucher', 'exam', 'provinces'));
                 }

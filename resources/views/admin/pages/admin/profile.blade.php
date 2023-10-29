@@ -29,6 +29,11 @@
                                                 <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
                                                 {{ isset($voucherData) ? $voucherData->status : '' }}
                                             </a>
+
+                                            <a href="#" class="btn btn-soft-info">
+                                                <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
+                                                Edit Profile
+                                            </a>
                                           
                                         </div>
                                     </div>

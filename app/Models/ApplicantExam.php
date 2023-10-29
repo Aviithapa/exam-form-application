@@ -20,6 +20,7 @@ class ApplicantExam extends Model
         'voucher_number',
         'contact_number',
         'symbol_number',
+        'province_id',
     ];
 
     public function applicant()
@@ -30,5 +31,10 @@ class ApplicantExam extends Model
     public function exam()
     {
         return $this->belongsToMany(Exam::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
     }
 }
