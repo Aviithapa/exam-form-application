@@ -151,7 +151,12 @@
                                             <div class="col-lg-4 col-md-4 col-sm-12">
                                                 <div class="mb-3">
                                                     <label class="form-label" for="validationCustom01">Issued District </label>
-                                                    <input type="text" class="form-control" id="validationCustom01"  name="issued_district" required value="{{ isset($applicant) ? $applicant->issued_district : old('issued_district') }}">
+                                                      <select class="form-control select2" name="issued_district" data-toggle="select2">
+                                                        <option value="{{ isset($applicant) ? $applicant->issued_district : old('issued_district') }}" selected>{{ isset($applicant) ? $applicant->issued_district : "Please Select" }}</option>
+                                                        @foreach($districts as $district)
+                                                            <option value="{{ $district->name }}">{{ $district->name }}</option>
+                                                        @endforeach
+                                                     </select>
                                                     @if($errors->first('issued_district'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                 {{ $errors->first('issued_district') }}

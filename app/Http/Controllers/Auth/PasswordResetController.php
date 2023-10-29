@@ -49,7 +49,7 @@ class PasswordResetController extends Controller
         ]);
 
         // try {
-        //     Mail::to($email)->send(new ResetPasswordOtp($user, $otp));
+        Mail::to($email)->send(new ResetPasswordOtp($user, $otp));
         // } catch (Expectation $e) {
         //     return redirect()->back()->withErrors(['email' => 'Email Server is down please try in a while.']);
         // }
