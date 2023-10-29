@@ -167,6 +167,14 @@
                         </a>
                     </li>
 
+                    <li class="side-nav-item">
+                        <a href="{{ route('exam-center.index') }}" class="side-nav-link">
+                            <i class=""></i>
+                            {{-- <span class="badge bg-success float-end">9+</span> --}}
+                            <span>Exam Center</span>
+                        </a>
+                    </li>
+
                
 
                 </ul>

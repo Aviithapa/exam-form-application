@@ -14,6 +14,8 @@ use App\Repositories\Exam\EloquentExamRepository;
 use App\Repositories\Exam\ExamRepository;
 use App\Repositories\FamilyInformation\EloquentFamilyInformationRepository;
 use App\Repositories\FamilyInformation\FamilyInformationRepository;
+use App\Repositories\Province\EloquentProvinceRepository;
+use App\Repositories\Province\ProvinceRepository;
 use App\Repositories\Qualification\EloquentQualificationRepository;
 use App\Repositories\Qualification\QualificationRepository;
 use App\Repositories\Role\EloquentRoleRepository;
@@ -82,6 +84,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             QualificationRepository::class,
             EloquentQualificationRepository::class
+        );
+
+        $this->app->bind(
+            ProvinceRepository::class,
+            EloquentProvinceRepository::class
         );
     }
 }

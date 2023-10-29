@@ -14,6 +14,7 @@ class Province extends Model
     protected $table = 'province';
     protected $fillable = [
         'name',
+        'status'
     ];
 
     public function applicant()

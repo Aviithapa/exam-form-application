@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ApplicantController as AdminApplicantController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ExamCenterController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Applicant\ApplicantController;
 use App\Http\Controllers\Applicant\QualificationController;
@@ -128,3 +129,6 @@ Route::post('/dashboard/user/store', [UserController::class, 'store'])->middlewa
 Route::get('/dashboard/user/edit/{id}', [UserController::class, 'edit'])->middleware(['auth'])->name('dashboard.user.edit');
 Route::put('/dashboard/user/update/{id}', [UserController::class, 'update'])->middleware(['auth'])->name('dashboard.user.update');
 Route::delete('/dashboard/user/destroy/{id}', [UserController::class, 'destroy'])->middleware(['auth'])->name('dashboard.user.destroy');
+
+
+Route::resource('/dashboard/exam-center', ExamCenterController::class)->middleware(['auth'])->only('index', 'update');

@@ -105,8 +105,10 @@ if (!function_exists('carbon')) {
      * @param null $type
      * @return string
      */
-    function carbon(Carbon $date, $format = 'Y-m-d')
+    function carbon($date = null, $format = 'Y-m-d')
     {
+        if (!$date)
+            return null;
         return $date->setTimezone('Asia/Kathmandu')->format($format);
     }
 }
