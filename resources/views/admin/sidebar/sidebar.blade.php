@@ -182,6 +182,13 @@
                             <span>University</span>
                         </a>
                     </li>
+                     <li class="side-nav-item">
+                        <a href="{{ route('center.index') }}" class="side-nav-link">
+                            <i class=""></i>
+                            {{-- <span class="badge bg-success float-end">9+</span> --}}
+                            <span>Center Data</span>
+                        </a>
+                    </li>
 
                
 

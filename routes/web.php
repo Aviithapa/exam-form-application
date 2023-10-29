@@ -135,3 +135,5 @@ Route::resource('/dashboard/exam-center', ExamCenterController::class)->middlewa
 Route::resource('/dashboard/university', UniversityController::class)->middleware(['auth']);
 
 Route::get('/dashboard/voucher', [ApplicantController::class, 'voucherIndex'])->middleware(['auth'])->name('voucher.index');
+Route::get('/dashboard/export', [AdminApplicantController::class, 'exportCsv'])->middleware(['auth'])->name('exportCsv.index');
+Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDataIndex'])->middleware(['auth'])->name('center.index');

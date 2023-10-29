@@ -27,7 +27,7 @@ class ApplicantExam extends Model
 
     public function applicant()
     {
-        return $this->belongsToMany(Applicant::class);
+        return $this->belongsTo(Applicant::class, 'applicant_id', 'id');
     }
 
     public function exam()
