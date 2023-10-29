@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Applicant;
 
 use App\Http\Controllers\Controller;
 use App\Models\ApplicantDocuments;
+use App\Models\University;
 use App\Repositories\ApplicantDocuments\ApplicantDocumentRepository;
 use App\Repositories\ApplicantLog\ApplicantLogRepository;
 use App\Repositories\Qualification\QualificationRepository;
@@ -41,7 +42,8 @@ class QualificationController extends Controller
     public function create()
     {
         // $this->authorize('create', $this->qualificationRepository->getModel());
-        return view('admin.pages.applicant.qualification.create');
+        $university = University::all();
+        return view('admin.pages.applicant.qualification.create', compact('university'));
     }
 
     public function store(Request $createExamRequest)
@@ -61,14 +63,33 @@ class QualificationController extends Controller
             }
             foreach ($data as $key => $value) {
                 // Define the types based on the keys in $data
-                $documentTypes = [
-                    'provisional' => $data['type'],
-                    'character'  => $data['type'],
-                    'transcript' => $data['type'],
-                ];
+                $documentTypes = null;
+                if ($data['type'] === '7-YEAR-PLEADER') {
+                    $documentTypes = [
+                        'licence' => $data['type'],
+                    ];
+                } else {
+                    if ($data['provisional'] != null)
+                        $documentTypes = [
+                            'provisional' => $data['type'],
+                            'character'  => $data['type'],
+                            'transcript' => $data['type'],
+                        ];
+                    else
+                        $documentTypes = [
+                            'character'  => $data['type'],
+                            'transcript' => $data['type'],
+                        ];
+                }
+
+
+
+                // dd($data);
+
 
                 // Check if the key exists in the $documentTypes array
                 if (array_key_exists($key, $documentTypes)) {
+
                     // Create a new document record
                     $document = new ApplicantDocuments();
                     $document->document_name = $key;
@@ -88,7 +109,7 @@ class QualificationController extends Controller
             $this->logReport($log);
             DB::commit();
             session()->flash('success', 'Qualification has been created successfully');
-            return redirect()->route('qualification.index');
+            return redirect()->route('voucher.index');
         } catch (Exception $e) {
             dd($e);
             session()->flash('danger', 'Oops! Something went wrong.');
@@ -101,7 +122,8 @@ class QualificationController extends Controller
     {
         // $this->authorize('edit', $this->qualificationRepository->getModel());
         $qualification = $this->qualificationRepository->findById($id);
-        return view('admin.pages.applicant.qualification.edit', compact('qualification'));
+        $university = University::all();
+        return view('admin.pages.applicant.qualification.edit', compact('qualification', 'university'));
     }
 
     public function update(Request $createExamRequest, $id)

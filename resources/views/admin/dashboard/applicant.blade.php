@@ -62,7 +62,14 @@
                                             <article class="timeline-item alt">
                                                 <div class="text-start">
                                                     <div class="time-show first">
-                                                        <a href="#" class="btn btn-primary w-lg">For Applying For Nepal Bar Council Examnation, Please read the below instrution</a>
+                                                        <a href="#" class="btn btn-primary w-lg">
+                                                            @if(isset($voucherData))
+                                                            You application has been successfully uploaded
+                                                            @else
+                                                            For Applying For Nepal Bar Council Examnation, Please read the below instrution
+                                                            @endif
+                                                             
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </article>
@@ -103,14 +110,14 @@
                                              <article class="timeline-item">
                                                 <div class="timeline-desk">
                                                     <div class="panel">
-                                                        <div class="timeline-box  {{ isset($applicant->qualification) ? 'text-primary' :'' }}">
+                                                        <div class="timeline-box  {{ isset($applicant->qualifications) ? 'text-primary' :'' }}">
                                                             <span class="arrow"></span>
                                                             <span class="timeline-icon"><i class="ri-record-circle-line"></i></span>
                                                             <h4 class="fs-16 fw-semibold ">Third Step</h4>
                                                             <p class="timeline-date text-muted"><small></small></p>
                                                             <p>Add your qualification 
-                                                               @if(isset($applicant) && isset($applicant->familyInformation))
-                                                                    <a href="#">Click Here to Add Qualification Information</a>
+                                                               @if(isset($applicant) && isset($applicant->familyInformation) && !isset($applicant->qualifications))
+                                                                    <a href="{{ route('qualification.index') }}">Click Here to Add Qualification Information</a>
                                                                @endif 
 
                                                             </p>
@@ -121,123 +128,16 @@
                                              <article class="timeline-item">
                                                 <div class="timeline-desk">
                                                     <div class="panel">
-                                                        <div class="timeline-box">
+                                                        <div class="timeline-box  {{ isset($applicant->qualifications) ? 'text-primary' :'' }}">
                                                             <span class="arrow"></span>
                                                             <span class="timeline-icon"><i class="ri-record-circle-line"></i></span>
                                                             <h4 class="fs-16 fw-semibold ">Fourth Step</h4>
                                                             <p class="timeline-date text-muted"><small></small></p>
                                                             <p>Upload your payment voucher
                                                             </p>
-                                                            @if(isset($applicant) && isset($applicant->familyInformation))
-                                                             <form action="{{ route('applyExam') }}" method="POST">
-                                                                   @csrf
-                                                                  <div class="row" style="display: flex; justify-content:space-between;">
-                                                                    {{-- $table->string('name')->nullable();
-                                                                    $table->string('voucher_number')->nullable();
-                                                                    $table->string('contact_number')->nullable(); --}}
-                                                            
-                                                              <div class="col-lg-12 col-md-12 col-sm-12"> 
-                                                                 <div class="col-lg-3 col-md-3 col-sm-12"> 
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label" for="validationCustom01">Name</label>
-                                                                        <input type="text" class="form-control" id="validationCustom01" placeholder="" name="name"  required value="{{ isset($voucherData) ? $voucherData->name : old('name') }}">
-                                                                        @if($errors->first('name'))
-                                                                                <div class="alert alert-danger bg-transparent text-danger" role="alert">
-                                                                                    {{ $errors->first('name') }}
-                                                                                </div>
-                                                                        @endif
-                                                                    </div>
-                                                                </div> 
-                                                                <div class="col-lg-12 col-md-12 col-sm-12"> 
-                                                                    <div class="col-lg-3 col-md-3 col-sm-12"> 
-                                                                        <div class="mb-3">
-                                                                            <label class="form-label" for="validationCustom01">Voucher Number</label>
-                                                                            <input type="text" class="form-control" id="validationCustom01" placeholder="" name="voucher_number"  required value="{{ isset($voucherData) ?  $voucherData->voucher_number : old('voucher_number') }}">
-                                                                            @if($errors->first('voucher_number'))
-                                                                                    <div class="alert alert-danger bg-transparent text-danger" role="alert">
-                                                                                        {{ $errors->first('voucher_number') }}
-                                                                                    </div>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div> 
-                                                                 </div>  
-                                                                 <div class="col-lg-12 col-md-12 col-sm-12"> 
-                                                                    <div class="col-lg-3 col-md-3 col-sm-12"> 
-                                                                        <div class="mb-3">
-                                                                            <label class="form-label" for="validationCustom01">Phone Number</label>
-                                                                            <input type="text" class="form-control" id="validationCustom01" placeholder="" name="contact_number"  required value="{{ isset($voucherData) ? $voucherData->contact_number : old('contact_number') }}">
-                                                                            @if($errors->first('contact_number'))
-                                                                                    <div class="alert alert-danger bg-transparent text-danger" role="alert">
-                                                                                        {{ $errors->first('contact_number') }}
-                                                                                    </div>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div> 
-                                                                 </div> 
-                                                                  <div class="col-lg-12 col-md-12 col-sm-12"> 
-                                                                    <div class="col-lg-3 col-md-3 col-sm-12"> 
-                                                                         <div class="mb-3">
-                                                                            <label class="form-label" for="validationCustom01">Exam Center</label>
-                                                                            <select class="form-control select2" name="province_id" data-toggle="select2">
-                                                                                <option value="{{ isset($applicant) ? $applicant->province_id : old('province_id') }}" selected>{{ isset($applicant) ? $applicant->province->name : "Please Select" }}</option>
-                                                                                @foreach($provinces as $province)
-                                                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                            @if($errors->first('province_id'))
-                                                                                    <div class="alert alert-danger bg-transparent text-danger" role="alert">
-                                                                                        {{ $errors->first('province_id') }}
-                                                                                    </div>
-                                                                            @endif
-                                                                        </div>
-                                                                    </div> 
-                                                                 </div>   
-                                                                     <div class="col-lg-3">
-                                                                            <div class="grid-body">
-                                                                                <div class="row">
-                                                                                    <div class="col-lg-12">
-                                                                                        <div class="col-md-12 col-lg-12">
-                                                                                            <label>Upload Voucher Image *</label><br>
-                                                                                            @if(isset($voucher))
-                                                                                                <img src="{{url(isset($voucher)?getImage($voucher->path):imageNotFound())}}" height="150" width="150"
-                                                                                                    id="voucher_img">
-                                                        
-                                                                                            @else
-                                                                                                <img src="{{isset($voucher)?$voucher->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
-                                                                                                    id="voucher_img">
-                                                                                            @endif
-                                                                                        </div>
-                                                        
-                                                                                        <div class="form-group col-md-12 col-lg-12">
-                                                                                            <small>Below 1 mb</small><br>
-                                                                                            <small id="voucher_help_text" class="help-block"></small>
-                                                                                            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
-                                                                                                aria-valuemax="100"
-                                                                                                aria-valuenow="0">
-                                                                                                <div id="voucher_progress" class="progress-bar progress-bar-success"
-                                                                                                    style="width: 0%">
-                                                                                                </div>
-                                                                                            </div><br>
-                                                                                            <input type="file" id="voucher_image" name="voucher_image"
-                                                                                                onclick="anyFileUploader('voucher')">
-                                                                                            <input type="hidden" id="voucher_path" name="voucher" class="form-control"
-                                                                                                value="{{isset($voucher)?$voucher->path:''}}"/>
-                                                                                            @if($errors->first('voucher'))
-                                                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
-                                                                                                        {{ $errors->first('voucher') }}
-                                                                                            </div>
-                                                                                            @endif
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                  </div>
-                                                               
-                                                                       <button class="btn btn-primary mt-3" type="submit">Apply Exam</button>
-                                                             </form>
-                                                             
-                                                                   @endif     
+                                                            @if(isset($applicant) && isset($applicant->familyInformation) && isset($applicant->qualifications) &&  !isset($voucherData))
+                                                              <a href="{{ route('voucher.index') }}">Click Here to Add Voucher Information</a>
+                                                            @endif     
                                                             
                                                         </div>
                                                     </div>

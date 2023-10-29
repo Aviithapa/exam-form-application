@@ -23,6 +23,7 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Nilambar\NepaliDate\NepaliDate;
 
 class ApplicantController extends Controller
 {
@@ -73,6 +74,18 @@ class ApplicantController extends Controller
     {
         $data = $createPersonalInformation->all();
         $data['user_id'] = Auth::user()->id;
+        $obj = new NepaliDate();
+        $dateComponents = explode('-', $data['dob_nepali']);
+        $year = $dateComponents[0];
+        $month = $dateComponents[1];
+        $day = $dateComponents[2];
+        $dob_english = $obj->convertBsToAd($year, $month, $day);
+        $date = \Carbon\Carbon::create(
+            $dob_english['year'],
+            $dob_english['month'],
+            $dob_english['day']
+        );
+        $data['dob_english'] = $date->format('Y-m-d');
         DB::beginTransaction();
         try {
             $applicant = $this->applicantRepository->create($data);
@@ -122,6 +135,18 @@ class ApplicantController extends Controller
     {
 
         $data = $createPersonalInformation->all();
+        $obj = new NepaliDate();
+        $dateComponents = explode('-', $data['dob_nepali']);
+        $year = $dateComponents[0];
+        $month = $dateComponents[1];
+        $day = $dateComponents[2];
+        $dob_english = $obj->convertBsToAd($year, $month, $day);
+        $date = \Carbon\Carbon::create(
+            $dob_english['year'],
+            $dob_english['month'],
+            $dob_english['day']
+        );
+        $data['dob_english'] = $date->format('Y-m-d');
         DB::beginTransaction();
         try {
             $personalData = $this->applicantRepository->findById($id);
@@ -151,6 +176,7 @@ class ApplicantController extends Controller
             DB::commit();
             return redirect()->route('student.guardianForm');
         } catch (Exception $e) {
+            dd($e);
             session()->flash('danger', 'Oops! Something went wrong.');
             DB::rollBack();
             return redirect()->back()->withInput();
@@ -226,7 +252,7 @@ class ApplicantController extends Controller
                 $existingAttachment = $applicant->documents->where('exam_id', $exam->id)->first();
                 $existingAttachment->update(['path' => $data['voucher']]);
 
-                $applicant->exams()->updateExistingPivot($exam->id, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'voucher_number' => $data['voucher_number']]);
+                $applicant->exams()->updateExistingPivot($exam->id, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'bank_name' => $data['bank_name'], 'province_id' => $data['province_id'], 'total_amount' => $data['total_amount']]);
             } else {
                 // If not attached, create a new attachment.
                 $document = new ApplicantDocuments();
@@ -236,7 +262,7 @@ class ApplicantController extends Controller
                 $document->exam_id = $exam->id;
                 $document->type = DocumentTypeEnum::VOUCHER;
                 $document->save();
-                $applicant->exams()->attach($exam, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'voucher_number' => $data['voucher_number']]);
+                $applicant->exams()->attach($exam, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'bank_name' => $data['bank_name'], 'province_id' => $data['province_id'], 'total_amount' => $data['total_amount']]);
             }
 
             $log['status'] = 'VOUCHER DETAILS';
@@ -245,8 +271,9 @@ class ApplicantController extends Controller
             $log['applicant_id'] = $applicant->id;
             $log['created_by'] = Auth::user()->id;
             $this->logReport($log);
+            session()->flash('success', 'You have been successfully applied for the exam.');
             DB::commit();
-            return redirect()->back();
+            return redirect()->route('dashboard');
         } catch (Exception $e) {
             dd($e);
             session()->flash('danger', 'Oops! Something went wrong.');
@@ -292,6 +319,12 @@ class ApplicantController extends Controller
             ->orderBy('created_at', 'DESC')
             ->get();
         return view('admin.pages.applicant.logs', compact('logs'));
+    }
+
+    public function voucherIndex()
+    {
+        $provinces = Province::all()->where('status', 'active');
+        return view('admin.pages.applicant.voucher', compact('provinces'));
     }
 
 

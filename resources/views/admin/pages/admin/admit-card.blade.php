@@ -36,27 +36,31 @@
                                                             
                                                             {{-- <h4  style = "font-family:Aerial; margin-top: -5px; " class="box-title text-black">बांसबारी, काठमाडौं</h4>  --}}
                                                                 <h4  style = "font-size: 30px; text-decoration: underline; font-family:Aerial" class="box-title text-black">प्रवेश पत्र</h4>
+                                                             <div style="margin-top: -180px; margin-left: 130px; z-index: 1000;position: absolute; height: 50px">
+                                                                                <img src="{{ asset('assets/images/stamp.png') }}" class="signature" width="150px" height="150px">
+                                                                            </div>
+
                                                             </div>
                                                     </div>
                                                     <!-- /.box-header -->
                                                     <div class="box-body container mt-2">
                                                     
                                                         
-                                                        <div class="student-admit-card-body mt-3" style="border: 1px solid #000; padding: 20px;height: 500px;">
+                                                        <div class="student-admit-card-body" style="border: 1px solid #000; padding: 20px;height: 350px; font-size: 12px;">
                                                             <div class="row">
                                                                 <div class="col-lg-8">
                                                                     <div style="width:60%; float: left;">
 
                                                                         {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate('Name : '.$applicant->full_name_english. ' Dob' . $applicant->dob_english )!!}
 
-                                                                        <p>रोल नम्बर<span style="padding-left:1em;">:
+                                                                        <p>Symbol Number<span style="padding-left:1em;">:
                                                                                     {{ $exam->symbol_number  }}
                                                                         </span></p>
-                                                                            <p>पर्रीक्षार्थीको नाम <strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong></p>
-                                                                                 लिङ्ग <span style="padding-left:1em;">: {{ $applicant->gender }} <p></p>
-                                                                                <p>जन्ममिती<span style="padding-left:1em;"> : {{ $applicant->dob_nepali }} B.S. |  {{ $applicant->dob_english }} A.D. </span></p>
-                                                                                <p>ठेगाना, फोन नं.<span style="padding-left:1em;">: {{ $applicant->tole }} {{ $applicant->ward_no }}  {{ $applicant->municipality->name }}, {{ $applicant->district->name }}  {{ $applicant->province->name }} , {{ $applicant->phone_number }}  </span></p>
-                                                                                <p>परीक्षा केन्द्र <span style="padding-left:1em;">: Kathmandu</span>
+                                                                            <p>Student Name <strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong></p>
+                                                                                Gender <span style="padding-left:1em;">: {{ $applicant->gender }} <p></p>
+                                                                                <p>Date of birth<span style="padding-left:1em;"> : {{ $applicant->dob_nepali }} B.S. |  {{ $applicant->dob_english }} A.D. </span></p>
+                                                                                <p>Address, Contact Number.<span style="padding-left:1em; text-transform:lowercase;">: {{ $applicant->tole }} {{ $applicant->ward_no }}  {{ $applicant->municipality->name }}, {{ $applicant->district->name }}  {{ $applicant->province->name }} , {{ $applicant->phone_number }}  </span></p>
+                                                                                <p>Exam center<span style="padding-left:1em;">: {{ $exam->province}}</span>
                                                                                 </p>
 
                                                                                 <div style="float:left;">परीक्षार्थीको हस्ताक्षर : <br>
@@ -66,7 +70,11 @@
                                                                 </div>
                                                                 <div class="col-lg-4">
                                                                     <div style="width: 40%; float: left;">
+                                                                         <div style="margin-top: -70px; margin-left: 50px; z-index: 1000;position: absolute; height: 50px">
+                                                                                <img src="{{ asset('assets/images/stamp.png') }}" class="signature" width="150px" height="150px">
+                                                                            </div>
                                                                         <div style="display:flex;">
+
                                                                             <img width="180px;" height="180px" src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'profile')->pluck('path')->first()) : imageNotFound() }}">
                                                                             {{-- <div style="border-style:dashed; border-width: 1px;height: 170px;width: 170px; object-position: 50% 100%; padding:10px; line-height:1.5">
                                                                                 परीक्षाको लागि फारम भर्दाको पासपोर्ट साइज को फोटो
@@ -76,28 +84,24 @@
 
                                                                         <div style="height:50px;  float:left; padding-left: 8%; padding-right: 8%;">
                                                                             <div style="margin-top: -40px; z-index: 1000;position: absolute; height: 50px">
-                                                                                {{-- <img src="http://103.175.192.52/storage/documents/22rNBHFiU672nRa7RGaOaDDqjmOYeDO0EnYyZDrn.png" class="signature" width="150px" height="70px"> --}}
+                                                                                {{-- <img src="{{ asset('assets/images/stamp.png') }}" class="signature" width="150px" height="70px"> --}}
                                                                             </div>
                                                                             <div>
                                                                                 ..................................................<br>
                                                                                 सदस्य सचिवको हस्ताक्षर
                                                                             </div>
                                                                         </div>
-                                                                        <div style="padding-left: 0%; padding-top: 20px; " class="mt-5">
+                                                                        <div style="padding-left: 0%; padding-top: 10px; " class="mt-5">
                                                                             <table style="border: 1px solid black; width: 250px; border-collapse: collapse; text-align:center; overflow: auto;">
                                                                                 <tbody><tr>
                                                                                     <td colspan="2" style="text-align: center; font-size: 10px;">औँठा छाप</td>
                                                                                 </tr>
                                                                                 <tr>
-                                                                                    <td style="border: 1px solid black; border-collapse: collapse; text-align:center; font-size: 10px;">दाँया</td>
-                                                                                    <td style="border: 1px solid black; border-collapse: collapse; text-align:center; font-size: 10px;">बायाँ</td>
-                                                                                </tr>
+                                                                                    <td style="border: 1px solid black; border-collapse: collapse; text-align:center; font-size: 10px;">दाँया / बायाँ</td>
+                                                                                     
                                                                                 <tr>
-                                                                                    <td style="height: 140px; width:140px;border: 1px solid black; border-collapse: collapse; text-align:center">
-                                                                                     <img src=" {{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'left_fingure')->pluck('path')->first()) : imageNotFound() }}" style="height: 140px; width:140px" />
-                                                                                    </td>
-                                                                                    <td style="height: 140px; width:140px;border: 1px solid black; border-collapse: collapse; text-align:center">
-                                                                                     <img src=" {{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'right_fingure')->pluck('path')->first()) : imageNotFound() }}"  style="height: 140px; width:140px"/>
+                                                                                    <td style="height: 100px; width:140px;border: 1px solid black; border-collapse: collapse; text-align:center">
+                                                                                     <img src=" {{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'left_fingure')->pluck('path')->first()) : imageNotFound() }}" style="height: 100px; width:100px" />
                                                                                     </td>
                                                                                 </tr>
                                                                                 </tbody></table>
@@ -113,7 +117,7 @@
                                                             <div class="row" style="font-size: 16px; margin-left: 20px;">
                                                                 <h5><strong class="text-bold" style="font-size: 16px;">परीक्षार्थीले पालना  गर्नुपर्ने नियमहरु :</strong></h5>
                                                             </div>
-                                                            <div class="row" style="font-size: 16px; margin-left: 20px; line-height: 1.3;">
+                                                            <div class="row" style="font-size: 12px; margin-left: 20px; line-height: 1.3;">
                                                                
                                                            <p> १. परीक्षार्थीले परीक्षा केन्द्रमा परीक्षा दिन आउँदा प्रवेशपत्र र लेख्ने कलम वाहेक अन्य कुनै पनि
                                                             सामग्री ल्याउन पाईने छैन । प्रवेशपत्र बिना परीक्षामा समावेश गराइने छैन । </p>

@@ -25,7 +25,6 @@ class CreateVoucherRequest extends FormRequest
             //
             'voucher' => 'required|string',
             'name' => 'required|string',
-            'voucher_number' => 'required|string',
             'contact_number' => 'required|string',
         ];
     }

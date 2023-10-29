@@ -20,6 +20,8 @@ use App\Repositories\Qualification\EloquentQualificationRepository;
 use App\Repositories\Qualification\QualificationRepository;
 use App\Repositories\Role\EloquentRoleRepository;
 use App\Repositories\Role\RoleRepository;
+use App\Repositories\University\EloquentUniversityRepository;
+use App\Repositories\University\UniversityRepository;
 use App\Repositories\User\EloquentUserRepository;
 use App\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -89,6 +91,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ProvinceRepository::class,
             EloquentProvinceRepository::class
+        );
+
+        $this->app->bind(
+            UniversityRepository::class,
+            EloquentUniversityRepository::class
         );
     }
 }

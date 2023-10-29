@@ -38,6 +38,7 @@
 
                              <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-info">
+                                    <a href="{{ url('/applicant/list') }}?status=NEW" style="color: white !important;">
                                     <div class="card-body">
                                         <div class="float-end">
                                             <i class=" widget-icon"></i>
@@ -49,11 +50,13 @@
                                             <span class="text-nowrap">Since last month</span> --}}
                                         </p>
                                     </div>
+                                    </a>
                                 </div>
                             </div> <!-- end col-->
 
                             <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-secondary">
+                                     <a href="{{ url('/applicant/list') }}?status=PROGRESS" style="color: white !important;">
                                     <div class="card-body">
                                         <div class="float-end">
                                             <i class=" widget-icon"></i>
@@ -65,38 +68,43 @@
                                             <span class="text-nowrap">Since last month</span> --}}
                                         </p>
                                     </div>
+                                     </a>
                                 </div>
                             </div> <!-- end col-->
 
                              <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-success">
+                                     <a href="{{ url('/applicant/list') }}?status=READY-FOR-ADMIT-CARD" style="color: white !important;">
                                     <div class="card-body">
                                         <div class="float-end">
                                             <i class=" widget-icon"></i>
                                         </div>
                                         <h6 class="text-uppercase mt-0" title="Customers">Approved Applicant</h6>
-                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'APPROVED')) : 0 }}</h2>
+                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'READY-FOR-ADMIT-CARD')) : 0 }}</h2>
                                         <p class="mb-0">
                                             {{-- <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
                                             <span class="text-nowrap">Since last month</span> --}}
                                         </p>
                                     </div>
+                                     </a>
                                 </div>
                             </div> <!-- end col-->
 
                              <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-purple">
+                                     <a href="{{ url('/applicant/list') }}?status=GENERATED" style="color: white !important;">
                                     <div class="card-body">
                                         <div class="float-end">
                                             <i class=" widget-icon"></i>
                                         </div>
                                         <h6 class="text-uppercase mt-0" title="Customers">Admit Card Generated Applicant</h6>
-                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'GENEREATED')) : 0 }}</h2>
+                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam->where('status', 'GENERATED')) : 0 }}</h2>
                                         <p class="mb-0">
                                             {{-- <span class="badge bg-white bg-opacity-10 me-1">2.97%</span>
                                             <span class="text-nowrap">Since last month</span> --}}
                                         </p>
                                     </div>
+                                     </a>
                                 </div>
                             </div> <!-- end col-->
 
@@ -105,6 +113,7 @@
 
                             <div class="col-xxl-3 col-sm-6">
                                 <div class="card widget-flat text-bg-pink">
+                                     <a href="{{ url('/applicant/list') }}?status=REJECTED" style="color: white !important;">
                                     <div class="card-body">
                                         <div class="float-end">
                                             <i class=" widget-icon"></i>
@@ -116,6 +125,7 @@
                                             <span class="text-nowrap">Since last month</span> --}}
                                         </p>
                                     </div>
+                                     </a>
                                 </div>
                             </div> <!-- end col-->
 

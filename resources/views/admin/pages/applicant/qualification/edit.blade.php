@@ -2,6 +2,6 @@
 
 @section('content')
 
-   @include('admin.pages.applicant.qualification.form', ['model' => $qualification])
+   @include('admin.pages.applicant.qualification.form', ['model' => $qualification, 'univerisity' => $university])
 
 @endsection

@@ -26,7 +26,6 @@ class UpdatePersonalInformationRequest extends FormRequest
             'full_name_nepali' => 'required|string|max:255|min:3',
             'full_name_english' => 'required|string|max:255|min:3',
             'dob_nepali' => 'required|date|date_format:Y-m-d',
-            'dob_english' => 'required|date|date_format:Y-m-d',
             'citizenship_number' => 'required|string|max:255',
             'email' =>  'required|string|max:255',
             'issued_district' => 'required|string',
@@ -39,6 +38,7 @@ class UpdatePersonalInformationRequest extends FormRequest
             'citizenship_front' => 'required|string',
             'citizenship_back' => 'required|string',
             'signature' => 'required|string',
+            'working' => 'required|string',
 
         ];
     }

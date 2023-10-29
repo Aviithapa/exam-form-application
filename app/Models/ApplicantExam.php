@@ -21,6 +21,8 @@ class ApplicantExam extends Model
         'contact_number',
         'symbol_number',
         'province_id',
+        'bank_name',
+        'total_amount'
     ];
 
     public function applicant()
@@ -35,6 +37,6 @@ class ApplicantExam extends Model
 
     public function province()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Province::class, 'province_id', 'id');
     }
 }

@@ -99,24 +99,13 @@
                                                      @endif
                                                 </div>
                                             </div>
-                                             <div class="col-lg-6 col-md-6 col-sm-12">
+                                             <div class="col-lg-4 col-md-4 col-sm-12">
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="validationCustom01">Date of Birth (YYYY-MM-DD B.S) </label>
+                                                    <label class="form-label" for="validationCustom01">Date of Birth (YYYY-MM-DD) B.S</label>
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="YYYY-MM-DD" name="dob_nepali" required value="{{ isset($applicant) ? $applicant->dob_nepali :old('dob_nepali') }}">
                                                     @if($errors->first('dob_nepali'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                 {{ $errors->first('dob_nepali') }}
-                                                            </div>
-                                                     @endif
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-12">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="validationCustom01">Date of Birth (YYYY-MM-DD A.D) </label>
-                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="YYYY-MM-DD" name="dob_english" required value="{{ isset($applicant) ? $applicant->dob_english : old('dob_english') }}">
-                                                    @if($errors->first('dob_english'))
-                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
-                                                                {{ $errors->first('dob_english') }}
                                                             </div>
                                                      @endif
                                                 </div>

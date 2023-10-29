@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('passed_year');
             $table->string('division');
             $table->string('percentage');
-            $table->enum('type', ['SLC', 'HSEB/NEB', 'BACHELOR', 'LAW-BACHELOR', 'OTHER'])->default('OTHER');
+            $table->enum('type', ['SLC', 'HSEB/NEB', 'BACHELOR', 'LAW-BACHELOR', '7-YEAR-PLEADER', 'OTHER'])->default('OTHER');
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('applicant_id')->references('id')->on('applicant')->onDelete('cascade');

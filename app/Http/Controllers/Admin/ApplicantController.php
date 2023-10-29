@@ -45,8 +45,6 @@ class ApplicantController extends Controller
         $data['status'] = isset($data['status']) ? $data['status'] : 'NEW';
         $this->filter->applyFilters($applicants, $data);
         $applicants = $applicants->paginate(50);
-
-
         return view('admin.pages.applicant-list', compact('applicants', 'request'));
     }
 

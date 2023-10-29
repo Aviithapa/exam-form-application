@@ -6,12 +6,12 @@ use App\Http\Controllers\Admin\ExamCenterController;
 use App\Http\Controllers\Admin\ExamController;
 use App\Http\Controllers\Applicant\ApplicantController;
 use App\Http\Controllers\Applicant\QualificationController;
+use App\Http\Controllers\Admin\UniversityController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Sachiv\SachivController;
 use App\Http\Controllers\User\UserController;
-use App\Models\Qualification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -132,3 +132,6 @@ Route::delete('/dashboard/user/destroy/{id}', [UserController::class, 'destroy']
 
 
 Route::resource('/dashboard/exam-center', ExamCenterController::class)->middleware(['auth'])->only('index', 'update');
+Route::resource('/dashboard/university', UniversityController::class)->middleware(['auth']);
+
+Route::get('/dashboard/voucher', [ApplicantController::class, 'voucherIndex'])->middleware(['auth'])->name('voucher.index');
