@@ -498,7 +498,7 @@
                                                 </div>
                                             </div>
                                                <div class="col-lg-3">
-                                                <div class="grid-body">
+                                                {{-- <div class="grid-body">
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="col-md-12 col-lg-12">
@@ -535,7 +535,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                          </div>
                                        @if(isset($applicant) && editStatus($applicant->id))

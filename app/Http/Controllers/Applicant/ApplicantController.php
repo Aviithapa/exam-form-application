@@ -89,7 +89,6 @@ class ApplicantController extends Controller
                     'profile' => 'PERSONAL',
                     'signature' => 'PERSONAL',
                     'left_fingure' => 'PERSONAL',
-                    'right_fingure' => 'PERSONAL',
                 ];
 
                 // Check if the key exists in the $documentTypes array

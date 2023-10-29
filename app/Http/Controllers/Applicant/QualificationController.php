@@ -90,6 +90,7 @@ class QualificationController extends Controller
             session()->flash('success', 'Qualification has been created successfully');
             return redirect()->route('qualification.index');
         } catch (Exception $e) {
+            dd($e);
             session()->flash('danger', 'Oops! Something went wrong.');
             DB::rollBack();
             return redirect()->back()->withInput();

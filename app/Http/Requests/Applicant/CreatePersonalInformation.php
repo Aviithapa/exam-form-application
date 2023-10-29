@@ -39,7 +39,6 @@ class CreatePersonalInformation extends FormRequest
             'citizenship_front' => 'required|string',
             'citizenship_back' => 'required|string',
             'signature' => 'required|string',
-            'right_fingure' => 'required|string',
             'left_fingure' => 'required|string',
             'gender' => 'required|string',
         ];
