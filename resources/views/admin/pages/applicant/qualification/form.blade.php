@@ -90,11 +90,9 @@
                                                     <label class="form-label" for="validationCustom01">Level</label>
                                                     <select class="form-select mb-3" name="type" ">
                                                             <option value="{{ isset($model) ? $model->type : old('type') }}" selected>{{ isset($model) ? $model->type : "Please Select" }}</option>
-                                                            <option value="SLC">SLC</option>
-                                                            <option value="HSEB/NEB">HSEB/NEB</option>
-                                                            <option value="BACHELOR">BACHELOR</option>
+                                                            
                                                             <option value="LAW-BACHELOR">LAW BACHELOR</option>
-                                                            <option value="OTHER">OTHER</option>
+                                                            
                                                         </select>
                                                      @if($errors->first('type'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
