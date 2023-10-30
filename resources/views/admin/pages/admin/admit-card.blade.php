@@ -49,19 +49,25 @@
                                                         <div class="student-admit-card-body" style="border: 1px solid #000; padding: 20px;height: 350px; font-size: 12px;">
                                                             <div class="row">
                                                                 <div class="col-lg-8">
-                                                                    <div style="width:60%; float: left;">
+                                                                    <div style="width:60%; float: left; line-height:1.2;">
 
                                                                         {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate('Name : '.$applicant->full_name_english. ' Dob' . $applicant->dob_english )!!}
 
                                                                         <p>Symbol Number<span style="padding-left:1em;">:
                                                                                     {{ $exam->symbol_number  }}
                                                                         </span></p>
-                                                                            <p>Student Name <strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong></p>
-                                                                                Gender <span style="padding-left:1em;">: {{ $applicant->gender }} <p></p>
-                                                                                <p>Date of birth<span style="padding-left:1em;"> : {{ $applicant->dob_nepali }} B.S. |  {{ $applicant->dob_english }} A.D. </span></p>
-                                                                                <p>Address, Contact Number.<span style="padding-left:1em; text-transform:lowercase;">: {{ $applicant->tole }} {{ $applicant->ward_no }}  {{ $applicant->municipality->name }}, {{ $applicant->district->name }}  {{ $applicant->province->name }} , {{ $applicant->phone_number }}  </span></p>
-                                                                                <p>Exam center<span style="padding-left:1em;">: {{ $exam->province}}</span>
+                                                                            <p>Student Name <strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong><br />
+                                                                                Date of birth<span style="padding-left:1em;"> : {{ $applicant->dob_nepali }} B.S. |  {{ $applicant->dob_english }} A.D. </span><br />
+                                                                                Address, Contact Number.<span style="padding-left:1em; text-transform:lowercase;">: {{ $applicant->tole }} {{ $applicant->ward_no }}  {{ $applicant->municipality->name }}, {{ $applicant->district->name }}  {{ $applicant->province->name }} , {{ $applicant->phone_number }}  </span> <br/>
+                                                                                Exam center<span style="padding-left:1em;">: {{ isset($exam->province_id) ? $exam->province->name : '' }}</span>
                                                                                 </p>
+                                                                                <p>
+                                                                                <strong>Subjects </strong> <br />
+                                                                                   <span> १. संविधान र कानून (बहुबैकल्पिक) </span> <br/>
+                                                                                   <span> २. मस्यौदा लेखन तथा कानून अंग्रेजी नेपाली अनुवाद </span> <br />
+                                                                                   <span> ३. बहस प्रस्तुति तथा अन्तर्वार्ता </span> <br />
+                                                                                </p>
+                                                                               
 
                                                                                 <div style="float:left;">परीक्षार्थीको हस्ताक्षर : <br>
                                                                                     <div style="border-width: 1px; height: 60px; width:300px; border-style: dashed;"></div>
@@ -108,7 +114,9 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                  
                                                             </div>
+                                                            
 
 
                                                         </div>

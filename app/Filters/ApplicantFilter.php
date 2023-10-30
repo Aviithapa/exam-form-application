@@ -20,7 +20,7 @@ class ApplicantFilter
         }
 
         if (isset($filters['status'])) {
-            $query->whereIn('applicant_exam.status',  [$filters['status']]);
+            $query->whereIn('applicant_exam.status',  [$filters['status'], 'GENERATED']);
         }
     }
 }
