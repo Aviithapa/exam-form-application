@@ -114,9 +114,9 @@
                                                 <div class="mb-3">
                                                     <label class="form-label" for="validationCustom01">GENDER</label>
                                                    <select class="form-select mb-3" name="gender">
-                                                            <option value="{{ isset($model) ? $model->gender : old('gender') }}" selected>{{ isset($model) ? $model->gender : "Please Select" }}</option>
+                                                            <option value="{{ isset($applicant) ? $applicant->gender : old('gender') }}" selected>{{ isset($model) ? $applicant->gender : "Please Select" }}</option>
                                                             <option value="MALE">MALE</option>
-                                                            <option value="GOVERNMENT">FEMALE</option>
+                                                            <option value="FEMALE">FEMALE</option>
                                                             <option value="OTHER">OTHER</option>
                                                         </select>
                                                      @if( $errors->first('gender'))
