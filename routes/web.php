@@ -137,3 +137,12 @@ Route::resource('/dashboard/university', UniversityController::class)->middlewar
 Route::get('/dashboard/voucher', [ApplicantController::class, 'voucherIndex'])->middleware(['auth'])->name('voucher.index');
 Route::get('/dashboard/export', [AdminApplicantController::class, 'exportCsv'])->middleware(['auth'])->name('exportCsv.index');
 Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDataIndex'])->middleware(['auth'])->name('center.index');
+
+Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDataIndex'])->middleware(['auth'])->name('center.index');
+
+
+Route::get('/dashboard/personal-detail/{id}', [AdminApplicantController::class, 'personalDetailIndex'])->middleware(['auth'])->name('personalDetail.index');
+Route::get('/dashboard/family-detail/{id}', [AdminApplicantController::class, 'familyDetailIndex'])->middleware(['auth'])->name('familyDetail.index');
+
+Route::put('/dashboard/personal-detail/update/{id}', [AdminApplicantController::class, 'personalDetailUpdate'])->middleware(['auth'])->name('personalDetail.update');
+Route::put('/dashboard/family-detail/update/{id}', [AdminApplicantController::class, 'familyDetailUpdate'])->middleware(['auth'])->name('familyDetail.update');

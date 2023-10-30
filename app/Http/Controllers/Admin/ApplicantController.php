@@ -5,32 +5,41 @@ namespace App\Http\Controllers\Admin;
 use App\Filters\ApplicantFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Applicant\ChangeStatusApplicantRequest;
+use App\Http\Requests\Applicant\CreateFamilyInformationRequest;
+use App\Http\Requests\Applicant\UpdatePersonalInformationRequest;
 use App\Models\Applicant;
 use App\Models\ApplicantExam;
+use App\Models\District;
 use App\Models\Exam;
+use App\Models\Municipality;
+use App\Models\Province;
 use App\Repositories\Applicant\ApplicantRepository;
 use App\Repositories\ApplicantLog\ApplicantLogRepository;
+use App\Repositories\FamilyInformation\FamilyInformationRepository;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Nilambar\NepaliDate\NepaliDate;
 
 class ApplicantController extends Controller
 {
     //
-    protected $applicantRepository, $log,  $applicantLogRepository, $filter;
+    protected $applicantRepository, $log,  $applicantLogRepository, $filter, $familyInformationRepository;
     public function __construct(
         ApplicantRepository $applicantRepository,
         ApplicantLogRepository $applicantLogRepository,
         Log $log,
-        ApplicantFilter $filter
+        ApplicantFilter $filter,
+        FamilyInformationRepository $familyInformationRepository
     ) {
         $this->applicantRepository = $applicantRepository;
         $this->applicantLogRepository = $applicantLogRepository;
         $this->filter = $filter;
         $this->log = $log;
+        $this->familyInformationRepository = $familyInformationRepository;
     }
 
     public function index(Request $request)
@@ -319,5 +328,86 @@ class ApplicantController extends Controller
 
 
         return response()->stream($callback, 200, $headers);
+    }
+
+
+    public function personalDetailIndex($id)
+    {
+        $applicant = $this->applicantRepository->findById($id);
+        $data = $applicant->documents->where('type', 'PERSONAL');
+        $districts = District::all();
+        $provinces = Province::all();
+        $municipalities = Municipality::all();
+        return view('admin.pages.admin.personal-detail', compact('applicant', 'data', 'districts', 'provinces', 'municipalities'));
+    }
+
+    public function familyDetailIndex($id)
+    {
+        $applicant = $this->applicantRepository->findById($id);
+        $data = $applicant->familyInformation;
+        return view('admin.pages.admin.family-detail', compact('data'));
+    }
+
+
+    public function familyDetailUpdate(CreateFamilyInformationRequest $createFamilyInformation, $id)
+    {
+        $data = $createFamilyInformation->all();
+        try {
+            $guardian = $this->familyInformationRepository->update($data, $id);
+            if (!$guardian) {
+                session()->flash('danger', 'Oops! Something went wrong.');
+                return redirect()->back()->withInput();
+            }
+            session()->flash('success', 'Family Information updated successfully');
+            return redirect()->route('applicant.show', ['id' => $guardian->applicant_id]);
+        } catch (Exception $e) {
+            session()->flash('danger', 'Oops! Something went wrong.');
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function personalDetailUpdate(UpdatePersonalInformationRequest $createPersonalInformation, $id)
+    {
+
+        $data = $createPersonalInformation->all();
+        $obj = new NepaliDate();
+        $dateComponents = explode('-', $data['dob_nepali']);
+        $year = $dateComponents[0];
+        $month = $dateComponents[1];
+        $day = $dateComponents[2];
+        $dob_english = $obj->convertBsToAd($year, $month, $day);
+        $date = \Carbon\Carbon::create(
+            $dob_english['year'],
+            $dob_english['month'],
+            $dob_english['day']
+        );
+        $data['dob_english'] = $date->format('Y-m-d');
+        DB::beginTransaction();
+        try {
+            $personalData = $this->applicantRepository->findById($id);
+
+            if (!$personalData) {
+                session()->flash('danger', 'Applicant Data not found.');
+                DB::rollBack(); // Rollback the transaction
+                return redirect()->back()->withInput();
+            }
+
+            $personalData->update($data);
+
+            // Update the associated documents
+            foreach ($data as $key => $value) {
+                if ($personalData->documents->where('document_name', $key)->first()) {
+                    $personalData->documents->where('document_name', $key)->first()->update(['path' => $value]);
+                }
+            }
+            session()->flash('success', 'Applicant Personal Data updated successfully');
+            DB::commit();
+            return redirect()->route('applicant.show', ['id' => $id]);
+        } catch (Exception $e) {
+            dd($e);
+            session()->flash('danger', 'Oops! Something went wrong.');
+            DB::rollBack();
+            return redirect()->back()->withInput();
+        }
     }
 }

@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="card-body">
                                       @if(isset($applicant))
-                                             <form method="POST" action="{{ route('student.personalInformation.update', ["id" => $applicant->id]) }}">
+                                             <form method="POST" action="{{ route('personalDetail.update', ["id" => $applicant->id]) }}">
                                                  @method('PUT')
                                         @else
                                              <form action="{{ route('student.personalInformation') }}" method="POST">
@@ -116,7 +116,7 @@
                                                    <select class="form-select mb-3" name="gender">
                                                             <option value="{{ isset($model) ? $model->gender : old('gender') }}" selected>{{ isset($model) ? $model->gender : "Please Select" }}</option>
                                                             <option value="MALE">MALE</option>
-                                                            <option value="FEMALE">FEMALE</option>
+                                                            <option value="GOVERNMENT">FEMALE</option>
                                                             <option value="OTHER">OTHER</option>
                                                         </select>
                                                      @if( $errors->first('gender'))
@@ -527,14 +527,9 @@
                                                 </div> --}}
                                             </div>
                                          </div>
-                                       @if(isset($applicant) && editStatus($applicant->id))
-                                            <div class="alert alert-pink alert-dismissible fade show mt-2" role="alert">
-                                
-                                                You have successfully applied for the exam 
-                                            </div>
-                                        @else
+                                     
                                           <button class="btn btn-primary mt-3" type="submit">Next</button>
-                                        @endif
+                                       
                                     </form>
 
                                 </div> <!-- end card-body-->

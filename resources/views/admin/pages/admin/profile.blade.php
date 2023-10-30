@@ -29,12 +29,7 @@
                                                 <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
                                                 {{ isset($voucherData) ? $voucherData->status : '' }}
                                             </a>
-
-                                            <a href="#" class="btn btn-soft-info">
-                                                <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
-                                                Edit Profile
-                                            </a>
-                                          
+                            
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +84,11 @@
                                                     
                                                     <div class="row"> 
                                                         <div class="col-xs-12 col-lg-6 col-md-6">
-                                                            <h5 class="mt-4 fs-17 text-dark">Contact Information</h5>
+                                                            <a href="{{ route('personalDetail.index', ['id' => $applicant->id])  }}" class="mt-4 fs-17 text-info" style="float:right;"> Edit</a>
+                                                            <h5 class="mt-4 fs-17 text-dark">Personal Information
+
+                                                            </h5>
+                                                            
                                                              <table class="table table-condensed mb-0 border-top">
                                                                 <tbody>
                                                                     <tr>
@@ -142,6 +141,7 @@
                                                              </table>
                                                         </div>
                                                         <div class="col-xs-12 col-lg-6 col-md-6">
+                                                              <a href="{{ route('familyDetail.index', ['id' => $applicant->id]) }}" class="mt-4 fs-17 text-info" style="float:right;"> Edit</a>
                                                              <h5 class="mt-4 fs-17 text-dark">Family Information</h5>
                                                              <table class="table table-condensed mb-0 border-top">
                                                                 <tbody>
