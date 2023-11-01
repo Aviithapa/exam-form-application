@@ -115,9 +115,12 @@ class ApplicantController extends Controller
         $this->authorize('show', $this->applicantRepository->getModel());
         $applicant = $this->applicantRepository->findById($id);
         $voucherData = null;
-        if ($applicant)
+        $examData = null;
+        if ($applicant) {
             $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->first();
-        return view('admin.pages.admin.profile', compact('applicant', 'voucherData'));
+            $examData = ApplicantExam::all()->where('applicant_id', $applicant->id);
+        }
+        return view('admin.pages.admin.profile', compact('applicant', 'voucherData', 'examData'));
     }
 
     public function format($id)

@@ -111,7 +111,7 @@
                                                             <tr>
                                                             <td>{{ $pageRelativeIndex }}</td>
                                                             <td>{{ $applicant->full_name_english }}</td>
-                                                            <td>{{ $applicant->dob_nepali }}</td>
+                                                            <td>{{ $applicant->citizenship_number}}</td>
                                                             <td>{{ $applicant->created_at }}</td>
                                                             <td><span class="badge bg-info-subtle text-info">{{ $applicant->applicant_exam_status }}</span></td>
                                                             <td>{{ isset($isAdmit) ? $applicant->symbol_number : $applicant->dob_nepali }}</td>

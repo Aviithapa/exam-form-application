@@ -61,6 +61,11 @@
                                                     aria-controls="home" aria-selected="true"
                                                     href="#personal-documents">Personal Documents</a></li>
 
+                                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+                                                    data-bs-target="#exam" type="button" role="tab"
+                                                    aria-controls="home" aria-selected="true"
+                                                    href="#exam">Exam Details</a></li>
+
                                                 
                                             <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
                                                     data-bs-target="#user-activities" type="button" role="tab"
@@ -336,6 +341,49 @@
                                                              </table>
                                                         </div>
                                                     </div>
+                                            </div>
+
+                                             <div id="exam" class="tab-pane">
+                                                <div class="row m-t-10">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered mb-0">
+                                                                <thead>
+                                                                   <tr>
+                                                          
+                                                            <th>Name</th>
+                                                            <th>Phone Number</th>
+                                                            <th>Bank Name</th>
+                                                            <th>Total Amount</th>
+                                                            <th>Exam Center</th>
+                                                    
+                                                            
+                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                    @if(isset($examData))
+                                                    @foreach($examData as $exam)
+                                                                    
+                                                        <tr>
+                                             
+                                                            <td>{{ $exam->name }}</td>
+                                                            <td>{{ $exam->contact_number }}</td>
+                                                            <td>{{ $exam->bank_name }}</td>
+                                                            <td>{{ $exam->total_amount }}</td>
+                                                            <td>{{ isset($exam->province) ? $exam->province->name  : ''}}</td>
+                                                             
+
+                                                        </tr>
+                                                        @endforeach
+
+                                                    @endif
+    
+                                                    </tbody>
+                                                                    
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <!-- Activities -->
