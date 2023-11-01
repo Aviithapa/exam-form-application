@@ -64,27 +64,36 @@ class QualificationController extends Controller
             foreach ($data as $key => $value) {
                 // Define the types based on the keys in $data
                 $documentTypes = null;
-                if ($data['type'] === '7-YEAR-PLEADER') {
-                    $documentTypes = [
-                        'licence' => $data['type'],
-                    ];
-                } else {
-                    if ($data['provisional'] != null)
-                        $documentTypes = [
-                            'provisional' => $data['type'],
-                            'character'  => $data['type'],
-                            'transcript' => $data['type'],
-                        ];
-                    else
-                        $documentTypes = [
-                            'character'  => $data['type'],
-                            'transcript' => $data['type'],
-                        ];
+
+
+                if ($data['provisional']) {
+                    $documentTypes['provisional'] = $data['type'];
+                }
+
+                if ($data['character']) {
+                    $documentTypes['character'] = $data['type'];
+                }
+
+                if ($data['transcript']) {
+                    $documentTypes['transcript'] = $data['type'];
+                }
+
+                if ($data['transcript_add']) {
+                    $documentTypes['transcript_add'] = $data['type'];
+                }
+
+                if ($data['transcript_additional']) {
+                    $documentTypes['transcript_additional'] = $data['type'];
+                }
+
+                if ($data['equivalence']) {
+                    $documentTypes['equivalence'] = $data['type'];
                 }
 
 
-
-                // dd($data);
+                if ($data['licence']) {
+                    $documentTypes['licence'] = $data['type'];
+                }
 
 
                 // Check if the key exists in the $documentTypes array

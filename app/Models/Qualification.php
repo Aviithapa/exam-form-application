@@ -19,7 +19,8 @@ class Qualification extends Model
         'percentage',
         'type',
         'applicant_id',
-        'university_name'
+        'university_name',
+        'law_type'
     ];
 
     public function documents()

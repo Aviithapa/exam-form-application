@@ -102,7 +102,10 @@
                                                     <select class="form-select mb-3" name="type" id="type-select" onchange="level()">
                                                             <option value="{{ isset($model) ? $model->type : old('type') }}" selected>{{ isset($model) ? $model->type : "Please Select" }}</option>
                                                             <option value="LAW-BACHELOR">LAW BACHELOR</option>
-                                                            <option value="7-YEAR-PLEADER">7 Year Pleader</option>   
+                                                            <option value="7-YEAR-PLEADER">7 Year Pleader</option> 
+                                                            <option value="PRIVATE">PRIVATE</option>   
+                                                            <option value="OTHER">OTHER</option>   
+
                                                         </select>
                                                      @if($errors->first('type'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
@@ -110,12 +113,29 @@
                                                             </div>
                                                      @endif
                                                 </div>
-                                             </div>
+                                             </div>      
+                                               
+                                               <div class="col-lg-3 col-md-3 col-sm-6"> 
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">Law Type</label>
+                                                    <select class="form-select mb-3" name="law_type" required>
+                                                            <option value="{{ isset($model) ? $model->law_type : old('law_type') }}" selected>{{ isset($model) ? $model->law_type : "Please Select Law Type" }}</option>
+                                                            <option value="BALLB">BALLB</option>
+                                                            <option value="LLB">LLB</option> 
+                                                            <option value="OTHER">OTHER</option>   
 
-                                                                                    
+                                                        </select>
+                                                     @if($errors->first('type'))
+                                                            <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                {{ $errors->first('law_type') }}
+                                                            </div>
+                                                     @endif
+                                                </div>
+                                             </div>                       
                                         </div>
-                                        <div class="row" style="display: flex; justify-content:space-between;" id="BACHELOR">
-                                            <div class="col-lg-3">
+                                        
+                                        <div class="row" style="" id="BACHELOR">
+                                            <div class="col-lg-4">
                                                 <div class="grid-body">
                                                     <div class="row">
                                                         <div class="col-lg-12">
@@ -155,7 +175,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                              <div class="col-lg-3">
+                                              <div class="col-lg-4">
                                                 <div class="grid-body">
                                                     <div class="row">
                                                         <div class="col-lg-12">
@@ -201,7 +221,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                             <div class="col-lg-3">
+                                             <div class="col-lg-4">
                                                 <div class="grid-body">
                                                     <div class="row">
                                                         <div class="col-lg-12">
@@ -246,10 +266,131 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+                                             <div class="col-lg-4">
+                                                <div class="grid-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="col-md-12 col-lg-12">
+                                                                <label>Equivalence *</label><br>
+                                                                @if(isset($model))
+                                                                    <img src="{{isset($model->documents)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
+                                                                         id="equivalence_img">
+                            
+                                                                @else
+                                                                    <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
+                                                                         id="equivalence_img">
+                                                                @endif
+                                                            </div>
+                            
+                                                            <div class="form-group col-md-12 col-lg-12">
+                                                                <small>Below 1 mb</small><br>
+                                                                <small id="equivalence_help_text" class="help-block"></small>
+                                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                                                     aria-valuemax="100"
+                                                                     aria-valuenow="0">
+                                                                    <div id="equivalence_progress" class="progress-bar progress-bar-success"
+                                                                         style="width: 0%">
+                                                                    </div>
+                                                                </div><br>
+                                                                <input type="file" id="equivalence_image" name="equivalence_image" 
+                                                                       onclick="anyFileUploader('equivalence')">
+                                                                <input type="hidden" id="equivalence_path" name="equivalence" class="form-control"
+                                                                       value="{{isset($model)?$model->documents[0]->path:''}}"/>
+                                                                 @if($errors->first('equivalence'))
+                                                                  <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                             {{ $errors->first('equivalence') }}
+                                                                  </div>
+                                                                 @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             <div class="col-lg-4">
+                                                <div class="grid-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="col-md-12 col-lg-12">
+                                                                <label>Transcript Additional *</label><br>
+                                                                @if(isset($model))
+                                                                    <img src="{{isset($model->documents)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
+                                                                         id="transcript_add_img">
+                            
+                                                                @else
+                                                                    <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
+                                                                         id="transcript_add_img">
+                                                                @endif
+                                                            </div>
+                            
+                                                            <div class="form-group col-md-12 col-lg-12">
+                                                                <small>Below 1 mb</small><br>
+                                                                <small id="transcript_add_help_text" class="help-block"></small>
+                                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                                                     aria-valuemax="100"
+                                                                     aria-valuenow="0">
+                                                                    <div id="transcript_add_progress" class="progress-bar progress-bar-success"
+                                                                         style="width: 0%">
+                                                                    </div>
+                                                                </div><br>
+                                                                <input type="file" id="transcript_add_image" name="transcript_add_image" 
+                                                                       onclick="anyFileUploader('transcript_add')">
+                                                                <input type="hidden" id="transcript_add_path" name="transcript_add" class="form-control"
+                                                                       value="{{isset($model)?$model->documents[0]->path:''}}"/>
+                                                                 @if($errors->first('transcript_add'))
+                                                                  <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                             {{ $errors->first('transcript_add') }}
+                                                                  </div>
+                                                                 @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="grid-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="col-md-12 col-lg-12">
+                                                                <label>Transcript Additional *</label><br>
+                                                                @if(isset($model))
+                                                                    <img src="{{isset($model->documents)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
+                                                                         id="transcript_additional_img">
+                            
+                                                                @else
+                                                                    <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
+                                                                         id="transcript_additional_img">
+                                                                @endif
+                                                            </div>
+                            
+                                                            <div class="form-group col-md-12 col-lg-12">
+                                                                <small>Below 1 mb</small><br>
+                                                                <small id="transcript_additional_help_text" class="help-block"></small>
+                                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                                                     aria-valuemax="100"
+                                                                     aria-valuenow="0">
+                                                                    <div id="transcript_additional_progress" class="progress-bar progress-bar-success"
+                                                                         style="width: 0%">
+                                                                    </div>
+                                                                </div><br>
+                                                                <input type="file" id="transcript_additional_image" name="transcript_additional_image" 
+                                                                       onclick="anyFileUploader('transcript_additional')">
+                                                                <input type="hidden" id="transcript_additional_path" name="transcript_additional" class="form-control"
+                                                                       value="{{isset($model)?$model->documents[0]->path:''}}"/>
+                                                                 @if($errors->first('transcript_additional'))
+                                                                  <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                             {{ $errors->first('transcript_additional') }}
+                                                                  </div>
+                                                                 @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                       
+                                        
                                          </div>
-                                           <div class="row" style="display: flex; justify-content:space-between;" id="7-YEAR-PLEADER">
-                                            <div class="col-lg-3">
+                                        <div class="row" style="display: flex; justify-content:space-between;" id="7-YEAR-PLEADER">
+                                            <div class="col-lg-4">
                                                 <div class="grid-body">
                                                     <div class="row">
                                                         <div class="col-lg-12">
@@ -294,9 +435,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                             
-                                            
                                          </div>
+
+                                        
+                                       
+
+                                         
+
+                                             
                                        
                                        
                                          <button class="btn btn-primary mt-3" type="submit">Save</button>
@@ -320,11 +466,8 @@
              switch (sb.value) {
                 case 'LAW-BACHELOR' : 
                     $("#BACHELOR").show();
-                    $("#7-YEAR-PLEADER").hide();
-
                 break;
                 case '7-YEAR-PLEADER' :
-                    console.log('you are here');
                     $("#BACHELOR").hide();
                     $("#7-YEAR-PLEADER").show();
                 break;
