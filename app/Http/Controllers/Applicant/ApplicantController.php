@@ -206,7 +206,7 @@ class ApplicantController extends Controller
             $log['applicant_id'] = $applicant->id;
             $this->logReport($log);
             session()->flash('success', 'Family Information created successfully');
-            return redirect()->route('qualification.index');
+            return redirect()->route('qualification.create');
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
             return redirect()->back()->withInput();
