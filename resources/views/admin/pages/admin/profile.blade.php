@@ -325,18 +325,10 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Fingure Left</th>
+                                                                        <th scope="row">Fingure </th>
                                                                         <td>
                                                                             <a href="#" class="ng-binding">
                                                                                <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'left_fingure')->pluck('path')->first()) : imageNotFound() }}" alt="Citizenship Front" width="100" onclick="onClick(this)" >
-                                                                            </a>
-                                                                        </td>
-                                                                    </tr>
-                                                                     <tr>
-                                                                        <th scope="row">Fingure Right</th>
-                                                                        <td>
-                                                                            <a href="#" class="ng-binding">
-                                                                               <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'right_fingure')->pluck('path')->first()) : imageNotFound() }}" alt="Citizenship Back" width="100" onclick="onClick(this)" >
                                                                             </a>
                                                                         </td>
                                                                     </tr>

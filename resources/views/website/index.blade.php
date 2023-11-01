@@ -25,7 +25,10 @@
                        <div class="card">
                                 <div class="card-body">
                                     <div class="row justify-content-center mt-4">
-                                        <div class="col-11">
+                                          <div style="text-align: center;">
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/I6F-UdZECRU?si=v90PxtOOM_ibX5pn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                        </div>
+                                        <div class="col-11 mt-5">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div>
@@ -56,11 +59,27 @@
                                                         <p class="faq-answer mb-4">
                                                              <strong>Profile Photo:</strong>  <br />
                                                              <strong>Citizenship Front and Back:</strong>  <br />
-                                                             <strong>Lapche Left and Right: </strong>  <br/> 
+                                                             <strong>Lapche: </strong>  <br/> 
                                                              <strong>Signature </strong>  <br/> 
-
-                                                           
+                                                             <strong>Transcript </strong>  <br/>
+                                                             <strong>Character </strong>  <br/> 
+                                                             <strong>Provisional (if availble) </strong>  <br/> 
+                                                             <strong>Payment Voucher (Online or Voucher Image) </strong>  <br/> 
+                                                             <strong>Licence Image for Pleader </strong>  <br/> 
+                                                            
                                                         </p>
+                                                    </div>
+                                                </div> <!-- end col -->
+
+                                                 <div class="col-md-12">
+                                                    <div>
+                                                        <div class="faq-question-q-box">Q.</div>
+                                                        <h4 class="faq-question">How can i fill my Pleader Licence?</h4>
+                                                        <p class="faq-answer mb-4">
+                                                           If you hold a pleader's license, you need to provide your Personal Information and Guardian Information. 
+                                                           After that, on the Qualification page, you should click on the create new qualifications. If you do not possess any details for the fields, you must specify "pleader" in all the fields. 
+                                                           Additionally, you should select "pleader" as your type and upload an image of your license. 
+                                                       </p>
                                                     </div>
                                                 </div> <!-- end col -->
                                             </div> <!-- end-row -->
