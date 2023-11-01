@@ -118,14 +118,15 @@
                                                <div class="col-lg-3 col-md-3 col-sm-6"> 
                                                 <div class="mb-3">
                                                     <label class="form-label" for="validationCustom01">Law Type</label>
-                                                    <select class="form-select mb-3" name="law_type" required>
+                                                    <select class="form-select mb-3" id="lawType" name="law_type" onchange="LawType()" required>
                                                             <option value="{{ isset($model) ? $model->law_type : old('law_type') }}" selected>{{ isset($model) ? $model->law_type : "Please Select Law Type" }}</option>
                                                             <option value="BALLB">BALLB</option>
                                                             <option value="LLB">LLB</option> 
                                                             <option value="OTHER">OTHER</option>   
 
                                                         </select>
-                                                     @if($errors->first('type'))
+                                                        <input type="text" class="form-control" id="lawValue" placeholder="Write Law Type" name="nothing" value="{{  old('law_type') }}" style="display: none;">
+                                                     @if($errors->first('law_type'))
                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                 {{ $errors->first('law_type') }}
                                                             </div>
@@ -475,14 +476,13 @@
       }
 
       function chnagePclType(){
-         const sb = document.querySelector('#selectUniValue');
+        const sb = document.querySelector('#selectUniValue');
          console.log(sb.value);
              switch (sb.value) {
                 case 'other' : 
                     $("#uniValue").attr('name', 'university_name');
                     $("#selectUniValue").attr('name', 'nothing');
                     $("#uniValue").show()
-
                 break;
                default :
                     $("#selectUniValue").attr('name', 'university_name');
@@ -490,6 +490,25 @@
                     $("#uniValue").hide()
                 break;
              }
+      }
+
+       function LawType(){
+          const sb = document.querySelector('#lawType');
+         console.log(sb.value);
+             switch (sb.value) {
+                case 'OTHER' : 
+                    $("#lawValue").attr('name', 'law_type');
+                    $("#lawType").attr('name', 'nothing');
+                    $("#lawValue").show()
+
+                break;
+               default :
+                    $("#lawValue").attr('name', 'nothing');
+                    $("#lawType").attr('name', 'law_type');
+                    $("#lawValue").hide()
+                break;
+             }
+         
       }
 </script>
 @endpush
