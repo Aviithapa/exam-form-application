@@ -54,7 +54,8 @@ class ApplicantController extends Controller
         $data['status'] = isset($data['status']) ? $data['status'] : 'NEW';
         $this->filter->applyFilters($applicants, $data);
         $applicants = $applicants->paginate(50);
-        return view('admin.pages.applicant-list', compact('applicants', 'request'));
+        $provinces = Province::all();
+        return view('admin.pages.applicant-list', compact('applicants', 'request', 'provinces'));
     }
 
     public function approve(Request $request)
@@ -70,8 +71,9 @@ class ApplicantController extends Controller
         $this->filter->applyFilters($applicants, $data);
 
         $applicants = $applicants->paginate(50);
+        $provinces = Province::all();
 
-        return view('admin.pages.applicant-list', compact('applicants', 'request'));
+        return view('admin.pages.applicant-list', compact('applicants', 'request', 'provinces'));
     }
 
     public function rejected(Request $request)
@@ -87,8 +89,9 @@ class ApplicantController extends Controller
         $this->filter->applyFilters($applicants, $data);
 
         $applicants = $applicants->paginate(50);
+        $provinces = Province::all();
 
-        return view('admin.pages.applicant-list', compact('applicants'));
+        return view('admin.pages.applicant-list', compact('applicants', 'provinces'));
     }
 
     public function admitList(Request $request)
@@ -106,7 +109,8 @@ class ApplicantController extends Controller
         $applicants = $applicants->paginate(50);
 
         $isAdmit = true;
-        return view('admin.pages.applicant-list', compact('applicants', 'isAdmit'));
+        $provinces = Province::all();
+        return view('admin.pages.applicant-list', compact('applicants', 'isAdmit', 'provinces'));
     }
 
 

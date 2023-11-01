@@ -31,12 +31,12 @@
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="Name" name="full_name_english" value="{{ isset($request) ? $request->get('full_name_english') : '' }}">
                                                 </div>
                                             </div> 
-                                            <div class="col-lg-3 col-md-3 col-sm-6"> 
+                                            <div class="col-lg-2 col-md-3 col-sm-6"> 
                                                 <div class="mb-3">
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="Citizenship Number" name="citizenship_number" value="{{ isset($request) ? $request->get('citizenship_number') : '' }}">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-6"> 
+                                            <div class="col-lg-2 col-md-3 col-sm-6"> 
                                                 <div class="mb-3">
                                                     <input type="text" class="form-control" id="validationCustom01" placeholder="YYYY-MM-DD" name="dob_nepali" value="{{ isset($request) ? $request->get('dob_nepali') : '' }}">
                                                 </div>
@@ -52,6 +52,16 @@
                                                             <option value="READY-FOR-ADMIT-CARD"> Ready for admit card </option>
                                                             <option value="GENERATED"> Admit Card Generated </option>
                                                         </select>
+                                                </div>
+                                            </div>
+                                             <div class="col-lg-2 col-md-2 col-sm-6"> 
+                                                <div class="mb-3">
+                                                       <select class="form-control select2" name="exam_center" data-toggle="select2">
+                                                            <option value="">Search Exam Center Wise</option>
+                                                        @foreach($provinces as $province)
+                                                            <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                        @endforeach
+                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-1 col-md-1 col-sm-6"> 

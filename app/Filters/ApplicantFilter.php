@@ -22,5 +22,9 @@ class ApplicantFilter
         if (isset($filters['status'])) {
             $query->whereIn('applicant_exam.status',  [$filters['status'], 'GENERATED']);
         }
+
+        if (isset($filters['exam_center'])) {
+            $query->where('applicant_exam.province_id',  $filters['exam_center']);
+        }
     }
 }
