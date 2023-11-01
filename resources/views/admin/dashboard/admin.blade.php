@@ -27,7 +27,7 @@
                                             <i class="widget-icon"></i>
                                         </div>
                                         <h6 class="text-uppercase mt-0" title="Customers">Total Applicant</h6>
-                                        <h2 class="my-2">{{ count($applicant) }}</h2>
+                                        <h2 class="my-2">{{ isset($applicant_exam) ? count($applicant_exam) : 0 }}</h2>
                                         <p class="mb-0">
                                             {{-- <span class="badge bg-white bg-opacity-10 me-1">8.21%</span>
                                             <span class="text-nowrap">Since last month</span> --}}
