@@ -252,7 +252,7 @@ class ApplicantController extends Controller
                 $existingAttachment = $applicant->documents->where('exam_id', $exam->id)->first();
                 $existingAttachment->update(['path' => $data['voucher']]);
 
-                $applicant->exams()->updateExistingPivot($exam->id, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'bank_name' => $data['bank_name'], 'province_id' => $data['province_id'], 'total_amount' => $data['total_amount']]);
+                $applicant->exams()->updateExistingPivot($exam->id, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'bank_name' => $data['bank_name'], 'province_id' => $data['province_id'], 'total_amount' => $data['total_amount'], 'updated_at' => now()]);
             } else {
                 // If not attached, create a new attachment.
                 $document = new ApplicantDocuments();
@@ -262,7 +262,11 @@ class ApplicantController extends Controller
                 $document->exam_id = $exam->id;
                 $document->type = DocumentTypeEnum::VOUCHER;
                 $document->save();
-                $applicant->exams()->attach($exam, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'bank_name' => $data['bank_name'], 'province_id' => $data['province_id'], 'total_amount' => $data['total_amount']]);
+                $applicant->exams()->attach($exam, [
+                    'name' => $data['name'], 'contact_number' => $data['contact_number'], 'bank_name' => $data['bank_name'], 'province_id' => $data['province_id'], 'total_amount' => $data['total_amount'],
+                    'created_at' => now(),  // Set the created_at timestamp
+                    'updated_at' => now()
+                ]);
             }
 
             $log['status'] = 'VOUCHER DETAILS';

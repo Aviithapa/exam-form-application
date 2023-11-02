@@ -80,6 +80,7 @@
                                                             <th>Role</th>
                                                             <th>Status</th>
                                                             <th>Token</th>
+                                                            <th>Referece</th>
                                                             <th>Edit</th>
                                                         </tr>
                                                     </thead>
@@ -94,6 +95,7 @@
                                                                <span class="red-square" style="width: 20px; height: 10px; background-color: {{ $user->status ? 'green' : 'red' }}; display: inline-block;"></span>
                                                             </td>
                                                             <td>{{ $user->token }}</td>
+                                                            <td>{{ $user->reference }}
                                                             <td><a href="{{ route('dashboard.user.edit', ['id' => $user->id]) }}"><span class="badge bg-info-subtle text-info">Edit</span></a>
                                                             {{-- <form id="delete-form-{{ $exam->id }}" action="{{ route('dashboard.exam.destroy', ['id' => $exam->id]) }}" method="POST" style="display: none;">
                                                                 @csrf
