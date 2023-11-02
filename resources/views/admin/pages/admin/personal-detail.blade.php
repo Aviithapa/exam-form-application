@@ -43,7 +43,7 @@
                                                                 <label>Profile Photo *</label><br>
                                                                 @if(isset($data))
                                                                     @php
-                                                                    $profile = $data->where('document_name', 'profile_picture')->first();
+                                                                    $profile = $data->where('document_name', 'profile')->first();
                                                                     $imagePath = $profile ? getImage($profile->path) : imageNotFound();
                                                                     @endphp
                                                                     <img src="{{url($imagePath)}}" height="150" width="150"
