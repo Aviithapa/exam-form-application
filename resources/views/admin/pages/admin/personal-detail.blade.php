@@ -68,7 +68,7 @@
                                                                 <input type="file" id="profile_image" name="profile_image"
                                                                        onclick="anyFileUploader('profile')" >
                                                                 <input type="hidden" id="profile_path" name="profile" class="form-control"
-                                                                       value="{{isset($data[3]->path)?$data[3]->path:''}}"/>
+                                                                       value="{{isset($profile)?$profile->path:''}}"/>
                                                                  @if($errors->first('profile'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('profile') }}
@@ -364,7 +364,7 @@
                                                                 <input type="file" id="citizenship_front_image" name="citizenship_front_image"
                                                                        onclick="anyFileUploader('citizenship_front')">
                                                                 <input type="hidden" id="citizenship_front_path" name="citizenship_front" class="form-control"
-                                                                       value="{{isset($data)?$data[0]->path:''}}"/>
+                                                                       value="{{isset($citizen)?$citizen->path:''}}"/>
                                                                  @if($errors->first('citizenship_front'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('citizenship_front') }}
@@ -410,7 +410,7 @@
                                                                 <input type="file" id="citizenship_back_image" name="citizenship_back_image"
                                                                        onclick="anyFileUploader('citizenship_back')">
                                                                 <input type="hidden" id="citizenship_back_path" name="citizenship_back" class="form-control"
-                                                                       value="{{isset($data)?$data[1]->path:''}}"/>
+                                                                       value="{{isset($citizenBack)?$citizenBack->path:''}}"/>
                                                                  @if($errors->first('citizenship_back'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('citizenship_back') }}
@@ -456,7 +456,7 @@
                                                                 <input type="file" id="signature_image" name="signature_image"
                                                                        onclick="anyFileUploader('signature')">
                                                                 <input type="hidden" id="signature_path" name="signature" class="form-control"
-                                                                       value="{{isset($data)?$data[2]->path:''}}"/>
+                                                                       value="{{isset($signature)?$signature->path:''}}"/>
                                                                  @if($errors->first('signature'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('signature') }}
@@ -500,7 +500,7 @@
                                                                 <input type="file" id="left_fingure_image" name="left_fingure_image"
                                                                        onclick="anyFileUploader('left_fingure')">
                                                                 <input type="hidden" id="left_fingure_path" name="left_fingure" class="form-control"
-                                                                       value="{{isset($data[3]->path)?$data[3]->path:''}}"/>
+                                                                       value="{{isset($left_fingure)?$left_fingure->path:''}}"/>
                                                                  @if($errors->first('left_fingure'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('left_fingure') }}
