@@ -83,6 +83,27 @@
                                                        </p>
                                                     </div>
                                                 </div> <!-- end col -->
+
+                                                <div class="col-md-12">
+                                                    <div>
+                                                        <div class="faq-question-q-box">Q.</div>
+                                                        <h4 class="faq-question">I am not receiving any otp code?</h4>
+                                                        <p class="faq-answer mb-4">
+                                                           If you haven't received an OTP code, please wait for an hour. Afterward, attempt to log in. 
+                                                           If it indicates that your account hasn't been activated, kindly click on the "Click Here" link. 
+                                                       </p>
+                                                    </div>
+                                                </div> <!-- end col -->
+
+                                                 <div class="col-md-12">
+                                                    <div>
+                                                        <div class="faq-question-q-box">Q.</div>
+                                                        <h4 class="faq-question">How can I review my account?</h4>
+                                                        <p class="faq-answer mb-4">
+                                                            Click on the icon located in the top right corner, associated with the applicant's name. From there, select "My Account," which will redirect you to your profile. Here, you can view your activities, details, and qualifications
+                                                       </p>
+                                                    </div>
+                                                </div> <!-- end col -->
                                             </div> <!-- end-row -->
                                         </div>
                                     </div>

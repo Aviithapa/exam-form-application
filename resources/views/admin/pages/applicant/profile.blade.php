@@ -55,6 +55,17 @@
                                                     data-bs-target="#projects" type="button" role="tab"
                                                     aria-controls="home" aria-selected="true"
                                                     href="#projects">Qualification</a></li>
+
+                                             <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+                                                    data-bs-target="#personal-documents" type="button" role="tab"
+                                                    aria-controls="home" aria-selected="true"
+                                                    href="#personal-documents">Personal Documents</a></li>
+
+                                            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+                                                    data-bs-target="#exam" type="button" role="tab"
+                                                    aria-controls="home" aria-selected="true"
+                                                    href="#exam">Exam Details</a></li>
+
                                             <li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
                                                     data-bs-target="#user-activities" type="button" role="tab"
                                                     aria-controls="home" aria-selected="true"
@@ -72,12 +83,23 @@
                                                 <div class="profile-desk">
                                                     <h5 class="text-uppercase fs-17 text-dark">{{ $applicant->full_name_nepali }} | {{ $applicant->full_name_english }}</h5>
 
-                                                    
                                                     <div class="row"> 
                                                         <div class="col-xs-12 col-lg-6 col-md-6">
-                                                            <h5 class="mt-4 fs-17 text-dark">Contact Information</h5>
+                                                         
+                                                            <h5 class="mt-4 fs-17 text-dark">Personal Information
+
+                                                            </h5>
+                                                            
                                                              <table class="table table-condensed mb-0 border-top">
                                                                 <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">Gender</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                                {{ $applicant->gender }} 
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
                                                                     <tr>
                                                                         <th scope="row">Date of birth</th>
                                                                         <td>
@@ -107,14 +129,24 @@
                                                                             </a>
                                                                         </td>
                                                                     </tr>
+                                                                     <tr>
+                                                                        <th scope="row">Caste</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                                {{ $applicant->caste }} 
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
 
                                                                 </tbody>
                                                              </table>
                                                         </div>
                                                         <div class="col-xs-12 col-lg-6 col-md-6">
+                                                              
                                                              <h5 class="mt-4 fs-17 text-dark">Family Information</h5>
                                                              <table class="table table-condensed mb-0 border-top">
                                                                 <tbody>
+    
                                                                     <tr>
                                                                         <th scope="row">Grand Father Name</th>
                                                                         <td>
@@ -150,16 +182,144 @@
                                                                             </a>
                                                                         </td>
                                                                     </tr>
+                                                                    <tr>
+                                                                        <th scope="row">Mother Tongue</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                                {{ $applicant->mother_tongue }} 
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                     <tr>
+                                                                        <th scope="row">Working</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                                {{ $applicant->working }} 
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                     <tr>
+                                                                        <th scope="row">Office Name</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                                {{ $applicant->office_name }} 
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
 
                                                                 </tbody>
                                                              </table>
                                                         </div>
                                                     </div>
+                                            
                                                    
                                                 </div> <!-- end profile-desk -->
                                             </div> <!-- about-me -->
 
                                               <!-- profile -->
+
+                                                     <div id="personal-documents" class="tab-pane">
+                                                    <div class="row"> 
+                                                        <div class="col-xs-12 col-lg-6 col-md-6">
+                                                            <h5 class="mt-4 fs-17 text-dark">Contact Information</h5>
+                                                             <table class="table table-condensed mb-0 border-top">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">Voucher Image</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                               <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'voucher')->pluck('path')->first()) : imageNotFound() }}" alt="Voucher Image" width="100" onclick="onClick(this)" >
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">Citizenship Front</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                               <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'citizenship_front')->pluck('path')->first()) : imageNotFound() }}" alt="Citizenship Front" width="100" onclick="onClick(this)" >
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                     <tr>
+                                                                        <th scope="row">Citizenship Back</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                               <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'citizenship_back')->pluck('path')->first()) : imageNotFound() }}" alt="Citizenship Back" width="100" onclick="onClick(this)" >
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                             </table>
+                                                        </div>
+                                                        <div class="col-xs-12 col-lg-6 col-md-6">
+                                                             <h5 class="mt-4 fs-17 text-dark">Family Information</h5>
+                                                             <table class="table table-condensed mb-0 border-top">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th scope="row">Signature Image</th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                               <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'signature')->pluck('path')->first()) : imageNotFound() }}" alt="Voucher Image" width="100" onclick="onClick(this)" >
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">Fingure </th>
+                                                                        <td>
+                                                                            <a href="#" class="ng-binding">
+                                                                               <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'left_fingure')->pluck('path')->first()) : imageNotFound() }}" alt="Citizenship Front" width="100" onclick="onClick(this)" >
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                             </table>
+                                                        </div>
+                                                    </div>
+                                            </div>
+
+                                              <div id="exam" class="tab-pane">
+                                                <div class="row m-t-10">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered mb-0">
+                                                                <thead>
+                                                                   <tr>
+                                                          
+                                                            <th>Name</th>
+                                                            <th>Phone Number</th>
+                                                            <th>Bank Name</th>
+                                                            <th>Total Amount</th>
+                                                            <th>Exam Center</th>
+                                                    
+                                                            
+                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                    @if(isset($examData))
+                                                    @foreach($examData as $exam)
+                                                                    
+                                                        <tr>
+                                             
+                                                            <td>{{ $exam->name }}</td>
+                                                            <td>{{ $exam->contact_number }}</td>
+                                                            <td>{{ $exam->bank_name }}</td>
+                                                            <td>{{ $exam->total_amount }}</td>
+                                                            <td>{{ isset($exam->province) ? $exam->province->name  : ''}}</td>
+                                                             
+
+                                                        </tr>
+                                                        @endforeach
+
+                                                    @endif
+    
+                                                    </tbody>
+                                                                    
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div id="projects" class="tab-pane">
                                                 <div class="row m-t-10">
                                                     <div class="col-md-12">

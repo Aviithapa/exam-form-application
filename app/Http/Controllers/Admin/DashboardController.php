@@ -83,6 +83,12 @@ class DashboardController extends Controller
     public function profile()
     {
         $applicant = Auth::user()->applicant;
-        return view('admin.pages.applicant.profile', compact('applicant'));
+        $voucherData = null;
+        $examData = null;
+        if ($applicant) {
+            $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->first();
+            $examData = ApplicantExam::all()->where('applicant_id', $applicant->id);
+        }
+        return view('admin.pages.applicant.profile', compact('applicant', 'voucherData', 'examData'));
     }
 }
