@@ -37,7 +37,7 @@ class AuthController extends Controller
             } else {
                 Auth::logout();
                 return redirect()->back()->withErrors([
-                    'active' => 'You must be an active user to active account please  <a href="' . route('register.verify.otp', ['email' => $request->input('email')]) . '">click here</a>'
+                    'active' => 'You must be an active user to active account please  <a href="' . route('register.verify.otp', ['email' => $request->input('email')]) . '">click here</a> or have to wait a while after verification of email completed you can easily login'
                 ]);
             }
         }
