@@ -57,6 +57,7 @@
                                                         <div class="faq-question-q-box">Q.</div>
                                                         <h4 class="faq-question">Which documents are required while filling the form?</h4>
                                                         <p class="faq-answer mb-4">
+                                                             <span style="color: red;">Please upload images files only, pdf will not supported.</span>
                                                              <strong>Profile Photo:</strong>  <br />
                                                              <strong>Citizenship Front and Back:</strong>  <br />
                                                              <strong>Lapche: </strong>  <br/> 
