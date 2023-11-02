@@ -42,7 +42,11 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Profile Photo *</label><br>
                                                                 @if(isset($data))
-                                                                    <img src="{{url(isset($data[3]->path)?getImage($data[3]->path):imageNotFound())}}" height="150" width="150"
+                                                                    @php
+                                                                    $profile = $data->where('document_name', 'profile_picture')->first();
+                                                                    $imagePath = $profile ? getImage($profile->path) : imageNotFound();
+                                                                    @endphp
+                                                                    <img src="{{url($imagePath)}}" height="150" width="150"
                                                                          id="profile_img">
                             
                                                                 @else
