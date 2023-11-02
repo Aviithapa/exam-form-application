@@ -70,6 +70,7 @@
                                                                              {{ $errors->first('profile') }}
                                                                   </div>
                                                                  @endif
+                                                                 <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -361,6 +362,7 @@
                                                                              {{ $errors->first('citizenship_front') }}
                                                                   </div>
                                                                  @endif
+                                                                <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -401,6 +403,7 @@
                                                                              {{ $errors->first('citizenship_back') }}
                                                                   </div>
                                                                  @endif
+                                                                <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -441,6 +444,7 @@
                                                                              {{ $errors->first('signature') }}
                                                                   </div>
                                                                  @endif
+                                                                <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -481,6 +485,7 @@
                                                                              {{ $errors->first('left_fingure') }}
                                                                   </div>
                                                                  @endif
+                                                                 <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
