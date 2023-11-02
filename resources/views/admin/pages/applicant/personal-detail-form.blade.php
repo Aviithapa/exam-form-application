@@ -42,7 +42,11 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Profile Photo *</label><br>
                                                                 @if(isset($data))
-                                                                    <img src="{{url(isset($data[3]->path)?getImage($data[3]->path):imageNotFound())}}" height="150" width="150"
+                                                                   @php
+                                                                    $profile = $data->where('document_name', 'profile')->first();
+                                                                    $imagePath = $profile ? getImage($profile->path) : imageNotFound();
+                                                                    @endphp
+                                                                    <img src="{{url($imagePath)}}" height="150" width="150"
                                                                          id="profile_img">
                             
                                                                 @else
@@ -334,7 +338,11 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Citizenship Front Photo *</label><br>
                                                                 @if(isset($data))
-                                                                    <img src="{{url(isset($data)?getImage($data[0]->path):imageNotFound())}}" height="150" width="150"
+                                                                    @php
+                                                                    $citizen = $data->where('document_name', 'citizenship_front')->first();
+                                                                    $citizenimagePath = $citizen ? getImage($citizen->path) : imageNotFound();
+                                                                    @endphp
+                                                                    <img src="{{url($citizenimagePath)}}" height="150" width="150"
                                                                          id="citizenship_front_img">
                             
                                                                 @else
@@ -375,7 +383,11 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Citizenship Back Photo *</label><br>
                                                                 @if(isset($data))
-                                                                    <img src="{{url(isset($data)?getImage($data[1]->path):imageNotFound())}}" height="150" width="150"
+                                                                    @php
+                                                                    $citizenBack = $data->where('document_name', 'citizenship_back')->first();
+                                                                    $citizenBackimagePath = $citizenBack ? getImage($citizenBack->path) : imageNotFound();
+                                                                    @endphp
+                                                                    <img src="{{url($citizenBackimagePath)}}" height="150" width="150"
                                                                          id="citizenship_back_img">
                             
                                                                 @else
@@ -416,7 +428,11 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Signature Photo *</label><br>
                                                                 @if(isset($data))
-                                                                    <img src="{{url(isset($data)?getImage($data[2]->path):imageNotFound())}}" height="150" width="150"
+                                                                  @php
+                                                                    $signature = $data->where('document_name', 'signature')->first();
+                                                                    $signatureimagePath = $signature ? getImage($signature->path) : imageNotFound();
+                                                                    @endphp
+                                                                    <img src="{{url($signatureimagePath)}}" height="150" width="150"
                                                                          id="signature_img">
                             
                                                                 @else
@@ -457,7 +473,11 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>ल्याप्छे Photo *</label><br>
                                                                 @if(isset($data))
-                                                                    <img src="{{url(isset($data[3]->path)?getImage($data[3]->path):imageNotFound())}}" height="150" width="150"
+                                                                    @php
+                                                                    $left_fingure = $data->where('document_name', 'left_fingure')->first();
+                                                                    $left_fingureimagePath = $left_fingure ? getImage($left_fingure->path) : imageNotFound();
+                                                                    @endphp
+                                                                    <img src="{{url($left_fingureimagePath)}}" height="150" width="150"
                                                                          id="left_fingure_img">
                             
                                                                 @else
