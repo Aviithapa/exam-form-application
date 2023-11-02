@@ -17,7 +17,7 @@
                                 <h4 class="card-title">Access your Account</h4>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional
                                     content.</p>
-                                <a href="{{ url('/login') }}" class="btn btn-primary">Signup</a>
+                                <a href="{{ url('/login') }}" class="btn btn-primary">Signin</a>
                             </div> <!-- end card-->
                         </div> 
                     </div>

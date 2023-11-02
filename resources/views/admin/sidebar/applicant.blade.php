@@ -66,7 +66,7 @@
                             </a> --}}
 
                             <!-- item-->
-                            <a href="#" class="dropdown-item">
+                            <a href="{{ url('/') }}" class="dropdown-item">
                                 <i class="ri-customer-service-2-line fs-18 align-middle me-1"></i>
                                 <span>FAQ</span>
                             </a>
