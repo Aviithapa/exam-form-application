@@ -34,7 +34,7 @@
                                                     <div>
                                                         <div class="faq-question-q-box">Q.</div>
                                                         <h4 class="faq-question" data-wow-delay=".1s">Are you a new applicant to apply for council exam?</h4>
-                                                        <p class="faq-answer mb-4"> The first step is to create your account. Simply click on the "Start Registration" button, and you'll be directed to a form where you need to provide your name, email address, and password. After filling out the necessary details, you'll receive an account activation code in your email. If you don't receive the email, feel free to contact us at 9867739191 for assistance. 
+                                                        <p class="faq-answer mb-4"> The first step is to create your account. Simply click on the "Start Registration" button, and you'll be directed to a form where you need to provide your name, email address, and password. After filling out the necessary details, you'll receive an account activation code in your email. If you don't receive the email, feel free to contact us at 9800677261 for assistance. 
                                                             !</p>
                                                     </div>
                                                 </div> <!-- end col -->
