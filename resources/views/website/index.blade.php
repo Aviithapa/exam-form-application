@@ -64,7 +64,7 @@
                                                              <strong>Signature </strong>  <br/> 
                                                              <strong>Transcript </strong>  <br/>
                                                              <strong>Character </strong>  <br/> 
-                                                             <strong>Provisional (if availble) </strong>  <br/> 
+                                                             <strong>Provisional </strong>  <br/> 
                                                              <strong>Payment Voucher (Online or Voucher Image) </strong>  <br/> 
                                                              <strong>Licence Image for Pleader </strong>  <br/> 
                                                             
