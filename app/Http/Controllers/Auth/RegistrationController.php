@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserCreateRequest;
+use App\Jobs\UserRegistrationJob;
 use App\Mail\RegistrarUser;
 use App\Models\Applicant;
 use App\Models\Role;
@@ -44,19 +45,7 @@ class RegistrationController extends Controller
     {
         $data = $request->all();
         try {
-            $data['token'] = str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
-            $role = Role::where('name', RoleEnum::APPLICANT)->first();
-            $data['position'] = RoleEnum::APPLICANT;
-            $data['reference'] = $data['password'];
-            $data['password'] = bcrypt($data['password']);
-            $data['phone_number'] = $data['token'];
-            $user = $this->userRepository->create($data);
-            if ($user == false) {
-                session()->flash('danger', 'Oops! Something went wrong.');
-                return redirect()->back()->withInput();
-            }
-            $user->roles()->attach($role);
-            Mail::to($user->email)->send(new RegistrarUser($user, $data['token']));
+            UserRegistrationJob::dispatch($data)->delay(now()->addMinutes(5));
             return redirect()->route('register.verify.otp', ['email' => $data['email']]);
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
@@ -96,7 +85,7 @@ class RegistrationController extends Controller
         $token = str_pad(rand(1, 9999), 4, '0', STR_PAD_LEFT);
         $user->token = $token;
         $user->save();
-        // Mail::to($user->email)->send(new RegistrarUser($user, $token));
+        Mail::to($user->email)->send(new RegistrarUser($user, $token));
         return redirect()->route('register.verify.otp', ['email' => $email])->with('token', 'Token has been sent to the email');
     }
 }
