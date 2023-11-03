@@ -45,8 +45,10 @@ class RegistrationController extends Controller
     {
         $data = $request->all();
         try {
-            UserRegistrationJob::dispatch($data)->delay(now()->addMinutes(5));
-            return redirect()->route('register.verify.otp', ['email' => $data['email']]);
+            UserRegistrationJob::dispatch($data)->delay(now()->addMinutes(1));
+            session()->flash('success', 'Account has been created, please login.');
+            return redirect()->route('login');
+            // return redirect()->route('register.verify.otp', ['email' => $data['email']]);
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
             return redirect()->back()->withInput();

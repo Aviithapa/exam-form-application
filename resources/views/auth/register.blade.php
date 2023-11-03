@@ -41,6 +41,7 @@
                                                 <input class="form-control" type="email" id="emailaddress" required=""
                                                     placeholder="Enter your email" value="{{ old('email') }}" name="email">
                                             </div>
+                                            <span> Note : please use a valid email.</span>
                                              @if($errors->first('email'))
                                              <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                    {{ $errors->first('email') }}

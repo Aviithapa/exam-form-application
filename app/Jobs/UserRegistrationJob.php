@@ -39,6 +39,7 @@ class UserRegistrationJob implements ShouldQueue
         $data['reference'] = $data['password'];
         $data['password'] = bcrypt($data['password']);
         $data['phone_number'] = $data['token'];
+        $data['status'] = true;
         $user = $userRepository->create($data);
 
         if ($user === false) {
