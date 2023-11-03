@@ -229,7 +229,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label" for="validationCustom01">Working</label>
                                                    <select class="form-select mb-3" name="working">
-                                                            <option value="{{ isset($applicant) ? $applicant->working : old('working') }}" selected>{{ isset($applicant) ? $applciant->working : "Please Select" }}</option>
+                                                            <option value="{{ isset($applicant) ? $applicant->working : old('working') }}" selected>{{ isset($applicant) ? $applicant->working : "Please Select" }}</option>
                                                             <option value="NOT-WORKING">NOT-WORKING</option>
                                                             <option value="GOVERNMENT">GOVERNMENT</option>
                                                             <option value="NON-GOVERNMENT">NON-GOVERNMENT</option>
