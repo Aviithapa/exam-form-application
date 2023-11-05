@@ -122,7 +122,7 @@ if (!function_exists('editStatus')) {
     {
         if ($applicantId) {
             $applicantExamData = ApplicantExam::all()->where('applicant_id', $applicantId)->first();
-            if ($applicantExamData && $applicantExamData->status != 'REJECTED')
+            if ($applicantExamData && $applicantExamData->status != 'REJECTED' && $applicantExamData->status != 'NEW')
                 return true;
         }
         return false;

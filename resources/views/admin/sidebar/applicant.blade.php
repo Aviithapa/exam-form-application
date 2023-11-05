@@ -141,6 +141,14 @@
                         </a>
                     </li> 
                     @endif
+
+                    <li class="side-nav-item">
+                        <a href="{{ route('voucher.index') }}" class="side-nav-link">
+                            <i class=""></i>
+                            {{-- <span class="badge bg-success float-end">9+</span> --}}
+                            <span> Voucher Information </span>
+                        </a>
+                    </li> 
                     
 
 

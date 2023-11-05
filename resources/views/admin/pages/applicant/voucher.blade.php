@@ -124,6 +124,8 @@
                                                                                                         {{ $errors->first('voucher') }}
                                                                                             </div>
                                                                                             @endif
+                                                                                            <br/>
+                                                                                             <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -131,7 +133,14 @@
                                                                         </div>
                                                                   </div>
                                                                
-                                                                       <button class="btn btn-primary mt-3" type="submit">Apply Exam</button>
+                                                                        @if(isset($applicant) && editStatus($applicant->id))
+                                                                            <div class="alert alert-pink alert-dismissible fade show mt-2" role="alert">
+                                                                
+                                                                                You have successfully applied for the exam 
+                                                                            </div>
+                                                                        @else
+                                                                        <button class="btn btn-primary mt-3" type="submit">Apply Exam</button>
+                                                                        @endif
                                                              </form>
                                 </div>
                             </div>

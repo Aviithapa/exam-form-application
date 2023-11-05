@@ -48,6 +48,6 @@ class UserRegistrationJob implements ShouldQueue
         }
 
         $user->roles()->attach($role);
-        Mail::to($user->email)->send(new RegistrarUser($user, $data['token']));
+        // Mail::to($user->email)->send(new RegistrarUser($user, $data['token']));
     }
 }

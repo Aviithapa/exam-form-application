@@ -143,9 +143,12 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Transcript *</label><br>
                                                                 @if(isset($model))
-                                                                    <img src="{{isset($model->documents)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
-                                                                         id="transcript_img">
-                            
+                                                                        @php
+                                                                    $transcript = $model->documents()->where('document_name', 'transcript')->first();
+                                                                    $transcript_path = $transcript ? getImage($transcript->path) : imageNotFound();
+                                                                    @endphp
+
+                                                                    <img src="{{ url($transcript_path) }}" height="150" width="150" id="character_img">
                                                                 @else
                                                                     <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
                                                                          id="transcript_img">
@@ -165,7 +168,7 @@
                                                                 <input type="file" id="transcript_image" name="transcript_image" 
                                                                        onclick="anyFileUploader('transcript')">
                                                                 <input type="hidden" id="transcript_path" name="transcript" class="form-control"
-                                                                       value="{{isset($model)?$model->documents[0]->path:''}}"/>
+                                                                       value="{{isset($transcript)?$transcript->path:''}}"/>
                                                                  @if($errors->first('transcript'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('transcript') }}
@@ -217,6 +220,8 @@
                                                                              {{ $errors->first('character') }}
                                                                   </div>
                                                                  @endif
+                                                                   <br/>
+                                                                  <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -262,6 +267,8 @@
                                                                              {{ $errors->first('provisional') }}
                                                                   </div>
                                                                  @endif
+                                                                   <br/>
+                                                                  <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -274,8 +281,13 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Equivalence *</label><br>
                                                                 @if(isset($model))
-                                                                    <img src="{{isset($model->documents)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
-                                                                         id="equivalence_img">
+                                                                        @php
+                                                                    $equivalence = $model->documents()->where('document_name', 'equivalence')->first();
+                                                                    $equivalence_path = $equivalence ? getImage($equivalence->path) : imageNotFound();
+                                                                    @endphp
+
+                                                                     <img src="{{ url($equivalence_path) }}" height="150" width="150"   id="licence_img">
+                                                               
                             
                                                                 @else
                                                                     <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
@@ -296,12 +308,14 @@
                                                                 <input type="file" id="equivalence_image" name="equivalence_image" 
                                                                        onclick="anyFileUploader('equivalence')">
                                                                 <input type="hidden" id="equivalence_path" name="equivalence" class="form-control"
-                                                                       value="{{isset($model)?$model->documents[0]->path:''}}"/>
+                                                                       value="{{isset($equivalence)?$equivalence->path:''}}"/>
                                                                  @if($errors->first('equivalence'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('equivalence') }}
                                                                   </div>
                                                                  @endif
+                                                                   <br/>
+                                                                  <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -314,8 +328,13 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Transcript Additional *</label><br>
                                                                 @if(isset($model))
-                                                                    <img src="{{isset($model->documents)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
-                                                                         id="transcript_add_img">
+                                                                            @php
+                                                                    $transcript_add = $model->documents()->where('document_name', 'transcript_add')->first();
+                                                                    $transcript_add_path = $transcript_add ? getImage($transcript_add->path) : imageNotFound();
+                                                                    @endphp
+
+                                                                     <img src="{{ url($transcript_add_path) }}" height="150" width="150"   id="licence_img">
+                                                               
                             
                                                                 @else
                                                                     <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
@@ -336,12 +355,14 @@
                                                                 <input type="file" id="transcript_add_image" name="transcript_add_image" 
                                                                        onclick="anyFileUploader('transcript_add')">
                                                                 <input type="hidden" id="transcript_add_path" name="transcript_add" class="form-control"
-                                                                       value="{{isset($model)?$model->documents[0]->path:''}}"/>
+                                                                       value="{{isset($transcript_add)?$transcript_add->path:''}}"/>
                                                                  @if($errors->first('transcript_add'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('transcript_add') }}
                                                                   </div>
                                                                  @endif
+                                                                   <br/>
+                                                                  <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -354,8 +375,13 @@
                                                             <div class="col-md-12 col-lg-12">
                                                                 <label>Transcript Additional *</label><br>
                                                                 @if(isset($model))
-                                                                    <img src="{{isset($model->documents)?getImage($model->documents[0]->path):imageNotFound()}}" height="150" width="150"
-                                                                         id="transcript_additional_img">
+                                                                   @php
+                                                                    $transcript_additional = $model->documents()->where('document_name', 'transcript_additional')->first();
+                                                                    $transcript_additional_path = $transcript_additional ? getImage($transcript_additional->path) : imageNotFound();
+                                                                    @endphp
+
+                                                                     <img src="{{ url($transcript_additional_path) }}" height="150" width="150"   id="licence_img">
+                                                               
                             
                                                                 @else
                                                                     <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
@@ -376,12 +402,14 @@
                                                                 <input type="file" id="transcript_additional_image" name="transcript_additional_image" 
                                                                        onclick="anyFileUploader('transcript_additional')">
                                                                 <input type="hidden" id="transcript_additional_path" name="transcript_additional" class="form-control"
-                                                                       value="{{isset($model)?$model->documents[0]->path:''}}"/>
+                                                                       value="{{isset($transcript_additional)?$transcript_additional->path:''}}"/>
                                                                  @if($errors->first('transcript_additional'))
                                                                   <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                              {{ $errors->first('transcript_additional') }}
                                                                   </div>
                                                                  @endif
+                                                                   <br/>
+                                                                  <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -431,6 +459,8 @@
                                                                              {{ $errors->first('licence') }}
                                                                   </div>
                                                                  @endif
+                                                                   <br/>
+                                                                  <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
                                                             </div>
                                                         </div>
                                                     </div>
