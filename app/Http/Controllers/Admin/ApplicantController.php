@@ -6,6 +6,7 @@ use App\Filters\ApplicantFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Applicant\ChangeStatusApplicantRequest;
 use App\Http\Requests\Applicant\CreateFamilyInformationRequest;
+use App\Http\Requests\Applicant\CreateVoucherRequest;
 use App\Http\Requests\Applicant\UpdatePersonalInformationRequest;
 use App\Models\Applicant;
 use App\Models\ApplicantExam;
@@ -415,6 +416,39 @@ class ApplicantController extends Controller
             session()->flash('success', 'Applicant Personal Data updated successfully');
             DB::commit();
             return redirect()->route('applicant.show', ['id' => $id]);
+        } catch (Exception $e) {
+            dd($e);
+            session()->flash('danger', 'Oops! Something went wrong.');
+            DB::rollBack();
+            return redirect()->back()->withInput();
+        }
+    }
+
+
+    public function voucherEdit($id)
+    {
+        $provinces = Province::all()->where('status', 'active');
+        $voucherData =  ApplicantExam::all()->where('id', $id)->first();
+        return view('admin.pages.admin.voucher-detail', compact('provinces', 'voucherData'));
+    }
+
+    public function voucherUpdate(CreateVoucherRequest $request, $id)
+    {
+        $data = $request->all();
+        $applicant = $this->applicantRepository->findById($id);
+        $exam = Exam::all()->where('status', 'Open')->first();
+        DB::beginTransaction();
+        try {
+
+            // If attached, update the document path for the existing attachment.
+            $existingAttachment = $applicant->documents->where('exam_id', $exam->id)->first();
+            $existingAttachment->update(['path' => $data['voucher']]);
+
+            $applicant->exams()->updateExistingPivot($exam->id, ['name' => $data['name'], 'contact_number' => $data['contact_number'], 'bank_name' => $data['bank_name'], 'province_id' => $data['province_id'], 'total_amount' => $data['total_amount'], 'updated_at' => now()]);
+
+            session()->flash('success', 'Exam application has been updated.');
+            DB::commit();
+            return redirect()->route('dashboard');
         } catch (Exception $e) {
             dd($e);
             session()->flash('danger', 'Oops! Something went wrong.');

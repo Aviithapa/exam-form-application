@@ -356,6 +356,7 @@
                                                             <th>Bank Name</th>
                                                             <th>Total Amount</th>
                                                             <th>Exam Center</th>
+                                                            <th>Action</th>
                                                     
                                                             
                                                         </tr>
@@ -371,7 +372,9 @@
                                                             <td>{{ $exam->bank_name }}</td>
                                                             <td>{{ $exam->total_amount }}</td>
                                                             <td>{{ isset($exam->province) ? $exam->province->name  : ''}}</td>
-                                                             
+                                                             <td>
+                                                                <a href="{{ route('voucher.edit', ['id' => $exam->id])  }}" class="mt-4 fs-17 text-info" style="float:right;"> Edit</a>
+                                                             </td>
 
                                                         </tr>
                                                         @endforeach
