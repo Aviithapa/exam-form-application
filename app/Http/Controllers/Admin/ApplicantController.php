@@ -15,6 +15,7 @@ use App\Models\Exam;
 use App\Models\Municipality;
 use App\Models\Province;
 use App\Repositories\Applicant\ApplicantRepository;
+use App\Repositories\ApplicantDocuments\ApplicantDocumentRepository;
 use App\Repositories\ApplicantLog\ApplicantLogRepository;
 use App\Repositories\FamilyInformation\FamilyInformationRepository;
 use Carbon\Carbon;
@@ -28,19 +29,21 @@ use Nilambar\NepaliDate\NepaliDate;
 class ApplicantController extends Controller
 {
     //
-    protected $applicantRepository, $log,  $applicantLogRepository, $filter, $familyInformationRepository;
+    protected $applicantRepository, $log,  $applicantLogRepository, $filter, $familyInformationRepository, $applicantDocumentRepository;
     public function __construct(
         ApplicantRepository $applicantRepository,
         ApplicantLogRepository $applicantLogRepository,
         Log $log,
         ApplicantFilter $filter,
-        FamilyInformationRepository $familyInformationRepository
+        FamilyInformationRepository $familyInformationRepository,
+        ApplicantDocumentRepository $applicantDocumentRepository
     ) {
         $this->applicantRepository = $applicantRepository;
         $this->applicantLogRepository = $applicantLogRepository;
         $this->filter = $filter;
         $this->log = $log;
         $this->familyInformationRepository = $familyInformationRepository;
+        $this->applicantDocumentRepository = $applicantDocumentRepository;
     }
 
     public function index(Request $request)
@@ -429,7 +432,8 @@ class ApplicantController extends Controller
     {
         $provinces = Province::all()->where('status', 'active');
         $voucherData =  ApplicantExam::all()->where('id', $id)->first();
-        return view('admin.pages.admin.voucher-detail', compact('provinces', 'voucherData'));
+        $voucher = $this->applicantDocumentRepository->getAll()->where('applicant_id', $voucherData->applicant_id)->where('document_name', 'voucher')->first();
+        return view('admin.pages.admin.voucher-detail', compact('provinces', 'voucherData', 'voucher'));
     }
 
     public function voucherUpdate(CreateVoucherRequest $request, $id)

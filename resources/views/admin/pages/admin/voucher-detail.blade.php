@@ -75,7 +75,7 @@
                                                                          <div class="mb-3">
                                                                             <label class="form-label" for="validationCustom01">Exam Center</label>
                                                                             <select class="form-control select2" name="province_id" data-toggle="select2" required>
-                                                                                <option value="{{ isset($applicant) ? $applicant->province_id : old('province_id') }}" selected>{{ isset($applicant) ? $applicant->province->name : "Please Select" }}</option>
+                                                                                <option value="{{ isset($voucherData) ? $voucherData->province_id : old('province_id') }}" selected>{{ isset($voucherData) ? $voucherData->province->name : "Please Select" }}</option>
                                                                                 @foreach($provinces as $province)
                                                                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
                                                                                 @endforeach
