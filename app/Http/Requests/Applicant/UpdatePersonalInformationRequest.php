@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Applicant;
 
+use App\Rules\NepaliDate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePersonalInformationRequest extends FormRequest
@@ -25,7 +26,7 @@ class UpdatePersonalInformationRequest extends FormRequest
             //
             'full_name_nepali' => 'required|string|max:255|min:3',
             'full_name_english' => 'required|string|max:255|min:3',
-            'dob_nepali' => 'required|date|date_format:Y-m-d',
+            'dob_nepali' => ['required', 'string', new NepaliDate],
             'citizenship_number' => 'required|string|max:255',
             'email' =>  'required|string|max:255',
             'issued_district' => 'required|string',

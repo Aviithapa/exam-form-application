@@ -398,6 +398,8 @@ class ApplicantController extends Controller
             $dob_english['day']
         );
         $data['dob_english'] = $date->format('Y-m-d');
+
+
         DB::beginTransaction();
         try {
             $personalData = $this->applicantRepository->findById($id);
