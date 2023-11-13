@@ -149,6 +149,15 @@
                             <span> Voucher Information </span>
                         </a>
                     </li> 
+
+                      <li class="side-nav-item">
+                        <a href="{{ route('student.logs') }}" class="side-nav-link">
+                            <i class=""></i>
+                            {{-- <span class="badge bg-success float-end">9+</span> --}}
+                            <span> Logs </span>
+                        </a>
+                    </li> 
+                    
                     
 
 

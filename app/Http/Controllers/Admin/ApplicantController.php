@@ -9,15 +9,19 @@ use App\Http\Requests\Applicant\CreateFamilyInformationRequest;
 use App\Http\Requests\Applicant\CreateVoucherRequest;
 use App\Http\Requests\Applicant\UpdatePersonalInformationRequest;
 use App\Models\Applicant;
+use App\Models\ApplicantDocuments;
 use App\Models\ApplicantExam;
 use App\Models\District;
 use App\Models\Exam;
 use App\Models\Municipality;
 use App\Models\Province;
+use App\Models\University;
 use App\Repositories\Applicant\ApplicantRepository;
 use App\Repositories\ApplicantDocuments\ApplicantDocumentRepository;
 use App\Repositories\ApplicantLog\ApplicantLogRepository;
 use App\Repositories\FamilyInformation\FamilyInformationRepository;
+use App\Repositories\Qualification\QualificationRepository;
+use App\Services\Export\ExportService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -29,14 +33,19 @@ use Nilambar\NepaliDate\NepaliDate;
 class ApplicantController extends Controller
 {
     //
-    protected $applicantRepository, $log,  $applicantLogRepository, $filter, $familyInformationRepository, $applicantDocumentRepository;
+    protected $applicantRepository, $log,
+        $applicantLogRepository, $filter,
+        $familyInformationRepository,
+        $applicantDocumentRepository, $exportService, $qualificationRepository;
     public function __construct(
         ApplicantRepository $applicantRepository,
         ApplicantLogRepository $applicantLogRepository,
         Log $log,
         ApplicantFilter $filter,
         FamilyInformationRepository $familyInformationRepository,
-        ApplicantDocumentRepository $applicantDocumentRepository
+        ApplicantDocumentRepository $applicantDocumentRepository,
+        ExportService $exportService,
+        QualificationRepository $qualificationRepository
     ) {
         $this->applicantRepository = $applicantRepository;
         $this->applicantLogRepository = $applicantLogRepository;
@@ -44,6 +53,8 @@ class ApplicantController extends Controller
         $this->log = $log;
         $this->familyInformationRepository = $familyInformationRepository;
         $this->applicantDocumentRepository = $applicantDocumentRepository;
+        $this->exportService = $exportService;
+        $this->qualificationRepository = $qualificationRepository;
     }
 
     public function index(Request $request)
@@ -223,15 +234,11 @@ class ApplicantController extends Controller
     }
 
 
-    public function exportCsv()
+    public function exportCsv($id)
     {
         $fileName = 'StudentList.csv';
 
-
-        $exam = Exam::latest('created_at')->first();
-        $tasks = ApplicantExam::all()->where('exam_id', $exam->id);
-
-
+        $tasks = ApplicantExam::all()->where('exam_id', $id);
 
         $headers = array(
             "Content-type"        => "text/csv",
@@ -242,104 +249,17 @@ class ApplicantController extends Controller
         );
 
         $columns = array(
-            'registration_id', 'created_at', 'updated_at', 'deleted_at', 'created_by', 'update_by', 'deleted_by',
-            'first_name',
-            'middle_name',
-            'last_name',
-            'symbol_number', 'gender', 'program', 'level', 'photo_link',
-            'barcode', 'exam_center', 'vdc_municipality_english', 'phone_id', 'DOB', 'year_dob_nepali_data', 'month_dob_nepali_data',
-            'day_dob_nepali_data', 'student_signature', 'collage', 'webcam', 'thumb', 'thumb2', 'email',
-            'phone_no', 'result', 'percentage', 'year', 'month'
+            'S.N.',  'Symbol Number', 'Student Name Nepali', 'Student Name English',
+            'Qualification', 'Exam Center',
+            'gender', 'Mother Name Nepali', 'Mother Name English', 'Father Name Nepali', 'Father Name English',
+            'District', 'Municipality',
+            'Ward No', 'Province', 'Date of Birth', 'Citizenship Number',   'Contact Number', 'Bank Name', 'Working', 'Collage'
         );
 
+
+
         $callback = function () use ($tasks, $columns) {
-
-            $file = fopen('php://output', 'w');
-            fputcsv($file, $columns);
-            foreach ($tasks as $key => $task) {
-                dd($task->applicant->name);
-                $row['S.N.'] = ++$key;
-                $row['Symbol Number'] = $task->symbol_number;
-                $row['Student Name Nepali'] = $task->applicant->full_name_nepali;
-                $row['Student Name English'] = $task->applicant->full_name_english;
-                $row['gender']    = $task->applicant->gender;
-                $row['Mother Name']    = $task->applicant->familyInformation->mother_name;
-
-
-                $row['updated_at'] = "2023-02-03 09:51:53";
-                $row['deleted_at'] = null;
-                $row['created_by'] = 1;
-                $row['updated_by'] = 1;
-                $row['deleted_by'] = 0;
-                $row['first_name']  = $task->first_name;
-                $row['middle_name']  =  $task->middle_name;
-                $row['last_name']  = $task->last_name;
-                $row['symbol']    = $task->symbol_number;
-                $row['gender']    = $task->sex;
-                $row['program']  = $task->name;
-                $row['level'] = $task->level_name;
-                $row['photo_link'] = 'http://103.175.192.52/storage/documents/' . $task->profile_picture;
-                $row['bar_code'] = null;
-                $row['exam_center'] = null;
-                $row['vdc'] = $task->vdc_municiplality;
-                $row['phone_id'] = null;
-                $row['dob']    = $task->dob_nep;
-                $row['year_dob_nepali_data'] = null;
-                $row['month_dob_nepali_data'] = null;
-                $row['day_dob_nepali_data'] = null;
-                $row['student_signature'] = null;
-                $row['collage'] = null;
-                $row['webcam'] = null;
-                $row['thumb'] = null;
-                $row['thumb2'] = null;
-                $row['email'] = $task->email;
-                $row['phone_no'] = $task->phone_number;
-                $row['result'] = null;
-                $row['percentage'] = null;
-                $row['year'] = null;
-                $row['month'] = null;
-
-
-                fputcsv($file, array(
-                    $row['registration_id'],
-                    $row['created_at'],
-                    $row['updated_at'],
-                    $row['deleted_at'],
-                    $row['created_by'],
-                    $row['updated_by'],
-                    $row['deleted_by'],
-                    $row['first_name'],
-                    $row['middle_name'],
-                    $row['last_name'],
-                    $row['symbol'],
-                    $row['gender'],
-                    $row['program'],
-                    $row['level'],
-                    $row['photo_link'],
-                    $row['bar_code'],
-                    $row['exam_center'],
-                    $row['vdc'],
-                    $row['phone_id'],
-                    $row['dob'],
-                    $row['year_dob_nepali_data'],
-                    $row['month_dob_nepali_data'],
-                    $row['day_dob_nepali_data'],
-                    $row['student_signature'],
-                    $row['collage'],
-                    $row['webcam'],
-                    $row['thumb'],
-                    $row['thumb2'],
-                    $row['email'],
-                    $row['phone_no'],
-                    $row['result'],
-                    $row['percentage'],
-                    $row['year'],
-                    $row['month']
-                ));
-            }
-
-
-            fclose($file);
+            $this->exportService->generateStudentCsv($tasks, $columns);
         };
 
 
@@ -459,6 +379,103 @@ class ApplicantController extends Controller
             dd($e);
             session()->flash('danger', 'Oops! Something went wrong.');
             DB::rollBack();
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function qualificationDetailIndex($id)
+    {
+        $model = $this->qualificationRepository->findById($id);
+        $university = University::all();
+        return view('admin.pages.admin.qualification', compact('model'));
+    }
+
+    public function qualificationDetailUpdate(Request $createExamRequest, $id)
+    {
+        // $this->authorize('update', $this->qualificationRepository->getModel());
+        $data = $createExamRequest->all();
+        DB::beginTransaction();
+
+        try {
+            $data = $createExamRequest->all();
+            $qualification = $this->qualificationRepository->findById($id);
+
+            if (!$qualification) {
+                session()->flash('danger', 'Qualification not found.');
+                DB::rollBack(); // Rollback the transaction
+                return redirect()->back()->withInput();
+            }
+
+            $qualification->update($data);
+
+            // Update the associated documents
+            foreach ($data as $key => $value) {
+                if ($qualification->documents->where('document_name', $key)->first()) {
+                    $qualification->documents->where('document_name', $key)->first()->update(['path' => $value]);
+                } else {
+
+                    // Define the types based on the keys in $data
+                    $documentTypes = null;
+
+
+                    if ($data['provisional']) {
+                        $documentTypes['provisional'] = $data['type'];
+                    }
+
+                    if ($data['character']) {
+                        $documentTypes['character'] = $data['type'];
+                    }
+
+                    if ($data['transcript']) {
+                        $documentTypes['transcript'] = $data['type'];
+                    }
+
+                    if ($data['transcript_add']) {
+                        $documentTypes['transcript_add'] = $data['type'];
+                    }
+
+                    if ($data['transcript_additional']) {
+                        $documentTypes['transcript_additional'] = $data['type'];
+                    }
+
+                    if ($data['equivalence']) {
+                        $documentTypes['equivalence'] = $data['type'];
+                    }
+
+
+                    if ($data['licence']) {
+                        $documentTypes['licence'] = $data['type'];
+                    }
+
+
+                    // Check if the key exists in the $documentTypes array
+                    if (array_key_exists($key, $documentTypes)) {
+
+                        // Create a new document record
+                        $document = new ApplicantDocuments();
+                        $document->document_name = $key;
+                        $document->path = $value;
+                        $document->applicant_id = $qualification->applicant_id;
+                        $document->qualification_id = $qualification->id;
+                        $document->type = $documentTypes[$key];
+                        $document->save();
+                    }
+                }
+            }
+
+            $log['status'] = $data['type'];
+            $log['state'] = $data['type'] . ' ADDED';
+            $log['remarks'] = $data['type'] . 'QUALIFICATION DETAILS ADDED';
+            $log['applicant_id'] = $qualification->applicant_id;
+            $log['created_by'] = Auth::user()->id;
+            $this->logReport($log);
+
+            session()->flash('success', 'Qualification has been  updated successfully');
+            DB::commit(); // Commit the transaction
+            return redirect()->route('applicant.show', ['id' => $qualification->applicant_id]);
+        } catch (Exception $e) {
+            session()->flash('danger', 'Oops! Something went wrong.');
+            DB::rollBack(); // Rollback the transaction
             return redirect()->back()->withInput();
         }
     }

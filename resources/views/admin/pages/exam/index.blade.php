@@ -66,6 +66,7 @@
                                                             <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $exam->id }}').submit();">
                                                                 <span class="badge bg-danger-subtle text-danger">Delete</span>
                                                             </a>
+                                                            <a href="{{ route('exportCsv.index', ['id' => $exam->id]) }}"><span class="badge bg-info-subtle text-info">Export Student Csv</span></a>
                                                             </td>
 
                                                         </tr>

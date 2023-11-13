@@ -234,6 +234,7 @@
                                                             <th>Division</th>
                                                             <th>Percentage</th>
                                                             <th>Date of birth</th>
+                                                            <th>Action</th>
                                                             
                                                         </tr>
                                                                 </thead>
@@ -256,6 +257,17 @@
                                                                @endforeach
                                                             </div>
                                                             
+                                                            </td>
+                                                             <td>
+                                                                <a href="{{ route('qualificationDetail.index', ['id' =>  $qualication->id])  }}" class="mt-4 fs-17 text-info" style="float:right;"> Edit</a>
+                                                            
+                                                             <form id="delete-form-{{ $qualication->id }}" action="{{ route('qualification.destroy', ['id' => $qualication->id]) }}" method="POST" style="display: none;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                            </form>
+                                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{$qualication->id }}').submit();">
+                                                                <span class="badge bg-danger-subtle text-danger">Delete</span>
+                                                            </a>
                                                             </td>
 
                                                         </tr>

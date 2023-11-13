@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class QualificationController extends Controller
 {
@@ -157,6 +158,54 @@ class QualificationController extends Controller
             foreach ($data as $key => $value) {
                 if ($qualification->documents->where('document_name', $key)->first()) {
                     $qualification->documents->where('document_name', $key)->first()->update(['path' => $value]);
+                } else {
+
+                    // Define the types based on the keys in $data
+                    $documentTypes = null;
+
+
+                    if ($data['provisional']) {
+                        $documentTypes['provisional'] = $data['type'];
+                    }
+
+                    if ($data['character']) {
+                        $documentTypes['character'] = $data['type'];
+                    }
+
+                    if ($data['transcript']) {
+                        $documentTypes['transcript'] = $data['type'];
+                    }
+
+                    if ($data['transcript_add']) {
+                        $documentTypes['transcript_add'] = $data['type'];
+                    }
+
+                    if ($data['transcript_additional']) {
+                        $documentTypes['transcript_additional'] = $data['type'];
+                    }
+
+                    if ($data['equivalence']) {
+                        $documentTypes['equivalence'] = $data['type'];
+                    }
+
+
+                    if ($data['licence']) {
+                        $documentTypes['licence'] = $data['type'];
+                    }
+
+
+                    // Check if the key exists in the $documentTypes array
+                    if (array_key_exists($key, $documentTypes)) {
+
+                        // Create a new document record
+                        $document = new ApplicantDocuments();
+                        $document->document_name = $key;
+                        $document->path = $value;
+                        $document->applicant_id = $qualification->applicant_id;
+                        $document->qualification_id = $qualification->id;
+                        $document->type = $documentTypes[$key];
+                        $document->save();
+                    }
                 }
             }
 
@@ -179,7 +228,7 @@ class QualificationController extends Controller
 
     public function destroy($id)
     {
-        $this->authorize('update', $this->qualificationRepository->getModel());
+        // $this->authorize('destroy', $this->qualificationRepository->getModel());
         try {
             $exam = $this->qualificationRepository->findById($id);
 
@@ -187,14 +236,17 @@ class QualificationController extends Controller
                 session()->flash('danger', 'Oops! Exam Not Found.');
                 return redirect()->back()->withInput();
             }
+            $documents = $exam->documents; // Assuming there is a 'documents' relationship in your model
+            foreach ($documents as $document) {
+                // Delete the actual document file
+                Storage::delete('documents/' . $document->path);
+                // Delete the document record from the database
+                $document->delete();
+            }
 
-            // if ($exam->applicant->count() > 0) {
-            //     session()->flash('danger', 'Student have registrated for the exam .');
-            //     return redirect()->back()->withInput();
-            // }
             $exam->delete();
             session()->flash('success', 'Qualification removed successfully.');
-            return redirect()->route('qualification.index');
+            return redirect()->route('applicant.show', ['id' => $exam->applicant_id]);
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');
             return redirect()->back()->withInput();

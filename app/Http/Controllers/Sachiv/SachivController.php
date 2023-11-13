@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Sachiv;
 use App\Filters\ApplicantFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Applicant\ChangeStatusApplicantRequest;
+use App\Mail\Status;
 use App\Models\Applicant;
 use App\Models\ApplicantExam;
 use App\Models\Exam;
+use App\Models\User;
 use App\Repositories\Applicant\ApplicantRepository;
 use App\Repositories\ApplicantLog\ApplicantLogRepository;
 use Exception;
@@ -15,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class SachivController extends Controller
 {
@@ -41,7 +44,6 @@ class SachivController extends Controller
         $data['status'] = isset($data['status']) ? $data['status'] : 'PROGRESS';
         $this->filter->applyFilters($applicants, $data);
         $applicants = $applicants->paginate(50);
-
         return view('admin.sachiv.applicant-list', compact('applicants', 'request'));
     }
 
@@ -72,6 +74,9 @@ class SachivController extends Controller
             $log['created_by'] = Auth::user()->id;
             $this->logReport($log);
             DB::commit();
+            $user = User::all()->where('id', $applicant->user_id)->first();
+            $status = $data['status'] === 'REJECTED' ? 'REJECTED' : 'APPROVED';
+            Mail::to($user->email)->send(new Status($user, $status));
             return redirect()->route('sachiv.applicant.index');
         } catch (Exception $e) {
             session()->flash('danger', 'Oops! Something went wrong.');

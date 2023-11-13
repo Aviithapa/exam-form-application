@@ -12,7 +12,7 @@
                                 </div>
                                 <div class="card-body">
                                      @if(isset($model))
-                                             <form method="POST" action="{{ route('qualification.update', ["id" => $model->id]) }}">
+                                             <form method="POST" action="{{ route('qualificationDetail.update', ["id" => $model->id]) }}">
                                                  @method('PUT')
                                         @else
                                            <form action="{{ route('qualification.store') }}" method="POST">
@@ -148,7 +148,7 @@
                                                                     $transcript_path = $transcript ? getImage($transcript->path) : imageNotFound();
                                                                     @endphp
 
-                                                                    <img src="{{ url($transcript_path) }}" height="150" width="150" id="transcript_img">
+                                                                    <img src="{{ url($transcript_path) }}" height="150" width="150" id="character_img">
                                                                 @else
                                                                     <img src="{{isset($data)?$data->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
                                                                          id="transcript_img">
@@ -239,7 +239,7 @@
                                                                     $provisionalPath = $provisionalDocument ? getImage($provisionalDocument->path) : imageNotFound();
                                                                     @endphp
 
-                                                                    <img src="{{ url($provisionalPath) }}" height="150" width="150" id="provisional_img">
+                                                                    <img src="{{ url($provisionalPath) }}" height="150" width="150" id="character_img">
 
                             
                                                                 @else

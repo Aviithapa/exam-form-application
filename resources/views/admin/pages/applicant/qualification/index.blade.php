@@ -75,13 +75,7 @@
                                                         
                                                        
                                                             <td><a href="{{ route('qualification.edit', ['id' => $qualication->id]) }}"><span class="badge bg-info-subtle text-info">Edit</span></a>
-                                                            <form id="delete-form-{{ $qualication->id }}" action="{{ route('qualification.destroy', ['id' => $qualication->id]) }}" method="POST" style="display: none;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                            </form>
-                                                            <a href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{$qualication->id }}').submit();">
-                                                                <span class="badge bg-danger-subtle text-danger">Delete</span>
-                                                            </a>
+                                                            
                                                             </td>
 
                                                         </tr>

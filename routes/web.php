@@ -135,7 +135,7 @@ Route::resource('/dashboard/exam-center', ExamCenterController::class)->middlewa
 Route::resource('/dashboard/university', UniversityController::class)->middleware(['auth']);
 
 Route::get('/dashboard/voucher', [ApplicantController::class, 'voucherIndex'])->middleware(['auth'])->name('voucher.index');
-Route::get('/dashboard/export', [AdminApplicantController::class, 'exportCsv'])->middleware(['auth'])->name('exportCsv.index');
+Route::get('/dashboard/export/{id}', [AdminApplicantController::class, 'exportCsv'])->middleware(['auth'])->name('exportCsv.index');
 Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDataIndex'])->middleware(['auth'])->name('center.index');
 
 Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDataIndex'])->middleware(['auth'])->name('center.index');
@@ -144,7 +144,10 @@ Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDa
 Route::get('/dashboard/personal-detail/{id}', [AdminApplicantController::class, 'personalDetailIndex'])->middleware(['auth'])->name('personalDetail.index');
 Route::get('/dashboard/family-detail/{id}', [AdminApplicantController::class, 'familyDetailIndex'])->middleware(['auth'])->name('familyDetail.index');
 Route::get('/dashboard/voucher/{id}', [AdminApplicantController::class, 'voucherEdit'])->middleware(['auth'])->name('voucher.edit');
+Route::get('/dashboard/qualification-detail/{id}', [AdminApplicantController::class, 'qualificationDetailIndex'])->middleware(['auth'])->name('qualificationDetail.index');
+
 
 Route::put('/dashboard/personal-detail/update/{id}', [AdminApplicantController::class, 'personalDetailUpdate'])->middleware(['auth'])->name('personalDetail.update');
 Route::put('/dashboard/family-detail/update/{id}', [AdminApplicantController::class, 'familyDetailUpdate'])->middleware(['auth'])->name('familyDetail.update');
 Route::put('/dashboard/voucher/{id}', [AdminApplicantController::class, 'voucherUpdate'])->middleware(['auth'])->name('voucher.update');
+Route::put('/dashboard/qualification-detail/update/{id}', [AdminApplicantController::class, 'qualificationDetailUpdate'])->middleware(['auth'])->name('qualificationDetail.update');
