@@ -103,7 +103,7 @@
                                                     </tbody>
                                                 </table>
                                                    <div style="padding: 10px; float:right;">
-                                                {{-- {{  $users->appends(request()->query())->links('admin.layout.pagination') }} --}}
+                                                {{  $applicants->appends(request()->query())->links('admin.layout.pagination') }}
                                                 </div>
                                             </div>        
                                         </div>
