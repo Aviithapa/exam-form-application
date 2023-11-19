@@ -23,6 +23,9 @@
             @case("secretary")
                 @include('admin.sidebar.sachiv')
             @break
+             @case("account")
+                @include('admin.sidebar.accounts')
+            @break
             @default
                 @include('admin.sidebar.default')
         @endswitch

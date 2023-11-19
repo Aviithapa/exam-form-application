@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Accounts\AccountController;
 use App\Http\Controllers\Admin\ApplicantController as AdminApplicantController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExamCenterController;
@@ -151,3 +152,7 @@ Route::put('/dashboard/personal-detail/update/{id}', [AdminApplicantController::
 Route::put('/dashboard/family-detail/update/{id}', [AdminApplicantController::class, 'familyDetailUpdate'])->middleware(['auth'])->name('familyDetail.update');
 Route::put('/dashboard/voucher/{id}', [AdminApplicantController::class, 'voucherUpdate'])->middleware(['auth'])->name('voucher.update');
 Route::put('/dashboard/qualification-detail/update/{id}', [AdminApplicantController::class, 'qualificationDetailUpdate'])->middleware(['auth'])->name('qualificationDetail.update');
+
+
+Route::match(['POST', 'GET'], '/dashboard/accounts', [AccountController::class, 'index'])->middleware(['auth'])->name('accounts.index');
+Route::get('dashboard/accounts/approve/{id}', [AccountController::class, 'approve'])->middleware(['auth'])->name('accounts.approve');

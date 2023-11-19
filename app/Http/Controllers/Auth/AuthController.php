@@ -28,6 +28,8 @@ class AuthController extends Controller
                     return redirect()->intended('dashboard');
                 } elseif (Auth::user()->mainRole()->name === 'secretary') {
                     return redirect()->intended('dashboard');
+                } elseif (Auth::user()->mainRole()->name === 'account') {
+                    return redirect()->intended('dashboard');
                 } else {
                     Auth::logout();
                     return redirect()->back()->withErrors([

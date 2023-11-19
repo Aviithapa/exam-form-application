@@ -11,6 +11,7 @@ use App\Repositories\ApplicantDocuments\ApplicantDocumentRepository;
 use App\Repositories\FamilyInformation\FamilyInformationRepository;
 use App\Repositories\Qualification\QualificationRepository;
 use App\Repositories\User\UserRepository;
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -53,6 +54,11 @@ class DashboardController extends Controller
                     $applicant_exam = ApplicantExam::all()->where('exam_id', $exams->id);
                 return view('admin.dashboard.admin', compact('exams', 'applicant', 'applicant_exam'));
                 break;
+            case 'account':
+
+                return view('admin.dashboard.accounts');
+                break;
+
             case 'applicant':
                 if (Auth::user()->applicant) {
                     $applicant = Auth::user()->applicant;

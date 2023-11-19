@@ -22,7 +22,8 @@ class ApplicantExam extends Model
         'symbol_number',
         'province_id',
         'bank_name',
-        'total_amount'
+        'total_amount',
+        'account_status',
     ];
 
     public function applicant()
