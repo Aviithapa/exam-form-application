@@ -44,7 +44,7 @@
                                                             <th>Double Dustur Date</th>
                                                             <th>Due Date</th>
                                                             <th>Status</th>
-                                                            <th>Assign</th>
+                                 
                                                             <th>Edit</th>
                                                         </tr>
                                                     </thead>
@@ -54,10 +54,10 @@
                                                             <td>{{ $exam->id }}</td>
                                                             <td>{{ $exam->name }}</td>
                                                             <td>{{ $exam->form_open_date }}</td>
-                                                            <td>{{ $exam->form_deu_date }}</td>
                                                             <td>{{ $exam->form_double_dustur_date }}</td>
+                                                            <td>{{ $exam->form_deu_date }}</td>
                                                             <td><span class="badge bg-info-subtle text-info">{{ $exam->status }}</span></td>
-                                                            <td>Techzaa Studio</td>
+                                                        
                                                             <td><a href="{{ route('dashboard.exam.edit', ['id' => $exam->id]) }}"><span class="badge bg-info-subtle text-info">Edit</span></a>
                                                             <form id="delete-form-{{ $exam->id }}" action="{{ route('dashboard.exam.destroy', ['id' => $exam->id]) }}" method="POST" style="display: none;">
                                                                 @csrf
