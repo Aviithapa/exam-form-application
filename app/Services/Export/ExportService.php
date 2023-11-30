@@ -36,7 +36,7 @@ class ExportService
                     $row['Bank Name'] = $task->bank_name;
                     $row['Working'] = $task->applicant->working;
                     $row['Collage'] = $task->applicant->qualifications->isNotEmpty() ? $task->applicant->qualifications->first()->name : null;
-
+                    $row['University Name'] = $task->applicant->qualifications->isNotEmpty() ? $task->applicant->qualifications->first()->university_name : null;
 
 
 
@@ -62,7 +62,8 @@ class ExportService
                         $row['Contact Number'],
                         $row['Bank Name'],
                         $row['Working'],
-                        $row['Collage']
+                        $row['Collage'],
+                        $row['University Name']
                     ));
                 } else {
                     // Log or handle the case where data is missing

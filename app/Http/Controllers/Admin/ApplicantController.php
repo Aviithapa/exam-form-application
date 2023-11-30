@@ -253,7 +253,7 @@ class ApplicantController extends Controller
             'Qualification', 'Exam Center',
             'gender', 'Mother Name Nepali', 'Mother Name English', 'Father Name Nepali', 'Father Name English',
             'District', 'Municipality',
-            'Ward No', 'Province', 'Date of Birth', 'Citizenship Number',   'Contact Number', 'Bank Name', 'Working', 'Collage'
+            'Ward No', 'Province', 'Date of Birth', 'Citizenship Number',   'Contact Number', 'Bank Name', 'Working', 'Collage', 'University Name'
         );
 
 
