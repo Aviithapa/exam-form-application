@@ -40,7 +40,7 @@
                         <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
                             <span class="account-user-avatar">
-                                <img src="assets/images/users/avatar-1.jpg" alt="user-image" width="32" class="rounded-circle">
+                                {{-- <img src="assets/images/" alt="user-image" width="32" class="rounded-circle"> --}}
                             </span>
                             <span class="d-lg-block d-none">
                                 <h5 class="my-0 fw-normal">{{ Auth::user()->name }} <i
