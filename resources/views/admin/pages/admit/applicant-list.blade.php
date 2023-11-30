@@ -44,10 +44,10 @@
                                             </div>
                                             @endif --}}
                                             <div class="d-flex justify-content-end align-items-center gap-2">
-                                                <a href="{{ route('approveApplicant') }}" class="btn btn-soft-info">
+                                                {{-- <a href="{{ route('approveApplicant') }}" class="btn btn-soft-info"> --}}
                                                     <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
-                                                       Approve All Applicant
-                                                </a>
+                                                       Generate Admit Card
+                                                {{-- </a> --}}
                                             </div>
                                         
                                         </div>
@@ -64,7 +64,7 @@
                                                             <th>Citizenship Number</th>
                                                             <th>Applied Date</th>
                                                             <th>Status</th>
-                                                            <th>{{isset($isAdmit) ?  'Symbol Number' : 'Date of birth' }}</th>
+                                                            <th>Symbol Number</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
