@@ -18,6 +18,7 @@ class Exam extends Model
         'form_deu_date',
         'form_double_dustur_date',
         'status',
+        'published'
     ];
 
     public function applicant()

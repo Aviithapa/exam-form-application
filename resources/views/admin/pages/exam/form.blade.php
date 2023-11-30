@@ -65,6 +65,34 @@
                                                       @endif
                                                 </div>
                                             </div>
+                                             <div class="col-lg-6 col-md-6 col-sm-12"> 
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="validationCustom01">Status</label>
+                                                        <select class="form-select mb-3" name="status">
+                                                            <option value="{{ isset($model) ? $model->status : old('status') }}">{{ isset($model) ? $model->status : old('status') }}</option>
+                                                            <option value="Open">Active</option>
+                                                            <option value="Closed">In-Active</option>
+                                                        </select>
+                                                      @if($errors->any())
+                                                         {{ $errors->first('status') }}
+                                                      @endif
+                                                </div>
+                                            </div> 
+                                          <div class="col-lg-6 col-md-6 col-sm-12"> 
+                                            <div class="mb-3">
+                                                <label class="form-label" for="validationCustom01">Publish Admit Card</label>
+                                                <select class="form-select mb-3" name="published">
+                                                    <option value="{{ isset($model) ? $model->published : old('published') }}">
+                                                        {{ isset($model) ? $model->published : old('published') }}
+                                                    </option>
+                                                    <option value="1">Publish</option>
+                                                    <option value="0">Not Published</option>
+                                                </select>
+                                                @if($errors->any())
+                                                    {{ $errors->first('published') }} <!-- Corrected the name attribute here -->
+                                                @endif
+                                            </div>
+                                        </div>
                                              
                                             
                                              

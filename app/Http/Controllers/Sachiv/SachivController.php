@@ -86,6 +86,14 @@ class SachivController extends Controller
         return view('admin.pages.applicant.show', compact('applicant'));
     }
 
+    public function approveApplicant()
+    {
+        ApplicantExam::where('status', 'PROGRESS')
+            ->update(['status' => 'READY-FOR-ADMIT-CARD']);
+        session()->flash('success', 'All Applicant has been approved.');
+        return redirect()->route('sachiv.applicant.index');
+    }
+
     public function logReport($data)
     {
         try {

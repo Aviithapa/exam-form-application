@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Accounts\AccountController;
+use App\Http\Controllers\Admin\AdmitCardController;
 use App\Http\Controllers\Admin\ApplicantController as AdminApplicantController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExamCenterController;
@@ -156,3 +157,7 @@ Route::put('/dashboard/qualification-detail/update/{id}', [AdminApplicantControl
 
 Route::match(['POST', 'GET'], '/dashboard/accounts', [AccountController::class, 'index'])->middleware(['auth'])->name('accounts.index');
 Route::get('dashboard/accounts/approve/{id}', [AccountController::class, 'approve'])->middleware(['auth'])->name('accounts.approve');
+Route::get('approve/applicant', [SachivController::class, 'approveApplicant'])->middleware(['auth'])->name('approveApplicant');
+
+
+Route::resource('/dashboard/admit', AdmitCardController::class)->middleware(['auth']);

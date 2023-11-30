@@ -24,6 +24,7 @@ class ApplicantExam extends Model
         'bank_name',
         'total_amount',
         'account_status',
+        'srn'
     ];
 
     public function applicant()

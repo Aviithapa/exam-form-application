@@ -21,44 +21,7 @@
                         <!-- end page title -->
                     
                            <!-- Todo-->
-                                <div class="card">
-                                    <form action="{{ route('sachiv.applicant.index') }}"  method="GET" novalidate>
-                                        <div class="row" style="padding: 20px 10px 0px 10px;"> 
-                                            
-                                            <div class="col-lg-3 col-md-3 col-sm-6"> 
-                                                <div class="mb-3">                                   
-                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Name" name="full_name_english" value="{{ isset($request) ? $request->get('full_name_english') : '' }}">
-                                                </div>
-                                            </div> 
-                                            <div class="col-lg-3 col-md-3 col-sm-6"> 
-                                                <div class="mb-3">
-                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Citizenship Number" name="citizenship_number" value="{{ isset($request) ? $request->get('citizenship_number') : '' }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-6"> 
-                                                <div class="mb-3">
-                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="YYYY-MM-DD" name="dob_nepali" value="{{ isset($request) ? $request->get('dob_nepali') : '' }}">
-                                                </div>
-                                            </div>
-                                              <div class="col-lg-2 col-md-2 col-sm-6"> 
-                                                <div class="mb-3">
-                                                       <select class="form-select mb-3" name="status">
-                                                            <option value="{{ isset($request) ? $request->get('status') : '' }}" selected>{{ isset($request) ? $request->get('status') : '' }}</option>
-                                                            <option value="PROGRESS">Progress</option>
-                                                            <option value="REJECTED">Rejected</option>
-                                                            <option value="READY-FOR-ADMIT-CARD">Approved</option>
-                                                        </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-1 col-md-1 col-sm-6"> 
-                                                <button class="btn btn-primary" type="submit">Search</button>
-                                             </div>
-                                        </div>
-                                      
-                                       
-                                    </form>
-                                </div>     
-
+                             
                         
 
                         <div class="row">
@@ -116,7 +79,7 @@
                                                             <td>{{ $applicant->dob_nepali }}</td>
                                                             <td>{{ $applicant->created_at }}</td>
                                                             <td><span class="badge bg-info-subtle text-info">{{ $applicant->applicant_exam_status }}</span></td>
-                                                            <td>{{ isset($isAdmit) ? $applicant->symbol_number : $applicant->dob_nepali }}</td>
+                                                            <td>{{  $applicant->symbol_number }}</td>
                                                             <td>
                                                                 <a href="{{ route('sachiv.applicant.show', ['id' => $applicant->id]) }}"><span class="badge bg-success-subtle text-info">View</span></a>
                                                 
