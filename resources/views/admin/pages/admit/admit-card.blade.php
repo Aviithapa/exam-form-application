@@ -32,7 +32,7 @@
                                                             font-size:36px; 
                                                             font-weight: bold; 
                                                             word-spacing: 2px; font-family:Aerial; margin-top: -5px;" class="box-title text-black">Nepal Health Professional Council</h1> --}}
-                                                            <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">{{ $exam_name->name }}  कानून व्यवसायी</h3>
+                                                            <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">३१ औं अधिवक्ता परीक्षा</h3>
                                                             
                                                             {{-- <h4  style = "font-family:Aerial; margin-top: -5px; " class="box-title text-black">बांसबारी, काठमाडौं</h4>  --}}
                                                                 <h4  style = "font-size: 30px; text-decoration: underline; font-family:Aerial" class="box-title text-black">प्रवेश पत्र</h4>
@@ -53,24 +53,21 @@
 
                                                                         {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate('Name : '.$applicant->full_name_english. ' Dob' . $applicant->dob_english )!!}
 
-                                                                        <p>Symbol Number<span style="padding-left:1em;">:
+                                                                        <p>रोल नम्बर:<span style="padding-left:1em;">:
                                                                                     {{ $exam->symbol_number  }}
                                                                         </span></p>
-                                                                            <p>Student Name <strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong><br />
-                                                                                Date of birth<span style="padding-left:1em;"> : {{ $applicant->dob_nepali }} B.S. |  {{ $applicant->dob_english }} A.D. </span><br />
-                                                                                Address, Contact Number.<span style="padding-left:1em; text-transform:lowercase;">: {{ $applicant->tole }} {{ $applicant->ward_no }}  {{ $applicant->municipality->name }}, {{ $applicant->district->name }}  {{ $applicant->province->name }} , {{ $applicant->phone_number }}  </span> <br/>
-                                                                                Exam center<span style="padding-left:1em;">: {{ isset($exam->province_id) ? $exam->province->name : '' }}</span>
+                                                                            <p>परीक्षार्थीको नामः<strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong><br />
+                                                                               <p style="font-size: 16px;">  परीक्षा केन्द्र: <span style="padding-left:1em;">: {{ isset($exam->province_id) ? $exam->province->name : '' }}</span> </p>
                                                                                 </p>
                                                                                 <p>
-                                                                                <strong>Subjects </strong> <br />
-                                                                                   <span> १. संविधान र कानून (बहुबैकल्पिक) </span> <br/>
-                                                                                   <span> २. मस्यौदा लेखन तथा कानून अंग्रेजी नेपाली अनुवाद </span> <br />
+                                                                                <strong><U>विषय</U> </strong> <br />
+                                                                                   <span> १. संविधान र कानून </span> <br/>
+                                                                                   <span> २. मस्यौदा लेखन तथा अनुवाद </span> <br />
                                                                                    <span> ३. बहस प्रस्तुति तथा अन्तर्वार्ता </span> <br />
                                                                                 </p>
-                                                                               
-
+                                                                            
                                                                                 <div style="float:left;">परीक्षार्थीको हस्ताक्षर : <br>
-                                                                                    <div style="border-width: 1px; height: 60px; width:300px; border-style: dashed;"></div>
+                                                                                    <div style="border-width: 1px; height: 30px; width:300px; border-style: dashed;"></div>
                                                                                 </div>
                                                                         </span></div>
                                                                 </div>
@@ -94,7 +91,7 @@
                                                                             </div>
                                                                             <div>
                                                                                 ..................................................<br>
-                                                                                सदस्य सचिवको हस्ताक्षर
+                                                                               प्रमाणित गर्नेको दस्तखत
                                                                             </div>
                                                                         </div>
                                                                         <div style="padding-left: 0%; padding-top: 10px; " class="mt-5">
@@ -113,7 +110,7 @@
                                                             <div class="row" style="font-size: 16px; margin-left: 20px;">
                                                                 <h5><strong class="text-bold" style="font-size: 16px;">परीक्षार्थीले पालना  गर्नुपर्ने नियमहरु :</strong></h5>
                                                             </div>
-                                                            <div class="row" style="font-size: 12px; margin-left: 20px; line-height: 1.3;">
+                                                            <div class="row" style="font-size: 10px; margin-left: 20px; line-height: 1.3;">
                                                                
                                                            <p> १. परीक्षार्थीले परीक्षा केन्द्रमा परीक्षा दिन आउँदा प्रवेशपत्र र लेख्ने कलम वाहेक अन्य कुनै पनि
                                                             सामग्री ल्याउन पाईने छैन । प्रवेशपत्र बिना परीक्षामा समावेश गराइने छैन । </p>
