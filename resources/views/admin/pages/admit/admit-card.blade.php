@@ -46,7 +46,7 @@
                                                     <div class="box-body container mt-2">
                                                     
                                                         
-                                                        <div class="student-admit-card-body" style="border: 1px solid #000; padding: 20px;height: 350px; font-size: 12px;">
+                                                        <div class="student-admit-card-body" style="border: 1px solid #000; padding: 20px;height: 300px; font-size: 12px;">
                                                             <div class="row">
                                                                 <div class="col-lg-8">
                                                                     <div style="width:60%; float: left; line-height:1.2;">
@@ -61,12 +61,12 @@
                                                                                 </p>
                                                                                 <p style="font-size: 14px; font-weight: 600;">
                                                                                 <strong><U>विषय</U> </strong> <br />
-                                                                                   <span> १. संविधान र कानून </span> <br/>
-                                                                                   <span style="margin-top: 2px;"> २. मस्यौदा लेखन तथा अनुवाद </span> <br />
+                                                                                   <span> १. संविधान र कानून </span>     <span style="margin-left: 5px;"> २. मस्यौदा लेखन तथा अनुवाद </span>
+                                                                             
                                                                                 </p>
                                                                             
                                                                                 <div style="float:left;">परीक्षार्थीको हस्ताक्षर : <br>
-                                                                                    <div style="border-width: 1px; height: 30px; width:300px; border-style: dashed;"></div>
+                                                                                    <div style="border-width: 1px; height: 40px; width:300px; border-style: dashed;"></div>
                                                                                 </div>
                                                                         </span></div>
                                                                 </div>
@@ -105,11 +105,11 @@
 
                                                         </div>
 
-                                                        <div class="" style="margin-top: 3rem;">
+                                                        <div class="" style="margin-top: 1rem;">
                                                             <div class="row" style="font-size: 16px; margin-left: 20px;">
                                                                 <h5><strong class="text-bold" style="font-size: 16px;">परीक्षार्थीले पालना  गर्नुपर्ने नियमहरु :</strong></h5>
                                                             </div>
-                                                            <div class="row" style="font-size: 11px; margin-left: 20px; line-height: 1.3;">
+                                                            <div class="row" style="font-size: 12px; margin-left: 20px; line-height: 1.3;">
                                                                
                                                            <p> १. परीक्षार्थीले परीक्षा केन्द्रमा परीक्षा दिन आउँदा प्रवेशपत्र र लेख्ने कलम वाहेक अन्य कुनै पनि
                                                             सामग्री ल्याउन पाईने छैन । प्रवेशपत्र बिना परीक्षामा समावेश गराइने छैन । </p>
@@ -133,7 +133,7 @@
                                                             <p> ९. परीक्षार्थीले परिषद्ले निर्धारित गरेको पाठ्यक्रम तथा परीक्षा संचालन नियमावली र परीक्षा 
                                                             सञ्चालन निर्देशिकामा उल्लिखित नियमहरुको पालन गर्नुपर्नेछ । </p>
                                                             <p> १०. परीक्षार्थीले पालना गर्नुपर्ने नियमहरु पालना नगरेमा त्यस्तो परीक्षार्थीको पुरै परीक्षा परिषद्ले रद्ध
-                                                            गर्न वा निजलाई ३ वर्षसम्म कानून व्यवसायी परीक्षामा समावेश हुनबाट रोक लगाउन सक्नेछ । </p>
+                                                            गर्न वा रोक लगाउन सक्नेछ । </p>
                                                                 <!-- <div class="row" style=" font-size: 20px; margin-left: 20px;"> -->
                                                                 {{-- <p>(क)   अनलाइन फारम भर्दा राखेको फोटोको सक्कलै फोटो टासी तोकेको स्थानमा दस्तखत (दुवै फोटोमा पर्ने गरी समेत) र प्रस्ट रेखा देखिने औँठा छाँप लगाई प्रवेश पत्र तयार गर्नु पर्दछ । फोटो नटासेको औँठा छाप नलगाएको र तोकेको स्थानमा दस्तखत नगरेको प्रवेशपत्र मान्य हुनेछैन । परीक्षा दिन नपाएका वा परीक्षा छुटेका परीक्षार्थीको परीक्षा शुल्क फिर्ता हुने छैन । </p>
                                                                 <p>(ख)   प्रवेश पत्र रुजु र सुरक्षा जाँच भएपछि परीक्षार्थीले आफुलाई परीक्षा दिन तोकेको स्थानमा गई बस्नु पर्नेछ ।   </p>
