@@ -93,10 +93,46 @@
                                                 @endif
                                             </div>
                                         </div>
+                                           <div class="col-lg-4">
+                                                <div class="grid-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="col-md-12 col-lg-12">
+                                                                <label>Signature Image *</label><br>
+                                                            
+                                                            </div>
+                            
+                                                            <div class="form-group col-md-12 col-lg-12">
+                                                                <small>Below 1 mb</small><br>
+                                                                <small id="signature_help_text" class="help-block"></small>
+                                                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+                                                                     aria-valuemax="100"
+                                                                     aria-valuenow="0">
+                                                                    <div id="signature_progress" class="progress-bar progress-bar-success"
+                                                                         style="width: 0%">
+                                                                    </div>
+                                                                </div><br>
+                                                                <input type="file" id="signature_image" name="signature_image"
+                                                                       onclick="anyFileUploader('signature')">
+                                                                <input type="hidden" id="signature_path" name="signature" class="form-control"
+                                                                       value="{{isset($model)?$model->signature:''}}"/>
+                                                                 @if($errors->first('signature'))
+                                                                  <div class="alert alert-danger bg-transparent text-danger" role="alert">
+                                                                             {{ $errors->first('signature') }}
+                                                                  </div>
+                                                                 @endif
+                                                                   <br/>
+                                                                  <span style="color:red">Please upload image files JPEG, PNG, JPG </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                              
                                             
-                                             
+
                                         </div>
+
                                             
                                         <button class="btn btn-primary" type="submit">Submit form</button>
                                     </form>
@@ -109,3 +145,7 @@
 
 
 @endsection
+
+@push('scripts')
+@include('parties.common.file-upload')
+@endpush
