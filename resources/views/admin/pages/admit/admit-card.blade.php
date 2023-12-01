@@ -51,19 +51,18 @@
                                                                 <div class="col-lg-8">
                                                                     <div style="width:60%; float: left; line-height:1.2;">
 
-                                                                        {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(100)->generate('Name : '.$applicant->full_name_english. ' Dob' . $applicant->dob_english )!!}
+                                                                        {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(80)->generate('Name : '.$applicant->full_name_english. ' Dob' . $applicant->dob_english )!!}
 
-                                                                        <p>रोल नम्बर:<span style="padding-left:1em;">:
+                                                                        <p style="font-size: 16px; font-weight: 600;">रोल नम्बर:<span style="padding-left:1em;">:
                                                                                     {{ $exam->symbol_number  }}
                                                                         </span></p>
-                                                                            <p>परीक्षार्थीको नामः<strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong><br />
+                                                                            <p style="font-size: 16px;">परीक्षार्थीको नामः<strong><span style="padding-left:1em;">: {{ $applicant->full_name_nepali }} |  {{ $applicant->full_name_english }} </span></strong><br />
                                                                                <p style="font-size: 16px;">  परीक्षा केन्द्र: <span style="padding-left:1em;">: {{ isset($exam->province_id) ? $exam->province->name : '' }}</span> </p>
                                                                                 </p>
-                                                                                <p>
+                                                                                <p style="font-size: 14px; font-weight: 600;">
                                                                                 <strong><U>विषय</U> </strong> <br />
                                                                                    <span> १. संविधान र कानून </span> <br/>
-                                                                                   <span> २. मस्यौदा लेखन तथा अनुवाद </span> <br />
-                                                                                   <span> ३. बहस प्रस्तुति तथा अन्तर्वार्ता </span> <br />
+                                                                                   <span style="margin-top: 2px;"> २. मस्यौदा लेखन तथा अनुवाद </span> <br />
                                                                                 </p>
                                                                             
                                                                                 <div style="float:left;">परीक्षार्थीको हस्ताक्षर : <br>
@@ -110,7 +109,7 @@
                                                             <div class="row" style="font-size: 16px; margin-left: 20px;">
                                                                 <h5><strong class="text-bold" style="font-size: 16px;">परीक्षार्थीले पालना  गर्नुपर्ने नियमहरु :</strong></h5>
                                                             </div>
-                                                            <div class="row" style="font-size: 10px; margin-left: 20px; line-height: 1.3;">
+                                                            <div class="row" style="font-size: 11px; margin-left: 20px; line-height: 1.3;">
                                                                
                                                            <p> १. परीक्षार्थीले परीक्षा केन्द्रमा परीक्षा दिन आउँदा प्रवेशपत्र र लेख्ने कलम वाहेक अन्य कुनै पनि
                                                             सामग्री ल्याउन पाईने छैन । प्रवेशपत्र बिना परीक्षामा समावेश गराइने छैन । </p>
@@ -119,7 +118,7 @@
                                                             ल्याउन पाउने छैन । यदि साथमा राखेको पाइएमा परीक्षाहलबाट तत्काल निष्कासन गरि सम्पूर्ण
                                                             परीक्षा रद्ध गरिनेछ । </p>
                                                            <p> ३. परीक्षा शुरु भएको आधा घण्टा भन्दा ढिलो आउने परीक्षार्थीलाई परीक्षामा सामेल गराइने छैन ।
-                                                            परीक्षा सुरु भएको २ घण्टा अगावै परीक्षा हलबाट परीक्षार्थी बाहिर जान पाउने छैन । </p>
+                                                            परीक्षा सुरु भएको १ घण्टा अगावै परीक्षा हलबाट परीक्षार्थी बाहिर जान पाउने छैन । </p>
                                                            <p> ४. उत्तरपुस्तिकामा आफ्नो रोल नं. नलेखि खाली छाडेमा र अनावश्यक ठाउँमा आफ्नो परिचय खुल्ने
                                                             संकेत, नाम, रोल नं., मोवाईल नं. लगायत अनावश्यक कुरा लेखेको पाईएमा त्यस्ता परीक्षार्थीको
                                                             उत्तरपुस्तिका रद्ध गरिनेछ । </p>
