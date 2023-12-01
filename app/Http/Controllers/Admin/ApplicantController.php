@@ -238,7 +238,7 @@ class ApplicantController extends Controller
     {
         $fileName = 'StudentList.csv';
 
-        $tasks = ApplicantExam::all()->where('exam_id', $id);
+        $tasks = ApplicantExam::all()->where('exam_id', $id)->where('status', '!=', 'REJECTED');
 
         $headers = array(
             "Content-type"        => "text/csv",
