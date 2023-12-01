@@ -86,14 +86,14 @@
                                             <div class="card-widgets">
                                             </div>
                                             <h5 class="header-title mb-0">Total Number of Applicant : {{ $applicants->total() }}</h5>
-                                            @if(isset($isAdmit))
+                                            {{-- @if(isset($isAdmit))
                                             <div class="d-flex justify-content-end align-items-center gap-2">
                                                 <a href="{{ route('applicant.generateAdmitCard') }}" class="btn btn-soft-info">
                                                     <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
                                                         Generate Admit Card
                                                 </a>
                                             </div>
-                                            @endif
+                                            @endif --}}
                                         
                                         </div>
     

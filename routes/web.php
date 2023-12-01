@@ -113,7 +113,7 @@ Route::put('/applicant/change/status/{id}', [AdminApplicantController::class, 's
 Route::get('/applicant/approved', [AdminApplicantController::class, 'approve'])->middleware(['auth'])->name('applicant.approve');
 Route::get('/applicant/rejected', [AdminApplicantController::class, 'rejected'])->middleware(['auth'])->name('applicant.rejected');
 Route::get('/applicant/admit-card/{id}', [AdminApplicantController::class, 'admit'])->middleware(['auth'])->name('applicant.admit');
-Route::get('/applicant/generateAdmitCard', [AdminApplicantController::class, 'generateAdmitCard'])->middleware(['auth'])->name('applicant.generateAdmitCard');
+Route::get('/applicant/generateAdmitCard/{id}', [AdmitCardController::class, 'generateAdmitCard'])->middleware(['auth'])->name('applicant.generateAdmitCard');
 Route::get('/applicant/admit-card-list', [AdminApplicantController::class, 'admitList'])->middleware(['auth'])->name('applicant.admit.list');
 
 

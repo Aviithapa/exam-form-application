@@ -13,13 +13,8 @@ use Illuminate\Support\Facades\DB;
 
 class AdmitCardController extends Controller
 {
-    //
-    // protected ;
-    // public function __construct(
 
-    // ) {
 
-    // }
 
     public function index(Request $request)
     {
@@ -43,34 +38,40 @@ class AdmitCardController extends Controller
             ->paginate(50);
 
 
-        return view('admin.pages.admit.applicant-list', compact('applicants'));
+        return view('admin.pages.admit.applicant-list', compact('applicants', 'id'));
     }
 
 
-    public function generateAdmitCard()
+    public function generateAdmitCard($id)
     {
+        // Step 1: Get the current Nepali year
         $gregorianDate = Carbon::now();
         $nepaliYear = $gregorianDate->year + 57;
 
-        // Step 1: Get the latest exam created ID
-        $latestExamId = Exam::latest('created_at')->value('id');
+        // Step 2: Get the latest exam created ID
+        $latestExamId = Exam::latest('created_at')->value('name');
 
-        // Step 2: Use the latest exam ID to generate the initial symbol number
-        $initialSymbolNumber = $latestExamId . '-' . $nepaliYear . '-' . str_pad($latestExamId + 1, 3, '0', STR_PAD_LEFT);
-
-        // Step 3: Check for existing generated symbol numbers
-        $existingSymbolNumbers = ApplicantExam::where('status', 'GENERATED')->pluck('symbol_number')->toArray();
-
+        // Step 3: Get the latest SRN
+        $latestSrn = ApplicantExam::latest('srn')->value('srn') ?? 0;
 
         // Step 4: Update the remaining symbol numbers after the last one
-        ApplicantExam::where('status', 'READY-FOR-ADMIT-CARD')
-            ->whereNotIn('symbol_number', $existingSymbolNumbers)
-            ->update([
+        $applicantExams = ApplicantExam::where('status', 'READY-FOR-ADMIT-CARD')->where('province_id', $id)->get();
+
+        foreach ($applicantExams as $index => $applicant) {
+            $latestSrn++; // Increment SRN within the loop
+            $paddedSrn = str_pad($latestSrn, 4, '0', STR_PAD_LEFT);
+            $data = [
+                'srn' => $latestSrn,
+                'symbol_number' => $latestExamId . '-' . $nepaliYear . '-' . $paddedSrn,
                 'status' => 'GENERATED',
-                'symbol_number' => DB::raw("CONCAT($latestExamId, '-' , $nepaliYear, '-', LPAD(ROW_NUMBER() OVER (ORDER BY id) + $latestExamId, 3, '0'))"),
-            ]);
+            ];
+
+            // Update the applicant record
+            $applicant->update($data);
+        }
 
         session()->flash('success', 'Admit Cards have been generated.');
-        return redirect()->route('applicant.admit.list');
+
+        return redirect()->route('admit.show', ['admit' => $id]);
     }
 }

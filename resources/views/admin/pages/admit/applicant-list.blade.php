@@ -44,10 +44,10 @@
                                             </div>
                                             @endif --}}
                                             <div class="d-flex justify-content-end align-items-center gap-2">
-                                                {{-- <a href="{{ route('approveApplicant') }}" class="btn btn-soft-info"> --}}
+                                                <a href="{{ url('/applicant/generateAdmitCard/' .$id) }}" class="btn btn-soft-info">
                                                     <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>
                                                        Generate Admit Card
-                                                {{-- </a> --}}
+                                                </a>
                                             </div>
                                         
                                         </div>
