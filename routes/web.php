@@ -161,3 +161,5 @@ Route::get('approve/applicant', [SachivController::class, 'approveApplicant'])->
 
 
 Route::resource('/dashboard/admit', AdmitCardController::class)->middleware(['auth']);
+
+Route::get('/dashboard/admit-card', [AdmitCardController::class, 'admit'])->middleware(['auth'])->name('dashboard.admit-card');

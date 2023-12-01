@@ -9,6 +9,7 @@ use App\Models\Exam;
 use App\Models\Province;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AdmitCardController extends Controller
@@ -73,5 +74,13 @@ class AdmitCardController extends Controller
         session()->flash('success', 'Admit Cards have been generated.');
 
         return redirect()->route('admit.show', ['admit' => $id]);
+    }
+
+    public function admit()
+    {
+        $applicant = Auth::user()->applicant;
+        $exam = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('status', 'GENERATED')->first();
+        $exam_name = Exam::all()->where('id', $exam->exam_id)->first();
+        return view('admin.pages.admit.admit-card', compact('applicant', 'exam', 'exam_name'));
     }
 }

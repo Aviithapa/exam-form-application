@@ -67,7 +67,8 @@ class DashboardController extends Controller
                         $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('status', '!=', 'FAILED')->first();
                     $voucher = $this->applicantDocumentRepository->getAll()->where('applicant_id', $applicant->id)->where('document_name', 'voucher')->first();
                     $provinces = Province::all()->where('status', 'active');
-                    return view('admin.dashboard.applicant', compact('applicant', 'voucher', 'voucherData', 'provinces'));
+                    $isPublished = Exam::latest('created_at')->value('published');
+                    return view('admin.dashboard.applicant', compact('applicant', 'voucher', 'voucherData', 'provinces', 'isPublished'));
                 } else {
                     // Handle the case where there is no associated applicant
                     // For example, you can set a default value or display an error message
@@ -75,7 +76,8 @@ class DashboardController extends Controller
                     $voucher = null; // or any other appropriate action
                     $provinces = Province::all()->where('status', 'active');
                     $exam = Exam::all()->whereIn('status', ['Open'])->first();
-                    return view('admin.dashboard.applicant', compact('applicant', 'voucher', 'exam', 'provinces'));
+                    $isPublished = Exam::latest('created_at')->value('published');
+                    return view('admin.dashboard.applicant', compact('applicant', 'voucher', 'exam', 'provinces', 'isPublished'));
                 }
 
                 break;

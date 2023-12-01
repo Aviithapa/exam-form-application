@@ -19,6 +19,38 @@
                         </div>
                        
 
+                    @if(isset($isPublished) && $isPublished)
+                          <div class="col-xl-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header bg-danger text-white">
+                                    <div class="card-widgets">
+                                        <a href="javascript:;" data-bs-toggle="reload"><i
+                                                class="ri-refresh-line"></i></a>
+                                        <a data-bs-toggle="collapse" href="#card-collapse6" role="button"
+                                            aria-expanded="false" aria-controls="card-collapse6"><i
+                                                class="ri-subtract-line"></i></a>
+                                        <a href="#" data-bs-toggle="remove"><i class="ri-close-line"></i></a>
+                                    </div>
+                                    <h5 class="card-title mb-0">Admit Card Generated Successfully</h5>
+                                </div>
+                                <div id="card-collapse6" class="collapse show">
+                                    <div class="card-body">
+                                      Admit card has been generated
+                                    </div>
+
+                                     <div class="d-flex flex-wrap gap-2" style="padding-bottom: 10px; padding-left: 15px;">
+                                            
+                                           <button onclick="window.location.href = '{{ route('dashboard.admit-card') }}'" type="button" class="btn btn-success">Download Admit Card</button>
+                                   
+                                           
+                                           
+                                        </div>
+                                </div>
+                                
+                            </div>
+                            <!-- end card-->
+                        </div>
+                    @endif
                       @if(isset($voucherData) && $voucherData->status === 'REJECTED')
                          
                         <div class="col-xl-12 col-sm-12">
