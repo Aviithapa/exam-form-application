@@ -128,3 +128,16 @@ if (!function_exists('editStatus')) {
         return false;
     }
 }
+
+
+if (!function_exists('lockEverything')) {
+    /**
+     * @param null $type
+     * @return string
+     */
+    function lockEverything()
+    {
+        $latestExam = Exam::latest('created_at')->first(['published']);
+        return $latestExam['published'];
+    }
+}

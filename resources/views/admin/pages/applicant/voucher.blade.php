@@ -74,7 +74,7 @@
                                                                          <div class="mb-3">
                                                                             <label class="form-label" for="validationCustom01">Exam Center</label>
                                                                             <select class="form-control select2" name="province_id" data-toggle="select2" required>
-                                                                                <option value="{{ isset($applicant) ? $applicant->province_id : old('province_id') }}" selected>{{ isset($applicant) ? $applicant->province->name : "Please Select" }}</option>
+                                                                                <option value="{{ isset($voucherData) ? $voucherData->province_id : old('province_id') }}" selected>{{ isset($voucherData) ? $voucherData->province->name : "Please Select" }}</option>
                                                                                 @foreach($provinces as $province)
                                                                                     <option value="{{ $province->id }}">{{ $province->name }}</option>
                                                                                 @endforeach
@@ -95,12 +95,12 @@
                                                                                     <div class="col-lg-12">
                                                                                         <div class="col-md-12 col-lg-12">
                                                                                             <label>Upload Voucher Image *</label><br>
-                                                                                            @if(isset($voucher))
-                                                                                                <img src="{{url(isset($voucher)?getImage($voucher->path):imageNotFound())}}" height="150" width="150"
+                                                                                            @if(isset($voucherData))
+                                                                                                <img src="{{url(isset($voucherData)?getImage($voucherData->path):imageNotFound())}}" height="150" width="150"
                                                                                                     id="voucher_img">
                                                         
                                                                                             @else
-                                                                                                <img src="{{isset($voucher)?$voucher->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
+                                                                                                <img src="{{isset($voucherData)?$voucherData->getTranscriptImage():imageNotFound('user')}}" height="150" width="150"
                                                                                                     id="voucher_img">
                                                                                             @endif
                                                                                         </div>
@@ -118,7 +118,7 @@
                                                                                             <input type="file" id="voucher_image" name="voucher_image"
                                                                                                 onclick="anyFileUploader('voucher')">
                                                                                             <input type="hidden" id="voucher_path" name="voucher" class="form-control"
-                                                                                                value="{{isset($voucher)?$voucher->path:''}}"/>
+                                                                                                value="{{isset($voucherData)?$voucherData->path:''}}"/>
                                                                                             @if($errors->first('voucher'))
                                                                                             <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                                                         {{ $errors->first('voucher') }}
@@ -139,7 +139,9 @@
                                                                                 You have successfully applied for the exam 
                                                                             </div>
                                                                         @else
-                                                                        <button class="btn btn-primary mt-3" type="submit">Apply Exam</button>
+                                                                        @if(!lockEverything())
+                                                                            <button class="btn btn-primary mt-3" type="submit">Apply Exam</button>
+                                                                        @endif
                                                                         @endif
                                                              </form>
                                 </div>

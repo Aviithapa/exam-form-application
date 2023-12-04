@@ -114,11 +114,12 @@
                             <span> Dashboard </span>
                         </a>
                     </li>
+                    @if(!lockEverything())
                     <li class="side-nav-item">
                         <a href="{{ route('student.personalForm') }}" class="side-nav-link">
                             <i class=""></i>
                             {{-- <span class="badge bg-success float-end">9+</span> --}}
-                            <span> Personal Information </span>
+                            <span> Personal Information  </span>
                         </a>
                     </li>
 
@@ -127,7 +128,7 @@
                         <a href="{{ route('student.guardianForm') }}" class="side-nav-link">
                             <i class=""></i>
                             {{-- <span class="badge bg-success float-end">9+</span> --}}
-                            <span> Family Information </span>
+                            <span> Family Information  {{ lockEverything() }}</span>
                         </a>
                     </li>
                     @endif
@@ -149,6 +150,8 @@
                             <span> Voucher Information </span>
                         </a>
                     </li> 
+
+                    @endif
 
                       <li class="side-nav-item">
                         <a href="{{ route('student.logs') }}" class="side-nav-link">

@@ -86,6 +86,8 @@
                         
                       @endif
                        
+
+                           @if(!lockEverything())
                           <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -249,6 +251,7 @@
                                 <!-- end card -->
                             </div>
                             <!-- end col -->
+                            @endif
                         </div>
 
 

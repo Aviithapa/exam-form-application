@@ -328,7 +328,13 @@ class ApplicantController extends Controller
     public function voucherIndex()
     {
         $provinces = Province::all()->where('status', 'active');
-        return view('admin.pages.applicant.voucher', compact('provinces'));
+        $applicant = Auth::user()->applicant;
+        $voucherData = null;
+        $examData = null;
+        if ($applicant) {
+            $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->first();
+        }
+        return view('admin.pages.applicant.voucher', compact('provinces', 'voucherData'));
     }
 
 
