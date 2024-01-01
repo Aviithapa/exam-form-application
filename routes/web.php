@@ -140,7 +140,7 @@ Route::get('/dashboard/voucher', [ApplicantController::class, 'voucherIndex'])->
 Route::get('/dashboard/export/{id}', [AdminApplicantController::class, 'exportCsv'])->middleware(['auth'])->name('exportCsv.index');
 Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDataIndex'])->middleware(['auth'])->name('center.index');
 
-Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDataIndex'])->middleware(['auth'])->name('center.index');
+// Route::get('/dashboard/center-data', [AdminApplicantController::class, 'centerDataIndex'])->middleware(['auth'])->name('center.index');
 
 
 Route::get('/dashboard/personal-detail/{id}', [AdminApplicantController::class, 'personalDetailIndex'])->middleware(['auth'])->name('personalDetail.index');

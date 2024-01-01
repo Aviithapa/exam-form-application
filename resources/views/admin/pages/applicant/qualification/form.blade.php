@@ -104,6 +104,12 @@
                                                             <option value="LAW-BACHELOR">LAW BACHELOR</option>
                                                             <option value="7-YEAR-PLEADER">7 Year Pleader</option> 
                                                             <option value="PRIVATE">PRIVATE</option>   
+                                                                LLB
+                                                                BALLB
+                                                                BBMLLB
+                                                                BL
+                                                                DL
+                                                                BBALLB
                                                             <option value="OTHER">OTHER</option>   
 
                                                         </select>
@@ -121,7 +127,11 @@
                                                     <select class="form-select mb-3" id="lawType" name="law_type" onchange="LawType()" required>
                                                             <option value="{{ isset($model) ? $model->law_type : old('law_type') }}" selected>{{ isset($model) ? $model->law_type : "Please Select Law Type" }}</option>
                                                             <option value="BALLB">BALLB</option>
-                                                            <option value="LLB">LLB</option> 
+                                                            <option value="LLB">LLB</option>
+                                                            <option value="BBMLLB">BBMLLB</option> 
+                                                            <option value="BL">BL</option> 
+                                                            <option value="DL">DL</option>
+                                                            <option value="BBALLB">BBALLB</option>
                                                             <option value="OTHER">OTHER</option>   
 
                                                         </select>

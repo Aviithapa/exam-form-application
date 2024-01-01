@@ -83,4 +83,27 @@ class AdmitCardController extends Controller
         $exam_name = Exam::all()->where('id', $exam->exam_id)->first();
         return view('admin.pages.admit.admit-card', compact('applicant', 'exam', 'exam_name'));
     }
+
+
+    public function centerData($id)
+    {
+        $applicants = Applicant::join('applicant_exam', 'applicant.id', '=', 'applicant_exam.applicant_id')
+            ->where('applicant_exam.status', 'GENERATED')
+            ->where('applicant_exam.province_id', $id) // To ensure unique applicants
+            ->select([
+                'applicant.*',
+                'applicant_exam.status as applicant_exam_status',
+                'applicant_exam.created_at as applicant_exam_created_at',
+                'applicant_exam.symbol_number as symbol_number',
+                'applicant_exam.srn as srn'
+            ])
+            ->orderBy('srn')
+            ->distinct()
+            ->paginate(50);
+
+
+        $exam = Exam::latest('created_at')->first();
+        $applicants = ApplicantExam::all()->where('exam_id', $exam->id)->where('status', 'GENERATED');
+        return view('admin.pages.admin.center', compact('applicants', 'exam'));
+    }
 }
