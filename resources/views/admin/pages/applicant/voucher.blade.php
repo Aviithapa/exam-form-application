@@ -36,7 +36,12 @@
                                                                     <div class="col-lg-6 col-md-6 col-sm-12"> 
                                                                         <div class="mb-3">
                                                                             <label class="form-label" for="validationCustom01">Bank Name</label>
-                                                                            <input type="text" class="form-control" id="validationCustom01" placeholder="" name="bank_name"  required value="{{ isset($voucherData) ?  $voucherData->bank_name : old('bank_name') }}">
+
+                                                                             <select class="form-control select2" name="bank_name" data-toggle="select2" required>
+                                                                                <option value="{{ isset($voucherData) ? $voucherData->bank_name : old('bank_name') }}" selected>{{ isset($voucherData) ? $voucherData->bank_name : "Please Select" }}</option>
+                                                                                <option value="Siddhartha Bank Ltd">Siddhartha Bank Ltd</option>
+                                                                                <option value="Rastriya Banijya Bank">Rastriya Banijya Bank</option>
+                                                                            </select>
                                                                             @if($errors->first('bank_name'))
                                                                                     <div class="alert alert-danger bg-transparent text-danger" role="alert">
                                                                                         {{ $errors->first('bank_name') }}
