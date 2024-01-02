@@ -64,6 +64,20 @@
                                                      </select>
                                                 </div>
                                             </div>
+                                             <div class="col-lg-2 col-md-2 col-sm-6"> 
+                                                <div class="mb-3">
+                                                       <select class="form-control select2" name="exam_id" data-toggle="select2">
+                                                            <option value="">Search Exam Wise</option>
+                                                            @if(isset($exam))
+                                                                @foreach($exam as $ex)
+                                                                    <option value="{{ $ex->id }}">{{ $ex->name }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                     </select>
+                                                </div>
+                                            </div>
+
+                                            
                                             <div class="col-lg-1 col-md-1 col-sm-6"> 
                                                 <button class="btn btn-primary" type="submit">Search</button>
                                              </div>
