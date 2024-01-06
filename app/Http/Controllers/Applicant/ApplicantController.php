@@ -331,8 +331,9 @@ class ApplicantController extends Controller
         $applicant = Auth::user()->applicant;
         $voucherData = null;
         $examData = null;
+        $latestExam = Exam::latest()->first();
         if ($applicant) {
-            $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->first();
+            $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('exam_id', $latestExam)->first();
         }
         return view('admin.pages.applicant.voucher', compact('provinces', 'voucherData'));
     }
