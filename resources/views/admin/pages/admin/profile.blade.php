@@ -384,6 +384,8 @@
                                                             <td>{{ $exam->bank_name }}</td>
                                                             <td>{{ $exam->total_amount }}</td>
                                                             <td>{{ isset($exam->province) ? $exam->province->name  : ''}}</td>
+                                                            <td>   <img src="{{url(isset($exam)?getImage($exam->path):imageNotFound())}}" height="150" width="150"
+                                                                                                    id="voucher_img"></td>
                                                              <td>
                                                                 <a href="{{ route('voucher.edit', ['id' => $exam->id])  }}" class="mt-4 fs-17 text-info" style="float:right;"> Edit</a>
                                                              </td>
