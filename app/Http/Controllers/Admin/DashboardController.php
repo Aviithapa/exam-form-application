@@ -64,9 +64,8 @@ class DashboardController extends Controller
                     $applicant = Auth::user()->applicant;
                     $voucherData = null;
                     $exam = Exam::latest('created_at');
-                    dd($exam);
                     if ($applicant)
-                        $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('exam_id', $exam->id)->where('status', '!=', 'FAILED')->first();
+                        $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('status', '!=', 'FAILED')->first();
                     $voucher = $this->applicantDocumentRepository->getAll()->where('applicant_id', $applicant->id)->where('document_name', 'voucher')->first();
                     $provinces = Province::all()->where('status', 'active');
                     $isPublished = Exam::latest('created_at')->value('published');
