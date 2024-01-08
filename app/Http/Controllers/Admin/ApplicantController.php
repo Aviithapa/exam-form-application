@@ -142,7 +142,6 @@ class ApplicantController extends Controller
             $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('exam_id', $latestExam->id)->first();
             $examData = ApplicantExam::all()->where('applicant_id', $applicant->id);
         }
-        dd($voucherData);
         return view('admin.pages.admin.profile', compact('applicant', 'voucherData', 'examData'));
     }
 
