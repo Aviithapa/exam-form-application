@@ -368,6 +368,7 @@
                                                             <th>Bank Name</th>
                                                             <th>Total Amount</th>
                                                             <th>Exam Center</th>
+                                                
                                                             <th>Action</th>
                                                     
                                                             
@@ -384,9 +385,7 @@
                                                             <td>{{ $exam->bank_name }}</td>
                                                             <td>{{ $exam->total_amount }}</td>
                                                             <td>{{ isset($exam->province) ? $exam->province->name  : ''}}</td>
-                                                            <td>   <img src="{{url(isset($exam)?getImage($exam->path):imageNotFound())}}" height="150" width="150"
-                                                                                                    id="voucher_img"></td>
-                                                             <td>
+                                                            
                                                                 <a href="{{ route('voucher.edit', ['id' => $exam->id])  }}" class="mt-4 fs-17 text-info" style="float:right;"> Edit</a>
                                                              </td>
 
@@ -394,7 +393,22 @@
                                                         @endforeach
 
                                                     @endif
-    
+                                                   <tr>
+                                                        <!-- Other table cells for applicant details -->
+
+                                                        <th scope="row">Voucher Image</th>
+                                                        @if($applicant->documents && $applicant->documents->where('document_name', 'voucher')->isNotEmpty())
+                                                            @foreach($applicant->documents->where('document_name', 'voucher') as $document)
+                                                                <td>
+                                                                    <a href="#" class="ng-binding">
+                                                                        <img src="{{ getImage($document->path) }}" alt="Voucher Image" width="100" onclick="onClick(this)">
+                                                                    </a>
+                                                                </td>
+                                                            @endforeach
+                                                        @else
+                                                            <td>No voucher image</td>
+                                                        @endif
+                                                    </tr>
                                                     </tbody>
                                                                     
                                                             </table>
