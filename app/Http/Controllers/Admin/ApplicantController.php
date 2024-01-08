@@ -137,8 +137,9 @@ class ApplicantController extends Controller
         $applicant = $this->applicantRepository->findById($id);
         $voucherData = null;
         $examData = null;
+        $latestExam = Exam::latest()->first();;
         if ($applicant) {
-            $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->first();
+            $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('exam_id', $latestExam->id)->first();
             $examData = ApplicantExam::all()->where('applicant_id', $applicant->id);
         }
         return view('admin.pages.admin.profile', compact('applicant', 'voucherData', 'examData'));
