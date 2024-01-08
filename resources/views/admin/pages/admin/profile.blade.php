@@ -393,7 +393,11 @@
                                                         @endforeach
 
                                                     @endif
-                                                   <tr>
+                                                  
+                                                    </tbody>
+                                                                    
+                                                            </table>
+                                                             <tr>
                                                         <!-- Other table cells for applicant details -->
 
                                                         <th scope="row">Voucher Image</th>
@@ -409,9 +413,6 @@
                                                             <td>No voucher image</td>
                                                         @endif
                                                     </tr>
-                                                    </tbody>
-                                                                    
-                                                            </table>
                                                         </div>
                                                     </div>
                                                 </div>
