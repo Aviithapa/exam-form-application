@@ -54,10 +54,12 @@ class AdmitCardController extends Controller
         $latestExamId = Exam::latest('created_at')->value('name');
 
         // Step 3: Get the latest SRN
-        $latestSrn = ApplicantExam::latest('srn')->value('srn') ?? 0;
+        $latestSrn = ApplicantExam::where('exam_id', 3)->latest('srn')->value('srn') ?? 0;
+        dd($latestSrn);
 
         // Step 4: Update the remaining symbol numbers after the last one
-        $applicantExams = ApplicantExam::where('status', 'READY-FOR-ADMIT-CARD')->where('province_id', $id)->get();
+        $applicantExams = ApplicantExam::where('status', 'READY-FOR-ADMIT-CARD')->where('province_id', $id)->where('exam_id', 3)->get();
+        dd($applicantExams);
 
         foreach ($applicantExams as $index => $applicant) {
             $latestSrn++; // Increment SRN within the loop
