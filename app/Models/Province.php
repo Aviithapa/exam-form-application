@@ -29,6 +29,6 @@ class Province extends Model
 
     public function examCenter()
     {
-        return $this->hasMany(ApplicantExam::class, 'province_id', 'id')->whereIn('applicant_exam.status', ['READY-FOR-ADMIT-CARD', 'GENERATED']);
+        return $this->hasMany(ApplicantExam::class, 'province_id', 'id')->whereIn('applicant_exam.status', ['READY-FOR-ADMIT-CARD', 'GENERATED'])->where('exam_id', '2');
     }
 }
