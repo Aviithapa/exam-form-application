@@ -28,6 +28,7 @@ class AdmitCardController extends Controller
     {
         $applicants = Applicant::join('applicant_exam', 'applicant.id', '=', 'applicant_exam.applicant_id')
             ->whereIn('applicant_exam.status', ['READY-FOR-ADMIT-CARD', 'GENERATED'])
+            ->whereIn('applicant_exam.exam_id', '2')
             ->where('applicant_exam.province_id', $id) // To ensure unique applicants
             ->select([
                 'applicant.*',
