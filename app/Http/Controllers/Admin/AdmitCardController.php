@@ -58,7 +58,7 @@ class AdmitCardController extends Controller
 
 
         // Step 4: Update the remaining symbol numbers after the last one
-        $applicantExams = ApplicantExam::where('status', 'READY-FOR-ADMIT-CARD')->where('province_id', $id)->get();
+        $applicantExams = ApplicantExam::where('status', 'GENERATED')->where('province_id', $id)->where('exam_id', '3')->get();
         dd($applicantExams, $latestSrn, $latestExamId);
 
         foreach ($applicantExams as $index => $applicant) {
