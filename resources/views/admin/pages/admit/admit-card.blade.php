@@ -32,7 +32,7 @@
                                                             font-size:36px; 
                                                             font-weight: bold; 
                                                             word-spacing: 2px; font-family:Aerial; margin-top: -5px;" class="box-title text-black">Nepal Health Professional Council</h1> --}}
-                                                            <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">३१ औं अधिवक्ता परीक्षा</h3>
+                                                            <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">३१ C औं अधिवक्ता परीक्षा</h3>
                                                             
                                                             {{-- <h4  style = "font-family:Aerial; margin-top: -5px; " class="box-title text-black">बांसबारी, काठमाडौं</h4>  --}}
                                                                 <h4  style = "font-size: 30px; text-decoration: underline; font-family:Aerial" class="box-title text-black">प्रवेश पत्र</h4>
@@ -72,7 +72,7 @@
                                                                 </div>
                                                                 <div class="col-lg-4">
                                                                     <div style="width: 40%; float: left;">
-                                                                         <div style="margin-top: -70px; margin-left: 50px; z-index: 1000;position: absolute; height: 50px">
+                                                                         <div style="margin-top: -90px; margin-left: 60px; z-index: 1000;position: absolute; height: 50px">
                                                                                 <img src="{{ asset('assets/images/stamp.png') }}" class="signature" width="150px" height="150px">
                                                                             </div>
                                                                         <div style="display:flex;">
