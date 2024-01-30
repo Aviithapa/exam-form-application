@@ -72,7 +72,7 @@
                                                                 </div>
                                                                 <div class="col-lg-4">
                                                                     <div style="width: 40%; float: left;">
-                                                                         <div style="margin-top: -90px; margin-left: 60px; z-index: 1000;position: absolute; height: 50px">
+                                                                         <div style="margin-top: -100px; margin-left: 70px; z-index: 1000;position: absolute; height: 50px">
                                                                                 <img src="{{ asset('assets/images/stamp.png') }}" class="signature" width="150px" height="150px">
                                                                             </div>
                                                                         <div style="display:flex;">
