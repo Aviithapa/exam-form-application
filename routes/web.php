@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ApplicantController as AdminApplicantController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExamCenterController;
 use App\Http\Controllers\Admin\ExamController;
+use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Applicant\ApplicantController;
 use App\Http\Controllers\Applicant\QualificationController;
 use App\Http\Controllers\Admin\UniversityController;
@@ -30,6 +31,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('website.index');
 });
+
+Route::get('/result', function () {
+    return view('website.result');
+});
+
+Route::match(['GET', 'POST'], '/mark-sheet', [ResultController::class, 'search'])->middleware(['guest'])->name('mark-sheet.search');
+Route::post('/importResult', [ResultController::class, 'importResult'])->middleware(['auth'])->name('importResult.exam');
+Route::get('/upload-result-index', [ResultController::class, 'index'])->middleware(['auth'])->name('uploadResult.exam');
 
 
 

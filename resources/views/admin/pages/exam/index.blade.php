@@ -67,6 +67,8 @@
                                                                 <span class="badge bg-danger-subtle text-danger">Delete</span>
                                                             </a>
                                                             <a href="{{ route('exportCsv.index', ['id' => $exam->id]) }}"><span class="badge bg-info-subtle text-info">Export Student Csv</span></a>
+                                                            <a href="{{ route('uploadResult.exam') }}"><span class="badge bg-info-subtle text-info">Upload Result</span></a>
+
                                                             </td>
 
                                                         </tr>
