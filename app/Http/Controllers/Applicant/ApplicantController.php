@@ -349,4 +349,18 @@ class ApplicantController extends Controller
             // Example: Log::error('Error in logReport: ' . $e->getMessage());
         }
     }
+
+    public function format()
+    {
+        $applicant = Auth::user()->applicant;
+        $voucherData = null;
+        $exam = null;
+        $exam_name = null;
+        $exam = ApplicantExam::all()->where('applicant_id', $applicant->id)->where('status', 'GENERATED')->first();
+        if ($exam)
+            $exam_name = Exam::all()->where('id', $exam->exam_id)->first();
+        if ($applicant)
+            $voucherData = ApplicantExam::all()->where('applicant_id', $applicant->id)->first();
+        return view('admin.pages.admin.applicant-format', compact('applicant', 'voucherData', 'exam', 'exam_name'));
+    }
 }

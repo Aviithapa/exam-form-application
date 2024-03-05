@@ -160,6 +160,14 @@
                             <span> Logs </span>
                         </a>
                     </li> 
+
+                     <li class="side-nav-item">
+                        <a href="{{ route('dashboard.format') }}" class="side-nav-link">
+                            <i class=""></i>
+                            {{-- <span class="badge bg-success float-end">9+</span> --}}
+                            <span> My Documents</span>
+                        </a>
+                    </li> 
                     
                     
 
