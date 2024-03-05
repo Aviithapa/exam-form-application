@@ -469,9 +469,12 @@
                        @foreach($applicant->documents as $document)
                             @if($document->document_name != "profile")
                              @if( $document->document_name != "signature")
+                             @if( $document->document_name != "left_fingure")
+
                                <div class="break-before">
                                  <img src ="{{ getImage($document->path) }}" />  
                               </div>
+                              @endif
                             @endif
                             @endif
                        @endforeach
