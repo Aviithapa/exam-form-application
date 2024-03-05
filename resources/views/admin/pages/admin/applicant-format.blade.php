@@ -467,7 +467,7 @@
                        @endif
 
                        @foreach($applicant->documents as $document)
-                            @if($document->document_name !== "profile" && $document->document_name !== "signature" && $document->document_name !== "left_fingure")
+                            @if($document->document_name !== "profile" || $document->document_name !== "signature" || $document->document_name !== "left_fingure")
                                <div class="break-before">
                                  <img src ="{{ getImage($document->path) }}" />  
                               </div>
