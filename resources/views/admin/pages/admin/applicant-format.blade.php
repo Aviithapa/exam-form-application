@@ -48,10 +48,10 @@
                             <div>
                                 <div class="row">
                                   <div class="col-sm-12" style="text-align: center; font-weight:600;">
-                                    
-                                    अनुशाचु 1 <br/>
+                                    <h3>
+                                    अनुसूची 1 <br/>
                                     अबेदान  फरम
-                                   नेपाल कानून व्यवसायी परिषद
+                                   नेपाल कानून व्यवसायी परिषद </h3>
                                   </div>
                                <div class="col-sm-8" style="text-align: center; padding-left: 100px;">
                                 
@@ -317,7 +317,7 @@
                         </div>
                     </div>
                     @if(isset($exam))
-                    <div class="row break-before">
+                    <div class="row break-before" style="width:100%;">
                                             <div class="col-lg-12 m-b-3">
                                                 <div class="box box-info">
                                                     <div class="box-header with-border p-t-1">
@@ -467,7 +467,7 @@
                        @endif
 
                        @foreach($applicant->documents as $document)
-                            @if($document->document_name !== "profile")
+                            @if($document->document_name !== "profile" && $document->document_name !== "signature" && $document->document_name !== "left_fingure")
                                <div class="break-before">
                                  <img src ="{{ getImage($document->path) }}" />  
                               </div>
