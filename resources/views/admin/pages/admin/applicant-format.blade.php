@@ -49,8 +49,8 @@
                                 <div class="row">
                                   <div class="col-sm-12" style="text-align: center; font-weight:600;">
                                     <h3>
-                                    अनुसूची 1 <br/>
-                                    अबेदान  फरम
+                                    अनुसूची १ <br/>
+                                    आवेदन फारम 
                                    नेपाल कानून व्यवसायी परिषद </h3>
                                   </div>
                                <div class="col-sm-8" style="text-align: center; padding-left: 100px;">
@@ -79,7 +79,7 @@
                                               </div>
                                                <div class="col-sm-10">
                                                  <div style="padding-top: 15px;"> 
-                                                   देवनागरीकम | {{ $applicant->full_name_nepali }}
+                                                   देवनागरिक | {{ $applicant->full_name_nepali }}
                                                  </div>
                                                     <hr />
                                                   <div style="padding-bottom: 15px;"> 
@@ -198,11 +198,11 @@
                                         <div style="width: 100%; border: 1px solid #000; "> 
                                            <div class="row">
                                               <div class="col-sm-2" style="align-items: center; display:flex; border-right:1px solid #000; padding-left: 10px; justify-content: center;">
-                                                आमा को नाम थार
+                                                आमाको नाम थर 
                                               </div>
                                                <div class="col-sm-10">
                                                  <div style="padding-top:10px;"> 
-                                                   देवनागरीकम | {{ $applicant->familyInformation->mother_name_nepali }}
+                                                   देवनागरिक | {{ $applicant->familyInformation->mother_name_nepali }}
                                                  </div>
                                                     <hr />
                                                   <div style="padding-bottom:10px;"> 
@@ -218,12 +218,12 @@
                                            <div class="row">
                                               <div class="col-sm-2" style="align-items: center; display:flex; border-right:1px solid #000; padding-left: 10px; justify-content: center;">
                                             
-                                            बुबा को नाम थार
+                                          बुबाको नाम थर 
                                               </div>
                                                <div class="col-sm-10">
                                                                                                  <div style="padding-top:10px;"> 
 
-                                                   देवनागरीकम | {{ $applicant->familyInformation->father_name_nepali }}
+                                                   देवनागरिक | {{ $applicant->familyInformation->father_name_nepali }}
                                                  </div>
                                                     <hr />
                                                    <div style="padding-bottom:10px;"> 
@@ -240,12 +240,12 @@
                                            <div class="row">
                                               <div class="col-sm-2" style="align-items: center; display:flex; border-right:1px solid #000; padding-left: 10px; justify-content: center;">
                                             
-                                            हजुरबुबा को नाम थार
+                                           हजुरबुबाको नाम थर 
                                               </div>
                                                <div class="col-sm-10">
                                                                                                 <div style="padding-top:10px;"> 
 
-                                                   देवनागरीकम | {{ $applicant->familyInformation->grandfather_name_nepali }}
+                                                   देवनागरिक | {{ $applicant->familyInformation->grandfather_name_nepali }}
                                                  </div>
                                                     <hr />
                                           <div style="padding-bottom:10px;"> 
@@ -263,7 +263,7 @@
                                         <div style="width: 100%; border: 1px solid #000;"> 
                                            <div class="row">
                                               <div class="col-sm-2" style="align-items: center; display:flex; border-right:1px solid #000; padding: 20px 10px; justify-content: center;">
-                                                विवाहित भयेको मा
+                                            बिबाहित भएको हकमा
                                               </div>
                                               <div class="col-sm-5" style="align-items: center; display:flex; border-right:1px solid #000; padding-left: 10px; justify-content: center;">
                                                 {{ $applicant->familyInformation->spouse }}
