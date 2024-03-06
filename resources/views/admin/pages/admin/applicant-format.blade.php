@@ -386,13 +386,7 @@
                                                                         </div>
 
                                                                         <div style="height:50px;  float:left; padding-left: 8%; padding-right: 8%;">
-                                                                            <div style="margin-top: -40px; z-index: 1000;position: absolute; height: 50px">
-                                                                                <img src="{{ getImage($exam_name->signature) }}" class="signature" width="150px" height="70px">
-                                                                            </div>
-                                                                            <div>
-                                                                                ..................................................<br>
-                                                                               प्रमाणित गर्नेको दस्तखत
-                                                                            </div>
+                                                                        
                                                                         </div>
                                                                         <div style="padding-left: 0%; padding-top: 10px; " class="mt-5">
                                                                            
