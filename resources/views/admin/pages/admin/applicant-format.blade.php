@@ -59,7 +59,7 @@
 
 <spam style="font-size: 12px;">परीक्षा नं  ३१/ तहः अधिवक्ता। </spam> <br/>
 
-<spam style="font-size: 12px;">परीक्षा नं्‍‍‍ ३१ भनेकाे ठाउँमा Exam Creat गर्दाकाे auto आउने बनाउने । </spam>
+
                                    
                                   </div>
                                <div class="col-sm-8" style="text-align: center; padding-left: 100px;">
