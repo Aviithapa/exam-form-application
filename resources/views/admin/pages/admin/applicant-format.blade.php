@@ -50,8 +50,9 @@
                                   <div class="col-sm-12" style="text-align: center; font-weight:600;">
                                     <h3>
                                     अनुसूची १ <br/>
-                                    आवेदन फारम <br/>
-                                   नेपाल कानून व्यवसायी परिषद </h3>
+                                   
+                                   नेपाल कानून व्यवसायी परिषद <br/>
+                                  आवेदन फारम  </h3>
                                   </div>
                                <div class="col-sm-8" style="text-align: center; padding-left: 100px;">
                                 
