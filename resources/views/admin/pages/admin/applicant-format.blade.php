@@ -49,6 +49,17 @@
                                 <div class="row">
                                   <div class="col-sm-12" style="text-align: center; font-weight:600;">
                                     <h3>
+                                     नेपाल कानून व्यवसायी परिषद्<br/>
+
+कानून व्यवसायी परीक्षा<br />
+
+दरखास्त फाराम <br />
+
+
+
+<spam style="font-size: 12px;">परीक्षा नं  ३१/ तहः अधिवक्ता। </spam> <br/>
+
+<spam style="font-size: 12px;">परीक्षा नं्‍‍‍ ३१ भनेकाे ठाउँमा Exam Creat गर्दाकाे auto आउने बनाउने । </spam>
                                     अनुसूची १ <br/>
                                    
                                    नेपाल कानून व्यवसायी परिषद <br/>
