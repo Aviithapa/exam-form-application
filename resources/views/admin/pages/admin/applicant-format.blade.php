@@ -317,27 +317,20 @@
                         </div>
                     </div>
                     @if(isset($exam))
-                    
-                            <div class="row break-before">
+                    <div class="row break-before" style="width:100%;">
                                             <div class="col-lg-12 m-b-3">
                                                 <div class="box box-info">
                                                     <div class="box-header with-border p-t-1">
                                                             <div class="col-lg-4">
-                                                            {{-- <img class="img-responsive" width="300" height="100" style="left: 0%; position: absolute; padding-left: 3%; padding-top:-10px; " src="{{ asset('images/logo.jpeg') }}"> --}}
-                                                            </div>
+                                                           </div>
                                                             <div class="col-lg-8 text-center align-content-center" style=" text-align: center; margin: auto;width: 60%; line-height: 0.4;">
                                                             <h1  style = "color: #003893 !important; 
                                                             font-size:36px; 
                                                             font-weight: bold; 
                                                             word-spacing: 2px; font-family:Aerial; margin-top: 20px; " class="box-title text-black">नेपाल कानून व्यवसायी परिषद</h1>
-                                                            {{-- <h1  style = "color: red !important; 
-                                                            font-size:36px; 
-                                                            font-weight: bold; 
-                                                            word-spacing: 2px; font-family:Aerial; margin-top: -5px;" class="box-title text-black">Nepal Health Professional Council</h1> --}}
                                                             <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">३१ C औं अधिवक्ता परीक्षा</h3>
                                                             
-                                                            {{-- <h4  style = "font-family:Aerial; margin-top: -5px; " class="box-title text-black">बांसबारी, काठमाडौं</h4>  --}}
-                                                                <h4  style = "font-size: 30px; text-decoration: underline; font-family:Aerial" class="box-title text-black">प्रवेश पत्र</h4>
+                                                            <h4  style = "font-size: 30px; text-decoration: underline; font-family:Aerial" class="box-title text-black">प्रवेश पत्र</h4>
                                                              <div style="margin-top: -180px; margin-left: 130px; z-index: 1000;position: absolute; height: 50px">
                                                                                 <img src="{{ asset('assets/images/stamp.png') }}" class="signature" width="150px" height="150px">
                                                                             </div>
@@ -349,9 +342,14 @@
                                                     
                                                         
                                                         <div class="student-admit-card-body" style="border: 1px solid #000; padding: 20px;height: 300px; font-size: 12px;">
-                                                            <div class="row">
-                                                                <div class="col-lg-8">
-                                                                    <div style="width:60%; float: left; line-height:1.2;">
+                                                            <div class="row" style="width:100%;     display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;">
+                                                                <div class="col-lg-7" style="-webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 58.33333333%;">
+                                                                    <div style="width:100%; float: left; line-height:1.2;">
 
                                                                         {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(80)->generate('Name : '.$applicant->full_name_english. ' Dob' . $applicant->dob_english )!!}
 
@@ -372,17 +370,18 @@
                                                                                 </div>
                                                                         </span></div>
                                                                 </div>
-                                                                <div class="col-lg-4">
-                                                                    <div style="width: 40%; float: left;">
+                                                                <div class="col-lg-3" style="    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 25%;">
+                                                                    <div style="width: 20%; float: left;">
                                                                          <div style="margin-top: -100px; margin-left: 70px; z-index: 1000;position: absolute; height: 50px">
                                                                                 <img src="{{ asset('assets/images/stamp.png') }}" class="signature" width="150px" height="150px">
                                                                             </div>
                                                                         <div style="display:flex;">
 
-                                                                            <img width="180px;" height="180px" src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'profile')->pluck('path')->first()) : imageNotFound() }}">
-                                                                            {{-- <div style="border-style:dashed; border-width: 1px;height: 170px;width: 170px; object-position: 50% 100%; padding:10px; line-height:1.5">
-                                                                                परीक्षाको लागि फारम भर्दाको पासपोर्ट साइज को फोटो
-                                                                            </div> --}}
+                                                                            <img width="160px" height="180px" src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'profile')->pluck('path')->first()) : imageNotFound() }}">
+                                                                           
 
                                                                         </div>
 
@@ -464,6 +463,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                   
                        @endif
 
                        @foreach($applicant->documents as $document)
@@ -471,7 +471,7 @@
                              @if( $document->document_name != "signature")
                              @if( $document->document_name != "left_fingure")
 
-                               <div class="break-before" style="margin-left: 20px; margin-right:20px; margin-top:10px; height:842px; width:595px; ">
+                              <div class="break-before" style="margin-left: 20px; margin-right:20px; margin-top:10px; height:842px; width:595px; ">
                                  <img src ="{{ getImage($document->path) }}" style="height: 100%; width:100%;"/>  
                               </div>
                               @endif
