@@ -50,7 +50,7 @@
                                   <div class="col-sm-12" style="text-align: center; font-weight:600;">
                                     <h3>
                                     अनुसूची १ <br/>
-                                    आवेदन फारम 
+                                    आवेदन फारम <br/>
                                    नेपाल कानून व्यवसायी परिषद </h3>
                                   </div>
                                <div class="col-sm-8" style="text-align: center; padding-left: 100px;">
@@ -75,7 +75,7 @@
                                         <div style="width: 100%; border: 1px solid #000; height:100px;"> 
                                            <div class="row">
                                               <div class="col-sm-2" style="align-items: center; display:flex; border-right:1px solid #000; padding-left: 10px; justify-content: center;">
-                                                पूरा नाम थार
+                                                पूरा नाम थर
                                               </div>
                                                <div class="col-sm-10">
                                                  <div style="padding-top: 15px;"> 
