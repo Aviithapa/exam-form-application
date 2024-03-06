@@ -438,6 +438,7 @@
                                             <div id="edit-profile" class="tab-pane">
                                                 <div class="user-profile-content">
 
+                                                    @if(isset($voucherData))
                                                      @if($voucherData && $voucherData->status === 'NEW' || $voucherData->status === 'REJECTED')
                                                         <form method="POST" action="{{ route('applicant.status', ['id' => $applicant->id]) }}">
                                                             @method('PUT')
@@ -463,6 +464,7 @@
                                                         </form>
                                                     @else
                                                         <h1>Is Approved From Here</h1>
+                                                    @endif
                                                     @endif
                                                     
                                                 </div>
