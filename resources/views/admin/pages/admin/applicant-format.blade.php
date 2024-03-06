@@ -471,8 +471,8 @@
                              @if( $document->document_name != "signature")
                              @if( $document->document_name != "left_fingure")
 
-                               <div class="break-before" style="margin-left: 20px; margin-right:20px; margin-top:10px;">
-                                 <img src ="{{ getImage($document->path) }}" />  
+                               <div class="break-before" style="margin-left: 20px; margin-right:20px; margin-top:10px; height:842px; width:595px; ">
+                                 <img src ="{{ getImage($document->path) }}" style="height: 100%; width:100%;"/>  
                               </div>
                               @endif
                             @endif
