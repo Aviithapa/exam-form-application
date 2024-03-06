@@ -328,7 +328,7 @@
                                                             font-size:36px; 
                                                             font-weight: bold; 
                                                             word-spacing: 2px; font-family:Aerial; margin-top: 20px; " class="box-title text-black">नेपाल कानून व्यवसायी परिषद</h1>
-                                                            <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">३१ C औं अधिवक्ता परीक्षा</h3>
+                                                            <h3  style = "font-family:Aerial; line-height:1.6; margin-top: -5px;" class="box-title  text-black">३१ औं अधिवक्ता परीक्षा</h3>
                                                             
                                                             <h4  style = "font-size: 30px; text-decoration: underline; font-family:Aerial" class="box-title text-black">प्रवेश पत्र</h4>
                                                              <div style="margin-top: -180px; margin-left: 130px; z-index: 1000;position: absolute; height: 50px">
