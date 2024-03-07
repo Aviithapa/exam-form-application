@@ -68,7 +68,7 @@
                                <div class="col-sm-4" style="text-align: right;">
                                 
                                     <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'profile')->pluck('path')->first()) : imageNotFound() }}" alt=""
-                                                class="avatar-lg" onclick="onClick(this)" style="width: 8 rem; height:8rem;">
+                                                class="avatar-lg" onclick="onClick(this)" style="width: 7rem; height:7rem;">
                               
                                 </div>
             
