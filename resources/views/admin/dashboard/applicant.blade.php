@@ -17,6 +17,14 @@
                                 </div>
                             </div>
                         </div>
+
+                         <div class="d-flex flex-wrap gap-2" style="padding-bottom: 10px; padding-left: 15px;">
+                                            
+                                           <button onclick="window.location.href = '     {{ route('dashboard.format') }}'" type="button" class="btn btn-success">Download My Documents</button>
+                                   
+                                           
+                                           
+                                        </div>
                        
 
                     @if(isset($isPublished) && $isPublished)
@@ -45,6 +53,8 @@
                                            
                                            
                                         </div>
+
+                                   
                                 </div>
                                 
                             </div>
