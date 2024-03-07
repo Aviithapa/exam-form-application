@@ -68,7 +68,7 @@
                                <div class="col-sm-4" style="text-align: right;">
                                 
                                     <img src="{{ isset($applicant->documents) ? getImage($applicant->documents->where('document_name', 'profile')->pluck('path')->first()) : imageNotFound() }}" alt=""
-                                                class="avatar-lg" onclick="onClick(this)" >
+                                                class="avatar-lg" onclick="onClick(this)" height="120">
                               
                                 </div>
             
@@ -480,7 +480,7 @@
                              @if( $document->document_name != "signature")
                              @if( $document->document_name != "left_fingure")
 
-                              <div class="break-before" style="margin-left: 20px; margin-right:20px; margin-top:10px; height: 297mm; width: 210mm;">
+                              <div class="break-before" style="margin-left: 5px; margin-right:5px; margin-top:5px; height: 297mm; width: 208mm;">
                                   <img src="{{ getImage($document->path) }}" style="height: 100%; width: 100%;"/>
                               </div>
                               @endif
