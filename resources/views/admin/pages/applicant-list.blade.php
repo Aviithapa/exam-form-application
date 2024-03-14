@@ -64,7 +64,7 @@
                                                      </select>
                                                 </div>
                                             </div>
-                                             <div class="col-lg-2 col-md-2 col-sm-6"> 
+                                             <div class="col-lg-3 col-md-3 col-sm-6"> 
                                                 <div class="mb-3">
                                                        <select class="form-control select2" name="exam_id" data-toggle="select2">
                                                             <option value="">Search Exam Wise</option>
@@ -76,9 +76,14 @@
                                                      </select>
                                                 </div>
                                             </div>
+                                            <div class="col-lg-2 col-md-3 col-sm-6"> 
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control" id="validationCustom01" placeholder="Phone Number" name="phone_number" value="{{ isset($request) ? $request->get('phone_number') : '' }}">
+                                                </div>
+                                            </div>
 
                                             
-                                            <div class="col-lg-1 col-md-1 col-sm-6"> 
+                                            <div class="col-lg-6 col-md-6 col-sm-6" style="text-align:right; margin-right: 10px;"> 
                                                 <button class="btn btn-primary" type="submit">Search</button>
                                              </div>
                                         </div>

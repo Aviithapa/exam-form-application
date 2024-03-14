@@ -19,6 +19,10 @@ class ApplicantFilter
             $query->where('citizenship_number', 'like', '%' .  $filters['citizenship_number'] . '%');
         }
 
+        if (isset($filters['phone_number'])) {
+            $query->where('phone_number', 'like', '%' .  $filters['phone_number'] . '%');
+        }
+
         if (isset($filters['status'])) {
             $query->whereIn('applicant_exam.status',  [$filters['status']]);
         }
