@@ -189,6 +189,13 @@
                             <span>Center Data</span>
                         </a>
                     </li>
+                      <li class="side-nav-item">
+                        <a href="{{ route('municipalities.index') }}" class="side-nav-link">
+                            <i class=""></i>
+                            {{-- <span class="badge bg-success float-end">9+</span> --}}
+                            <span>Municipalities</span>
+                        </a>
+                    </li>
 
                
 

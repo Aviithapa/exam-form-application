@@ -57,7 +57,7 @@
 
 
 
-<spam style="font-size: 14px;">परीक्षा नं  ३१ / तहः अधिवक्ता</spam> <br/>
+<spam style="font-size: 14px;">परीक्षा नं  {{ isset($exam_name->name) ? $exam_name->name : '31' }} / तहः अधिवक्ता</spam> <br/>
 
 
                                    

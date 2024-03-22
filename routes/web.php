@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ApplicantController as AdminApplicantController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExamCenterController;
 use App\Http\Controllers\Admin\ExamController;
+use App\Http\Controllers\Admin\MunicipalityController;
 use App\Http\Controllers\Admin\ResultController;
 use App\Http\Controllers\Applicant\ApplicantController;
 use App\Http\Controllers\Applicant\QualificationController;
@@ -175,3 +176,6 @@ Route::get('/dashboard/admit-card', [AdmitCardController::class, 'admit'])->midd
 
 
 Route::get('/dashboard/format', [ApplicantController::class, 'format'])->middleware(['auth'])->name('dashboard.format');
+
+
+Route::resource('municipalities', MunicipalityController::class)->middleware(['auth']);
