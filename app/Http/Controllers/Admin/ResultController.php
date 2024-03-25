@@ -34,6 +34,8 @@ class ResultController extends Controller
                 'applicant_exam.result as result',
                 'applicant_exam.subject1 as subject1',
                 'applicant_exam.subject2 as subject2',
+                'applicant_exam.subject3 as subject3',
+                'applicant_exam.percentage as percentage',
                 'applicant.full_name_english as full_name_english',
                 'applicant.dob_nepali as dob_nepali',
                 'applicant_exam.symbol_number as symbol_number',
@@ -82,10 +84,13 @@ class ResultController extends Controller
                 $cellValues = iterator_to_array($cellIterator);
                 // Assuming the cell index matches the expected array index
                 // dd($cellValues['B']->getValue());
-                $symbol_number = $cellValues['B']->getValue();
-                $subject1 = $cellValues['C']->getValue();
-                $subject2 = $cellValues['D']->getValue();
-                $result = $cellValues['E']->getValue();
+                $symbol_number = $cellValues['A']->getValue();
+                $subject1 = $cellValues['B']->getValue();
+                $subject2 = $cellValues['C']->getValue();
+                $subject3 = $cellValues['D']->getValue();
+                $total = $cellValues['E']->getValue();
+                $percentage = $cellValues['F']->getValue();
+                $result = $cellValues['G']->getValue();
 
                 $student = ApplicantExam::where('symbol_number', $symbol_number)->first();
 
@@ -95,6 +100,9 @@ class ResultController extends Controller
                     $student->update([
                         'subject1' => $subject1,
                         'subject2' => $subject2,
+                        'subject3' => $subject3,
+                        'total' => $total,
+                        'percentage' => $percentage,
                         'result' => $result
                     ]);
                 }
@@ -106,9 +114,9 @@ class ResultController extends Controller
             // Return any students not found
 
             session()->flash('success', 'Result has been uploaded successfully.');
-            redirect()->back()->withInput();
-            return $noStudentFound;
+            return redirect()->route('dashboard.exam.index');
         } catch (\Exception $e) {
+            dd($e);
             // Handle exceptions
             return response()->json(['error' => $e->getMessage()], 500);
         }

@@ -75,13 +75,16 @@
                                                       <th>मौखिक (अन्तरर्वाता) परीक्षा</th>
                                                       <th>२०</th>
                                                       <th>१०</th>
-                                                      <th>-</th>
+                                                      <th>{{ number_format($matchingApplicants->subject3, 2) }}</th>
                                                       <th>-</th>
 
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                          
                                             <h4 class="card-text mt-4">नतिजा: : {{  $matchingApplicants->result }} </h4>
+                                            <h4 class="card-text mt-4">प्रतिशतः : {{   number_format($matchingApplicants->percentage, 2) }} </h4>
+
                                         </div>
                             </div> <!-- end card-->
                         </div> 

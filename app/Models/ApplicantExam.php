@@ -27,6 +27,9 @@ class ApplicantExam extends Model
         'srn',
         'subject1',
         'subject2',
+        'subject3',
+        'total',
+        'percentage',
         'result'
     ];
 
